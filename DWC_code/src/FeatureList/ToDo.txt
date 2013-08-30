@@ -1,0 +1,39 @@
+Create Table For:
+    Call (id, CaseId, Callerid, time, duration, queue time, AgentID )
+    Caller (Name, Age, Address, CaseId, Callid)
+    Case (id, PoliceStn, Status, Forward)
+    Accused (id, Caseid, Name, Phone, Address, FIR)
+    Case_History (id, Caseid, date, Agentid, Note, Advice, Referred)
+    Telephone (Caseid, Callid, Number)
+    Audio (id, FilePath, Number)
+    Directory (id, District, Area, service, Info)
+    Agent (id, Agentid, Name, userid, pwd)
+    Call_Scheduling (id, AgentID, Extension, Status (Busy/Free)) )
+
+Telephone conferencing
+
+Handling Call.
+ status->> free then make it ringing ->> Answering (Presses process call) -------------------------------->> Update DB -->> Disable till call not finished -->> Update status to free and serving to blank
+
+                                                             ->> Call Finished (Presses process call) ---->> update DB -->> Update status to free and serving to blank
+                                     
+
+                                     ->> Disconected (Status to Free)
+
+
+********************************************************************************************
+Sheets for refred> read/ unread
+Case status[]
+CaseType[Multiple Category], store in db
+Case [History element independent of call]
+[SMS/Call] notice to Khadija madam
+9899175822
+
+*********
+primary intervention done
+case in progress
+closed
+**********
+Agent offered the call must be insert in Call_scheduling
+Agent Picked the call Freeswitch Event must insert the entry in call
+Ste call_scheduling for agent ans or finished
