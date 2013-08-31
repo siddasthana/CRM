@@ -67,22 +67,29 @@ public class Accused {
     public void setFir(String Fir) {
         this.Fir = Fir;
     }
-    public void savetodb() throws SQLException{
+    public void savetodb(){
         
     String Query = "INSERT INTO `"+Sql.dbName+"`.`accused` (`idAccused`, `Caseid`, `Name`, `Phone`, `Address`, `Fir`)" + " values(null,?,?,?,?,?) ";
-    Query += " VALUES ('"+getCaseID()+"', '"+getName()+"', '"+getPhone()+"', '"+getAddress()+"', '"+getFir()+"')";
+    //Query += " VALUES ('"+getCaseID()+"', '"+getName()+"', '"+getPhone()+"', '"+getAddress()+"', '"+getFir()+"')";
     Sql sql = new Sql();
     PreparedStatement stmt=sql.GetPrepareStmt(Query);
-    Accused a = new Accused();
-        stmt.setLong(1,a.getCaseID());
-        stmt.setString(2,a.getName());
-        stmt.setLong(3,a.getPhone());
-        stmt.setString(4,a.getAddress());
-        stmt.setString(5,a.getFir());
+      
+    try
+    {
+        stmt.setLong(1,getCaseID());
+        stmt.setString(2,getName());
+        stmt.setLong(3,getPhone());
+        stmt.setString(4,getAddress());
+        stmt.setString(5,getFir());
         stmt.executeUpdate();
+    }
+     catch(SQLException e)
+   {
+       System.out.println(e);
+   }
     //sql.ExecuteUpdate(Query);
        // sql.ExecuteUpdate(Query);
-    ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
+  ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
         try {
             if(rs.next()){
             long insertid = Long.valueOf(rs.getLong(1));

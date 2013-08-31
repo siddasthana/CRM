@@ -57,10 +57,11 @@ public class Telephone {
     //Query += " VALUES ('"+getCaseHid()+"', '"+getNumber()+"', '"+getNote()+"')";
     Sql sql = new Sql();
     PreparedStatement stmt=sql.GetPrepareStmt(Query);
-        Telephone t = new Telephone();
-        stmt.setLong(1,t.getCaseHid());
-        stmt.setLong(2,t.getNumber());
-        stmt.setString(3,t.getNote());
+       
+        stmt.setLong(1,getCaseHid());
+        stmt.setLong(2,getNumber());
+        stmt.setString(3,getNote());
+
     //sql.ExecuteUpdate(Query);
         stmt.executeUpdate();
     ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");

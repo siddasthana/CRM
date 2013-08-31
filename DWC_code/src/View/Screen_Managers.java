@@ -16,6 +16,7 @@ import Layout.WrapLayout;
 import View.Elements.Pnl_CallerElement;
 import View.Elements.Pnl_CaseElement;
 import View.Elements.Pnl_CaseHistoryElement;
+import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -566,6 +567,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         JDialog caseentry = new JDialog();
         caseentry.add(pce);
         caseentry.setSize(caseentry.getPreferredSize());
+        caseentry.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         caseentry.show();    }//GEN-LAST:event_Btn_DialActionPerformed
     
     public static void infoBox(String infoMessage, String location) {

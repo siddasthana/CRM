@@ -83,22 +83,23 @@ public class Cases {
         sql.Destructor();
     }
 
-    public void savetodb() throws SQLException {
-        String Query = "INSERT INTO `" + Sql.dbName + "`.`case` (`idCase`, `PoliceStation`, `Status`, `Forward`, `ReadableName`, `CaseType`)"+ " values(null,?,?,?,?,?) ";
-      //  Query += " VALUES ('" + getPoliceStn() + "', '" + getStatus() + "', '" + getForward() + "', '" + getReadableName() + "', '" + getCaseType() + "')";
+    public void savetodb() {
+        String Query = "INSERT INTO `" + Sql.dbName + "`.`case` (`idCase`, `PoliceStation`, `Status`, `Forward`, `ReadableName`, `CaseType`)" + " values(null,?,?,?,?,?) ";
+        //  Query += " VALUES ('" + getPoliceStn() + "', '" + getStatus() + "', '" + getForward() + "', '" + getReadableName() + "', '" + getCaseType() + "')";
         Sql sql = new Sql();
         System.out.println(Query);
-        PreparedStatement stmt=sql.GetPrepareStmt(Query);
-        Cases c = new Cases();
-        stmt.setString(1,c.getPoliceStn());
-        stmt.setString(2,c.getStatus());
-        stmt.setString(3,c.getForward());
-        stmt.setString(4,c.getStatus());
-        stmt.setString(5,c.getForward());
-        //   sql.ExecuteUpdate(Query);
-        stmt.executeUpdate();
-        ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
+        PreparedStatement stmt = sql.GetPrepareStmt(Query);
         try {
+            stmt.setString(1, getPoliceStn());
+            stmt.setString(2, getStatus());
+            stmt.setString(3, getForward());
+            stmt.setString(4, getStatus());
+            stmt.setString(5, getForward());
+
+            //   sql.ExecuteUpdate(Query);
+            stmt.executeUpdate();
+            ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
+
             if (rs.next()) {
                 long insertid = Long.valueOf(rs.getLong(1));
                 this.setId(insertid);

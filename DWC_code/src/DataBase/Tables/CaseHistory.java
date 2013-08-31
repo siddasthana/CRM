@@ -75,25 +75,27 @@ public class CaseHistory {
     public void setReffered(String Reffered) {
         this.Reffered = Reffered;
     }
-       public void savetodb() throws SQLException{
+       public void savetodb(){
     String Query = "INSERT INTO `"+Sql.dbName+"`.`case_history` (`idCase_History`, `CaseID`, `DateStamp`, `AgentID`, `Note`, `Advice`, `Reffered`)"+ " values(null,?,?,?,?,?,?) ";
    // Query += " VALUES ('"+getCaseID()+"', NOW(), '"+getAgentID()+"', '"+getNote()+"', '"+getAdvice()+"', '"+getReffered()+"')";
-    Sql sql = new Sql();
-    
-    //sql.ExecuteUpdate(Query);
+   Sql sql = new Sql();
+        try {
+   
+             //sql.ExecuteUpdate(Query);
            System.out.println(Query);
            PreparedStatement stmt=sql.GetPrepareStmt(Query);
-        CaseHistory ch = new CaseHistory();
-        stmt.setLong(1,ch.getCaseID());
-        stmt.setString(2,ch.getDatestamp());
-        stmt.setLong(3,ch.getAgentID());
-        stmt.setString(4,ch.getNote());
-        stmt.setString(5,ch.getAdvice());
-        stmt.setString(6,ch.getReffered());
+      
+        stmt.setLong(1,getCaseID());
+        stmt.setString(2,getDatestamp());
+        stmt.setLong(3,getAgentID());
+        stmt.setString(4,getNote());
+        stmt.setString(5,getAdvice());
+        stmt.setString(6,getReffered());
+    
     //   sql.ExecuteUpdate(Query);
         stmt.executeUpdate();
-    ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
-        try {
+   
+            ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
             if(rs.next()){
             long insertid = Long.valueOf(rs.getLong(1));
             
