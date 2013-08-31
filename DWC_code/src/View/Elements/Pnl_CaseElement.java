@@ -8,6 +8,7 @@ import DataBase.Tables.Cases;
 import View.Dlg_SelectCaller;
 import View.Dlg_SelectCase;
 import View.Global;
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -243,6 +244,10 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         if (Global.AgentLevel.equals("supervisor")) {
             this.Btn_Save.setEnabled(true);
         }
+        if(ob.getReadableName().toLowerCase().startsWith("blank") || ob.getReadableName().toLowerCase().startsWith("men")||ob.getReadableName().toLowerCase().startsWith("advice")){
+        this.setBackground(Color.red);
+        }
+        this.repaint();
     }
     private void Btn_SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SelectActionPerformed
         // TODO add your handling code here:
