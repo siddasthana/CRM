@@ -41,6 +41,8 @@
               <Component id="DtPck_Case" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Component id="Btn_Search" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Component id="Btn_More" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -83,6 +85,7 @@
                   <Component id="DtPck_Case" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jXLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Btn_Search" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_More" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -742,6 +745,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_SearchActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Btn_More">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="More&gt;&gt;"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

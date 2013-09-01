@@ -96,7 +96,7 @@ String StartTime, Number, Bound;
             + ", `Bound`='"+getBound()
             + "' where idCall="+getId();*/
    
-       String Query = "UPDATE calls  SET CaseHID = ?, Duration = ?, QueueTime = ?, AgentID = ?, Number=? ,Bound=? WHERE id = ?";
+       String Query = "UPDATE calls  SET CaseHID = ?, Duration = ?, QueueTime = ?, AgentID = ?, Number=? ,Bound=? WHERE idCall = ?";
   //Sql sql = new Sql();
        PreparedStatement stmt1=sql.GetPrepareStmt(Query);
        try
@@ -119,12 +119,15 @@ String StartTime, Number, Bound;
       //sql.ExecuteUpdate(Query);
     sql.Destructor();
     }
-        public void savetodb() throws SQLException{
+        public void savetodb() {
     String Query = "INSERT INTO `"+Sql.dbName+"`.`calls` (`idCall`, `CaseHID`, `StartTime`, `Duration`, `QueueTime`, `AgentID`, `Number`, `Bound`)" + "values(null,?,?,?,?,?,?,?)";
   //  Query += " VALUES ('"+getCaseHID()+"', '"+getStartTime()+"', '"+getDuration()+"', '"+getQueueTime()+"', '"+getAgentId()+"', '"+getNumber()+"', '"+getBound()+"')";
     //Sql sql = new Sql();
     PreparedStatement stmt=sql.GetPrepareStmt(Query);
-        stmt.setLong(1,getCaseHID());
+        
+   
+    //  sql.ExecuteUpdate(Query);
+       try {stmt.setLong(1,getCaseHID());
         stmt.setString(2,getStartTime());
         stmt.setInt(3,getDuration());
         stmt.setInt(4,getQueueTime());
@@ -132,10 +135,8 @@ String StartTime, Number, Bound;
         stmt.setString(6,getNumber());
         stmt.setString(7,getBound());
         stmt.executeUpdate();
-   
-    //  sql.ExecuteUpdate(Query);
-    ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
-        try {
+     ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
+        
             if(rs.next()){
             long insertid = Long.valueOf(rs.getLong(1));
             this.setId(insertid);

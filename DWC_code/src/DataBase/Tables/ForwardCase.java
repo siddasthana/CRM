@@ -81,7 +81,7 @@ public class ForwardCase {
         this.Level = Level;
     }
             public void savetodb() {
-    String Query = "INSERT INTO `"+Sql.dbName+"`.`forwardedcase` (`idForwardedCase`, `CaseID`, `ReadStatus`, `Agent`, `Forwardedby`, `TimeStamp`, `Level`) " + "values(null,?,?,?,?,?,?)";
+    String Query = "INSERT INTO `"+Sql.dbName+"`.`forwardedcase` (`idForwardedCase`, `CaseID`, `ReadStatus`, `Agent`, `Forwardedby`, `TimeStamp`, `Level`) " + "values(null,?,?,?,?,NOW(),?)";
    // Query += " VALUES ('"+getCaseID()+"', '"+getReadstatus()+"', "+getAgent()+", '"+getForwarded()+"', "+getTimestamp()+", '"+getLevel()+"')";
     Sql sql = new Sql();
     PreparedStatement stmt=sql.GetPrepareStmt(Query);
@@ -95,8 +95,8 @@ public class ForwardCase {
         stmt.setString(2,getReadstatus());
         stmt.setLong(3,getAgent());
         stmt.setLong(4,getForwarded());
-        stmt.setString(5,getTimestamp());
-        stmt.setString(6,getLevel());
+       // stmt.setString(5,getTimestamp());
+        stmt.setString(5,getLevel());
         stmt.executeUpdate();
   
     ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
@@ -105,6 +105,7 @@ public class ForwardCase {
             this.setId(insertid);
             }
         } catch (SQLException ex) {
+         ex.printStackTrace();
             Logger.getLogger(Telephone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     sql.Destructor();

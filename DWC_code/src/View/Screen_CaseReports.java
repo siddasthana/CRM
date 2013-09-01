@@ -93,6 +93,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         Btn_Search = new javax.swing.JButton();
+        Btn_More = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -105,7 +106,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         );
         Pnl_CaseListLayout.setVerticalGroup(
             Pnl_CaseListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
+            .addGap(0, 449, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(Pnl_CaseList);
@@ -388,7 +389,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Btn_Dial, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TxtDialScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -460,6 +461,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
             }
         });
 
+        Btn_More.setText("More>>");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -479,6 +482,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                 .addComponent(DtPck_Case, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(Btn_Search)
+                .addGap(61, 61, 61)
+                .addComponent(Btn_More)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -513,7 +518,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(DtPck_Case, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Btn_Search))
+                    .addComponent(Btn_Search)
+                    .addComponent(Btn_More))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
@@ -634,6 +640,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton18DialKeyPad
 
+    int LimitStart=0, LimitEnd=0;
     private void Btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SearchActionPerformed
         // TODO add your handling code here:
         Pnl_CaseHistory.removeAll();
@@ -667,9 +674,11 @@ public class Screen_CaseReports extends javax.swing.JFrame {
             e.printStackTrace();
         }
         caselist += ")";
+        int CaseCount=0;
         if (caselist.length() > 3) {
             ArrayList<Cases> cases = new Cases().loadclass(" idCase IN " + caselist);
             for (Cases ob : cases) {
+                CaseCount++;
                 System.out.println("Adding Cases");
                 Pnl_CaseElement obj = new Pnl_CaseElement();
                 obj.LoadElement(ob);
@@ -706,12 +715,15 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                                 public void mouseEntered(MouseEvent ej) {
                                     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                                     Pnl_Caller.removeAll();
+                                    Pnl_Caller.revalidate();
+                                    Pnl_Caller.repaint();
                                     System.out.println("Got a mouse entered event");
                                     Caller e = new Caller().loadclass(" CallID=" + CaseHID).get(0);
                                     Pnl_CallerElement obj = new Pnl_CallerElement();
                                     obj.LoadElement(e);
                                     obj.remove(obj.getBtn_Select());
                                     obj.setSize(obj.preferredSize());
+                                    obj.revalidate();
                                     Pnl_Caller.add(obj);
                                     Pnl_Caller.revalidate();
                                     Pnl_Caller.repaint();
@@ -752,6 +764,15 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                 Pnl_CaseList.repaint();
                 this.repaint();
                 System.out.println("Adding case element");
+            }
+             if (CaseCount==20){
+            LimitStart+=20;
+            LimitEnd+=20;
+            Btn_More.setEnabled(true);
+            }else{
+                Btn_More.setEnabled(false);
+            LimitStart=0;
+            LimitEnd=20;
             }
     }//GEN-LAST:event_Btn_SearchActionPerformed
     }
@@ -805,6 +826,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Dial;
+    private javax.swing.JButton Btn_More;
     private javax.swing.JButton Btn_Search;
     private javax.swing.JComboBox CmbBx_CaseType;
     private org.jdesktop.swingx.JXDatePicker DtPck_Case;

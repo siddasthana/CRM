@@ -82,13 +82,13 @@
     <target name="dist-all" depends="jar"
             description="Bundles a stand-alone OneJAR distribution">
         <echo>Bundling: OneJAR is copying natives to ${dist.jar.dir}/natives </echo>
-        <copy todir="${dist.jar.dir}/natives/linux">
+        <copy todir="${dist.jar.dir}/natives">
             <fileset dir="${natives.dir}"  includes="*.so"/>
         </copy>
-        <copy todir="${dist.jar.dir}/natives/win">
+        <copy todir="${dist.jar.dir}/natives">
             <fileset dir="${natives.dir}"  includes="*.dll"/>
         </copy>
-        <copy todir="${dist.jar.dir}/natives/mac">
+        <copy todir="${dist.jar.dir}/natives">
             <fileset dir="${natives.dir}"  includes="*.dylib"/>
             <fileset dir="${natives.dir}"  includes="*.jnilib"/>
         </copy>
@@ -117,7 +117,7 @@ Run the stand-alone distribution from the command line using:
                 <fileset file="${dist.jar.dir}/lib/*.*" />
             </lib>
             <binlib>
-                <fileset file="${dist.jar.dir}/natives/win/*.*" />
+                <fileset file="${dist.jar.dir}/natives/*.*" />
             </binlib>
         </one-jar>
         <echo>Bundling: OneJAR is preparing ${standalone.jar.name}-linux.jar</echo>

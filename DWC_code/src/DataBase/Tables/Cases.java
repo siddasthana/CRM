@@ -93,8 +93,8 @@ public class Cases {
             stmt.setString(1, getPoliceStn());
             stmt.setString(2, getStatus());
             stmt.setString(3, getForward());
-            stmt.setString(4, getStatus());
-            stmt.setString(5, getForward());
+            stmt.setString(4, getReadableName());
+            stmt.setString(5, getCaseType());
 
             //   sql.ExecuteUpdate(Query);
             stmt.executeUpdate();

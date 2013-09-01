@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -76,7 +77,7 @@ public class CaseHistory {
         this.Reffered = Reffered;
     }
        public void savetodb(){
-    String Query = "INSERT INTO `"+Sql.dbName+"`.`case_history` (`idCase_History`, `CaseID`, `DateStamp`, `AgentID`, `Note`, `Advice`, `Reffered`)"+ " values(null,?,?,?,?,?,?) ";
+    String Query = "INSERT INTO `"+Sql.dbName+"`.`case_history` (`idCase_History`, `CaseID`, `DateStamp`, `AgentID`, `Note`, `Advice`, `Reffered`)"+ " values(null,?,NOW(),?,?,?,?) ";
    // Query += " VALUES ('"+getCaseID()+"', NOW(), '"+getAgentID()+"', '"+getNote()+"', '"+getAdvice()+"', '"+getReffered()+"')";
    Sql sql = new Sql();
         try {
@@ -86,11 +87,11 @@ public class CaseHistory {
            PreparedStatement stmt=sql.GetPrepareStmt(Query);
       
         stmt.setLong(1,getCaseID());
-        stmt.setString(2,getDatestamp());
-        stmt.setLong(3,getAgentID());
-        stmt.setString(4,getNote());
-        stmt.setString(5,getAdvice());
-        stmt.setString(6,getReffered());
+      //  stmt.setString(2,"NOW()");
+        stmt.setLong(2,getAgentID());
+        stmt.setString(3,getNote());
+        stmt.setString(4,getAdvice());
+        stmt.setString(5,getReffered());
     
     //   sql.ExecuteUpdate(Query);
         stmt.executeUpdate();
