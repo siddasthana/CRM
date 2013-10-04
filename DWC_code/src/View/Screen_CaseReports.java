@@ -12,11 +12,12 @@ import DataBase.Tables.Caller;
 import DataBase.Tables.Calls;
 import DataBase.Tables.CaseHistory;
 import DataBase.Tables.Cases;
+import DataBase.Tables.Legal;
 import Layout.WrapLayout;
 import View.Elements.Pnl_CallerElement;
 import View.Elements.Pnl_CaseElement;
 import View.Elements.Pnl_CaseHistoryElement;
-import java.awt.Dialog;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -93,10 +94,13 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         Btn_Search = new javax.swing.JButton();
-        Btn_More = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        Txt_PhoneNumber = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         javax.swing.GroupLayout Pnl_CaseListLayout = new javax.swing.GroupLayout(Pnl_CaseList);
         Pnl_CaseList.setLayout(Pnl_CaseListLayout);
@@ -106,11 +110,15 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         );
         Pnl_CaseListLayout.setVerticalGroup(
             Pnl_CaseListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
+            .addGap(0, 581, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(Pnl_CaseList);
         Pnl_CaseList.setLayout(new WrapLayout());
+
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        Pnl_CaseHistory.setMaximumSize(new java.awt.Dimension(32767, 1200));
 
         javax.swing.GroupLayout Pnl_CaseHistoryLayout = new javax.swing.GroupLayout(Pnl_CaseHistory);
         Pnl_CaseHistory.setLayout(Pnl_CaseHistoryLayout);
@@ -120,7 +128,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         );
         Pnl_CaseHistoryLayout.setVerticalGroup(
             Pnl_CaseHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
+            .addGap(0, 581, Short.MAX_VALUE)
         );
 
         Pnl_CaseHistory.setLayout(new WrapLayout());
@@ -160,7 +168,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         );
         Pnl_AccusedLayout.setVerticalGroup(
             Pnl_AccusedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 193, Short.MAX_VALUE)
+            .addGap(0, 326, Short.MAX_VALUE)
         );
 
         jScrollPane4.setViewportView(Pnl_Accused);
@@ -178,7 +186,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -389,7 +398,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 1, Short.MAX_VALUE)
                 .addComponent(Btn_Dial, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TxtDialScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -461,7 +470,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
             }
         });
 
-        Btn_More.setText("More>>");
+        jLabel2.setText("Phone Number");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -480,30 +489,31 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                 .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(DtPck_Case, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(63, 63, 63)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(Txt_PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68)
                 .addComponent(Btn_Search)
-                .addGap(61, 61, 61)
-                .addComponent(Btn_More)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(192, 192, 192)
+                .addComponent(jLabel3)
+                .addGap(250, 250, 250)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(284, 284, 284))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1248, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(jLabel3)
-                        .addGap(252, 252, 252)
-                        .addComponent(jLabel5)
-                        .addGap(435, 435, 435)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -519,24 +529,20 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                     .addComponent(DtPck_Case, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_Search)
-                    .addComponent(Btn_More))
+                    .addComponent(jLabel2)
+                    .addComponent(Txt_PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -563,7 +569,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
             }
         }
         OutBound ob = new OutBound();
-        ob.connect(TxtDialScreen.getText());
+      ob.connect(TxtDialScreen.getText());
+        
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
         Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
         pce.AudioPanel.disable();
@@ -571,11 +578,21 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         pce.getTxt_Note().setEnabled(true);
         pce.Agentid = Long.valueOf(Global.AgentPK);
         pce.Caseid = Caseid;
+        pce.setSize(pce.getPreferredSize());
+        pce.revalidate();
+        pce.repaint();
         JDialog caseentry = new JDialog();
         caseentry.add(pce);
-        caseentry.setSize(caseentry.getPreferredSize());
-        caseentry.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        caseentry.getContentPane().setSize(caseentry.getContentPane().getPreferredSize());
+      caseentry.setSize(caseentry.getPreferredSize());
+      caseentry.setSize(caseentry.getSize().width,caseentry.getSize().height+25);
+        caseentry.revalidate();
+        caseentry.repaint();
         caseentry.show();
+        //
+        //Calls cl = new Calls().loadclass("Bound='OUT' and Number="+ob.confname).get(0);
+        //cl.setCaseHID(pce.getElement().getId());
+        //cl.updatedb();
     }//GEN-LAST:event_Btn_DialActionPerformed
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
@@ -640,25 +657,40 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton18DialKeyPad
 
-    int LimitStart=0, LimitEnd=0;
     private void Btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SearchActionPerformed
         // TODO add your handling code here:
         Pnl_CaseHistory.removeAll();
         Pnl_Accused.removeAll();
         Pnl_CaseList.removeAll();
         Pnl_Caller.removeAll();
+        int Casecondition = 0;
         String QueryPart = " Select Distinct(CaseID) from Consolidate where 1=1 ";
         Date dt = DtPck_Case.getDate();
         if (dt != null) {
             QueryPart += " AND DATEDIFF(DateStamp,'" + Global.JavaDateToMysql(dt) + "')=0 ";
+Casecondition+=2;
         }
         if (CmbBx_CaseType.getSelectedItem().toString().trim().length() > 1) {
             QueryPart += " AND CaseType ='" + CmbBx_CaseType.getSelectedItem().toString() + "' ";
+        Casecondition++;
         }
         if (SrchFld_CmpltNo.getText().length() > 1) {
-            QueryPart += " AND ReadableName ='" + SrchFld_CmpltNo.getText() + "' ";
+            QueryPart += " AND ReadableName Like '%" + SrchFld_CmpltNo.getText() + "%'";
+        Casecondition+=2;
         }
-
+        if (Txt_PhoneNumber.getText().trim().length()>1){
+        try{
+        Long.parseLong(Txt_PhoneNumber.getText().trim());
+         QueryPart += " AND Number Like '%" + Txt_PhoneNumber.getText().trim() + "%'";
+         Casecondition +=2;
+        }catch(Exception e){
+        infoBox("Please eneter a valid Phone number", "Delhi Women Cell");
+        }
+        }
+if(Casecondition<2){
+infoBox("Please specify atleast 2 search criteria", "Delhi Women Cell");
+return;
+}
         String caselist = "(";
         try {
             Sql sql = new Sql();
@@ -674,11 +706,9 @@ public class Screen_CaseReports extends javax.swing.JFrame {
             e.printStackTrace();
         }
         caselist += ")";
-        int CaseCount=0;
         if (caselist.length() > 3) {
             ArrayList<Cases> cases = new Cases().loadclass(" idCase IN " + caselist);
             for (Cases ob : cases) {
-                CaseCount++;
                 System.out.println("Adding Cases");
                 Pnl_CaseElement obj = new Pnl_CaseElement();
                 obj.LoadElement(ob);
@@ -691,10 +721,46 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                         ArrayList<CaseHistory> caseHistory = new CaseHistory().loadclass(" CaseID =" + Caseid + " order by DateStamp DESC");
                         Pnl_Caller.removeAll();
                         Pnl_CaseHistory.removeAll();
+                        Pnl_Accused.removeAll();
+                        ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
+                        ArrayList<Legal> le = new Legal().loadclass(" CaseID=" + Caseid);
+                        System.out.println("starts here");
+                        String MSG = "";
+                        if (ac.size() > 0) {                            
+                            MSG += " NAME :" + ac.get(0).getName() + "\n";
+                            MSG += " Phone :" + ac.get(0).getPhone() + "\n";
+                            MSG += " Address :" + ac.get(0).getAddress() + "\n";
+                        }
+                        if(le.size()> 0){
+                            MSG += " DD: " + le.get(0).getDD()+ "\n";
+                            MSG += " Fir: " + le.get(0).getFir() + "\n";
+                            MSG += " Challan: " + le.get(0).getChallan()+ "\n";
+                            MSG += " Judgement: " + le.get(0).getJudgement()+ "\n";
+                            //MSG += 
+                            System.out.println(MSG);
+                        }
+                        System.out.println(MSG);
+                            JTextArea ja = new JTextArea();
+                            ja.setText(MSG);
+                            ja.setSize(ja.getPreferredSize());
+                            ja.setBackground(Color.yellow);
+                            ja.revalidate();
+                            ja.repaint();
+                            //ja.disable();
+                            Pnl_Accused.removeAll();
+                            Pnl_Accused.add(ja);
+                           
+                           //  Pnl_Accused.revalidate();
+                        //    Pnl_Accused.repaint();
+                            System.out.println("start");
+                          //  return;
+                         Pnl_Accused.revalidate();
+                            Pnl_Accused.repaint();
                         for (CaseHistory ch : caseHistory) {
                             final String CaseHID = String.valueOf(ch.getId());
                             Pnl_CaseHistoryElement obj = new Pnl_CaseHistoryElement();
                             obj.LoadElement(ch);
+                            
                             obj.addMouseListener(new MouseListener() {
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
@@ -715,30 +781,31 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                                 public void mouseEntered(MouseEvent ej) {
                                     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                                     Pnl_Caller.removeAll();
-                                    Pnl_Caller.revalidate();
-                                    Pnl_Caller.repaint();
                                     System.out.println("Got a mouse entered event");
                                     Caller e = new Caller().loadclass(" CallID=" + CaseHID).get(0);
                                     Pnl_CallerElement obj = new Pnl_CallerElement();
                                     obj.LoadElement(e);
                                     obj.remove(obj.getBtn_Select());
                                     obj.setSize(obj.preferredSize());
-                                    obj.revalidate();
                                     Pnl_Caller.add(obj);
                                     Pnl_Caller.revalidate();
                                     Pnl_Caller.repaint();
+                                    
                                 }
 
                                 @Override
                                 public void mouseExited(MouseEvent e) {
-                                    //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                                    //                                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                                    System.out.println(" here1");
                                 }
                             });
+                        System.out.println("here2");    
                             Pnl_CaseHistory.add(obj);
                             Pnl_CaseHistory.revalidate();
                             Pnl_CaseHistory.repaint();
                         }
-                        Pnl_Accused.removeAll();
+                        
+                      /*  Pnl_Accused.removeAll();
                         ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
                         if (ac.size() > 0) {
                             String MSG = "";
@@ -753,7 +820,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                             Pnl_Accused.add(ja);
                             Pnl_Accused.revalidate();
                             Pnl_Accused.repaint();
-                        }
+                        System.out.println("ends here");    
+                        }*/
                     }
                 });
                 //System.out.println("<Case Details>" + ob.getPoliceStn() + "," + ob.getForward() + "," + ob.getStatus());
@@ -764,15 +832,6 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                 Pnl_CaseList.repaint();
                 this.repaint();
                 System.out.println("Adding case element");
-            }
-             if (CaseCount==20){
-            LimitStart+=20;
-            LimitEnd+=20;
-            Btn_More.setEnabled(true);
-            }else{
-                Btn_More.setEnabled(false);
-            LimitStart=0;
-            LimitEnd=20;
             }
     }//GEN-LAST:event_Btn_SearchActionPerformed
     }
@@ -826,7 +885,6 @@ public class Screen_CaseReports extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Dial;
-    private javax.swing.JButton Btn_More;
     private javax.swing.JButton Btn_Search;
     private javax.swing.JComboBox CmbBx_CaseType;
     private org.jdesktop.swingx.JXDatePicker DtPck_Case;
@@ -838,6 +896,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
     public javax.swing.JPanel Pnl_RecrdDirctry;
     private org.jdesktop.swingx.JXSearchField SrchFld_CmpltNo;
     private javax.swing.JTextField TxtDialScreen;
+    private javax.swing.JTextField Txt_PhoneNumber;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
@@ -850,6 +909,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -36,6 +36,8 @@ public class Dlg_SelectCase extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(20);
+
         jPanel1.setLayout(new org.jdesktop.swingx.VerticalLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N

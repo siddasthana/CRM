@@ -20,6 +20,7 @@ public class Caller {
 
     long id, callid;
     String Name, Age, Address;
+    Sql sql = new Sql();
 
     public long getId() {
         return id;
@@ -64,7 +65,7 @@ public class Caller {
     public void savetodb() {
         String Query = "INSERT INTO `" + Sql.dbName + "`.`caller` (`idCaller`, `Name`, `Age`, `Address`, `CallID`)" + " values(null,?,?,?,?) ";
         //Query += " VALUES ('"+getName()+"', '"+getAge()+"', '"+getAddress()+"', '"+getCallid()+"');";
-        Sql sql = new Sql();
+       // Sql sql = new Sql();
         try {
             PreparedStatement stmt = sql.GetPrepareStmt(Query);
 
@@ -72,7 +73,7 @@ public class Caller {
             stmt.setString(2, getAge());
             stmt.setString(3, getAddress());
             stmt.setLong(4, getCallid());
-            //      sql.ExecuteUpdate(Query);
+            //sql.ExecuteUpdate(Query);
             stmt.executeUpdate();
             ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
 
@@ -90,7 +91,7 @@ public class Caller {
         ArrayList<Caller> cl = new ArrayList<>();
         String Query = "Select * From caller where " + Querypart;
         System.out.println(Query);
-        Sql sql = new Sql();
+        //Sql sql = new Sql();
         ResultSet rs = sql.ExecuteQuery(Query);
         try {
             while (rs.next()) {
@@ -111,10 +112,23 @@ public class Caller {
     }
 
     public void updatedb() {
-        String Query = "Update `" + Sql.dbName + "`.`caller` Set "
-                + "Name='" + getName() + "', `Age`='" + getAge() + "', `Address`='" + getAddress() + "', `CallID`='" + getCallid() + "' where idCaller=" + getId();
-
-        Sql sql = new Sql();
-        sql.ExecuteUpdate(Query);
+       // String Query = "Update `" + Sql.dbName + "`.`caller` Set "
+         //       + "Name='" + getName() + "', `Age`='" + getAge() + "', `Address`='" + getAddress() + "', `CallID`='" + getCallid() + "' where idCaller=" + getId();
+String Query = "UPDATE `caller`  SET Name = ?, Age = ?, Address = ?, CallID = ? WHERE idCaller = ?";
+       // Sql sql = new Sql();
+PreparedStatement stmt = sql.GetPrepareStmt(Query);
+try{
+            stmt.setString(1, getName());
+            stmt.setString(2, getAge());
+            stmt.setString(3, getAddress());
+            stmt.setLong(4, getCallid());
+            stmt.setLong(5, getId());
+            //sql.ExecuteUpdate(Query);
+            stmt.executeUpdate();
+       // sql.ExecuteUpdate(Query);
     }
+catch(SQLException e){
+    System.out.println(e);
+}
+}
 }

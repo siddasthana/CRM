@@ -6,7 +6,6 @@ package DataBase.Tables;
 
 import DataBase.Sql;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -80,32 +79,19 @@ public class ForwardCase {
     public void setLevel(String Level) {
         this.Level = Level;
     }
-            public void savetodb() {
-    String Query = "INSERT INTO `"+Sql.dbName+"`.`forwardedcase` (`idForwardedCase`, `CaseID`, `ReadStatus`, `Agent`, `Forwardedby`, `TimeStamp`, `Level`) " + "values(null,?,?,?,?,NOW(),?)";
-   // Query += " VALUES ('"+getCaseID()+"', '"+getReadstatus()+"', "+getAgent()+", '"+getForwarded()+"', "+getTimestamp()+", '"+getLevel()+"')";
+            public void savetodb(){
+    String Query = "INSERT INTO `"+Sql.dbName+"`.`forwardedcase` (`CaseID`, `ReadStatus`, `Agent`, `Forwardedby`, `TimeStamp`, `Level`)";
+    Query += " VALUES ('"+getCaseID()+"', '"+getReadstatus()+"', "+getAgent()+", '"+getForwarded()+"', "+getTimestamp()+", '"+getLevel()+"')";
     Sql sql = new Sql();
-    PreparedStatement stmt=sql.GetPrepareStmt(Query);
-     
-    
-        //  sql.ExecuteUpdate(Query);
+    sql.ExecuteUpdate(Query);
     //  sql.ExecuteUpdate(Query);
-    
-        try {
-        stmt.setLong(1,getCaseID());
-        stmt.setString(2,getReadstatus());
-        stmt.setLong(3,getAgent());
-        stmt.setLong(4,getForwarded());
-       // stmt.setString(5,getTimestamp());
-        stmt.setString(5,getLevel());
-        stmt.executeUpdate();
-  
     ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
+        try {
             if(rs.next()){
             long insertid = Long.valueOf(rs.getLong(1));
             this.setId(insertid);
             }
         } catch (SQLException ex) {
-         ex.printStackTrace();
             Logger.getLogger(Telephone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     sql.Destructor();

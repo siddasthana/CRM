@@ -5,7 +5,6 @@
 package DataBase.Tables;
 
 import DataBase.Sql;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -52,18 +51,11 @@ public class Telephone {
     public void setNote(String Note) {
         this.Note = Note;
     }
-    public void savetodb() throws SQLException{
-    String Query = "INSERT INTO `"+Sql.dbName+"`.`telephone` (`CaseHID`, `Number`, `Note`)"+ " values(null,?,?,?) ";
-    //Query += " VALUES ('"+getCaseHid()+"', '"+getNumber()+"', '"+getNote()+"')";
+    public void savetodb(){
+    String Query = "INSERT INTO `"+Sql.dbName+"`.`telephone` (`CaseHID`, `Number`, `Note`)";
+    Query += " VALUES ('"+getCaseHid()+"', '"+getNumber()+"', '"+getNote()+"')";
     Sql sql = new Sql();
-    PreparedStatement stmt=sql.GetPrepareStmt(Query);
-       
-        stmt.setLong(1,getCaseHid());
-        stmt.setLong(2,getNumber());
-        stmt.setString(3,getNote());
-
-    //sql.ExecuteUpdate(Query);
-        stmt.executeUpdate();
+    sql.ExecuteUpdate(Query);
     ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
         try {
             if(rs.next()){

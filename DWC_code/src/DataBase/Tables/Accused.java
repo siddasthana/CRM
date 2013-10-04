@@ -18,7 +18,9 @@ import java.util.logging.Logger;
  */
 public class Accused {
     long id, CaseID, Phone;
-    String Name, Address, Fir;
+    String Name, Address, Fir,DD;
+    Boolean challan=false, judgement=false;
+    Sql sql = new Sql();
 
     public long getId() {
         return id;
@@ -67,13 +69,39 @@ public class Accused {
     public void setFir(String Fir) {
         this.Fir = Fir;
     }
+    
+    public String getDD() {
+        return DD;
+    }
+
+    public void setDD(String DD) {
+        this.DD = DD;
+    }
+    public Boolean getChallan() {
+        return challan;
+    }
+
+    public void setChallan(Boolean Challan) {
+        this.challan = Challan;
+    }
+    public Boolean getJudgement() {
+        return judgement;
+    }
+
+    public void setJudgement(Boolean judgement) {
+        this.judgement = judgement;
+    }
+    
+    
+    
+    
+    
     public void savetodb(){
         
     String Query = "INSERT INTO `"+Sql.dbName+"`.`accused` (`idAccused`, `Caseid`, `Name`, `Phone`, `Address`, `Fir`)" + " values(null,?,?,?,?,?) ";
     //Query += " VALUES ('"+getCaseID()+"', '"+getName()+"', '"+getPhone()+"', '"+getAddress()+"', '"+getFir()+"')";
-    Sql sql = new Sql();
-    PreparedStatement stmt=sql.GetPrepareStmt(Query);
-      
+   // Sql sql = new Sql();
+    PreparedStatement stmt=sql.GetPrepareStmt(Query); 
     try
     {
         stmt.setLong(1,getCaseID());
@@ -103,7 +131,7 @@ public class Accused {
   public ArrayList<Accused> loadclass(String Querypart){
     ArrayList<Accused> ac = new ArrayList<>();
         String Query = "Select * From accused where " + Querypart;
-        Sql sql = new Sql();
+       // Sql sql = new Sql();
         ResultSet rs = sql.ExecuteQuery(Query);
         try {
             while(rs.next()){

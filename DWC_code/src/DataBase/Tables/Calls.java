@@ -96,7 +96,7 @@ String StartTime, Number, Bound;
             + ", `Bound`='"+getBound()
             + "' where idCall="+getId();*/
    
-       String Query = "UPDATE calls  SET CaseHID = ?, Duration = ?, QueueTime = ?, AgentID = ?, Number=? ,Bound=? WHERE idCall = ?";
+       String Query = "UPDATE `calls`  SET CaseHID = ?, Duration = ?, QueueTime = ?, AgentID = ?, Number=? ,Bound=? WHERE idCall = ?";
   //Sql sql = new Sql();
        PreparedStatement stmt1=sql.GetPrepareStmt(Query);
        try
@@ -107,7 +107,8 @@ String StartTime, Number, Bound;
         stmt1.setString(5,getNumber());
         stmt1.setString(6,getBound());
         stmt1.setLong(7,getId());
-        stmt1.executeUpdate();
+        int i = stmt1.executeUpdate();
+        
        }
          catch(SQLException e)
      {

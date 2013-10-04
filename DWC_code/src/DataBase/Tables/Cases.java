@@ -20,7 +20,7 @@ public class Cases {
 
     long id;
     String PoliceStn, Status, Forward, ReadableName, CaseType;
-
+    Sql sql = new Sql();
     public String getCaseType() {
         return CaseType;
     }
@@ -77,7 +77,7 @@ public class Cases {
         Query += ", ReadableName='" + getReadableName() + "'";
         Query += ", CaseType='" + getCaseType() + "'";
         Query += " where idCase=" + (int) getId();
-        Sql sql = new Sql();
+        //Sql sql = new Sql();
         System.out.println(Query);
         sql.ExecuteUpdate(Query);
         sql.Destructor();
@@ -86,20 +86,24 @@ public class Cases {
     public void savetodb() {
         String Query = "INSERT INTO `" + Sql.dbName + "`.`case` (`idCase`, `PoliceStation`, `Status`, `Forward`, `ReadableName`, `CaseType`)" + " values(null,?,?,?,?,?) ";
         //  Query += " VALUES ('" + getPoliceStn() + "', '" + getStatus() + "', '" + getForward() + "', '" + getReadableName() + "', '" + getCaseType() + "')";
-        Sql sql = new Sql();
+        //Sql s = new Sql();
         System.out.println(Query);
         PreparedStatement stmt = sql.GetPrepareStmt(Query);
-        try {
+        try {            
             stmt.setString(1, getPoliceStn());
             stmt.setString(2, getStatus());
             stmt.setString(3, getForward());
             stmt.setString(4, getReadableName());
             stmt.setString(5, getCaseType());
-
-            //   sql.ExecuteUpdate(Query);
             stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Cases.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            //   sql.ExecuteUpdate(Query);
+                   
             ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
-
+        try {
             if (rs.next()) {
                 long insertid = Long.valueOf(rs.getLong(1));
                 this.setId(insertid);

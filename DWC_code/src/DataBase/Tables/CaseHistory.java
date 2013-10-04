@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class CaseHistory {
     long id, CaseID, AgentID;
     String Datestamp,Note,Advice, Reffered;
-
+    Sql sql = new Sql();
     public long getId() {
         return id;
     }
@@ -79,7 +79,7 @@ public class CaseHistory {
        public void savetodb(){
     String Query = "INSERT INTO `"+Sql.dbName+"`.`case_history` (`idCase_History`, `CaseID`, `DateStamp`, `AgentID`, `Note`, `Advice`, `Reffered`)"+ " values(null,?,NOW(),?,?,?,?) ";
    // Query += " VALUES ('"+getCaseID()+"', NOW(), '"+getAgentID()+"', '"+getNote()+"', '"+getAdvice()+"', '"+getReffered()+"')";
-   Sql sql = new Sql();
+  // Sql sql = new Sql();
         try {
    
              //sql.ExecuteUpdate(Query);
@@ -114,7 +114,7 @@ public class CaseHistory {
     public ArrayList<CaseHistory> loadclass(String Querypart){
     ArrayList<CaseHistory> ch = new ArrayList<>();
         String Query = "Select * From case_history where " + Querypart;
-        Sql sql = new Sql();
+    //    Sql sql = new Sql();
         System.out.println(Query);
         ResultSet rs = sql.ExecuteQuery(Query);
         

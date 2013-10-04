@@ -142,6 +142,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         CmbBx_AgentStatus = new javax.swing.JComboBox();
         Btn_CaseReports = new javax.swing.JButton();
         Btn_FrwdedCase = new javax.swing.JButton();
+        Btn_AnsConfirm = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -244,6 +245,15 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
             }
         });
 
+        Btn_AnsConfirm.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_AnsConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/Dial.png"))); // NOI18N
+        Btn_AnsConfirm.setText("Unlock Sheet!!");
+        Btn_AnsConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_AnsConfirmActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,14 +265,17 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
                 .addComponent(Lbl_number, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(383, 383, 383))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(319, 319, 319)
-                        .addComponent(CmbBx_AgentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(CmbBx_AgentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Btn_AnsConfirm)
+                        .addGap(101, 101, 101)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Btn_FrwdedCase)
                     .addComponent(Btn_CaseReports, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -280,14 +293,16 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_CaseReports, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Btn_FrwdedCase, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Btn_AnsConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(346, 346, 346))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(114, 114, 114)
                         .addComponent(CmbBx_AgentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(342, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addComponent(Btn_FrwdedCase, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(352, 352, 352))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -373,10 +388,19 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         sm.show();
     }//GEN-LAST:event_Btn_FrwdedCaseActionPerformed
 
+    private void Btn_AnsConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AnsConfirmActionPerformed
+        // TODO add your handling code here:
+        String Query = "update call_scheduling set Status='Ans' where AgentID='"+Global.AgentID+"'";
+        Sql sql = new Sql();
+        sql.ExecuteUpdate(Query);
+        sql.Destructor();
+    }//GEN-LAST:event_Btn_AnsConfirmActionPerformed
+
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.INFORMATION_MESSAGE);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_AnsConfirm;
     private javax.swing.JButton Btn_CaseReports;
     private javax.swing.JButton Btn_FrwdedCase;
     private javax.swing.JButton Btn_ProcessCall;

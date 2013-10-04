@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  * @author admin
  */
 public class OutBound {
+    public long confname;
     public void connect(String Number){
              String Query = "Select state, contact from agents where name='"+Global.AgentID+"'";
         Sql sql = new Sql();
@@ -27,7 +28,7 @@ public class OutBound {
             if(rs.next()){
             if(rs.getString(1).equalsIgnoreCase("In a queue call"))     
             {
-                long confname = new Date().getTime()/100;
+                confname = new Date().getTime()/100;
                 Query = "Select CallUUID from call_scheduling where AgentID='"+Global.AgentID+"'";
                 ResultSet rst = sql.ExecuteQuery(Query);
                 if(rst.next()){
@@ -44,7 +45,7 @@ public class OutBound {
                 }
             }else{
                 if(true){
-                long confname = new Date().getTime()/100;
+                confname = new Date().getTime()/100;
                 Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
                 Query += " value('out','"+confname+"','"+Number+"','GSM','0',NOW())";
                 sql.ExecuteUpdate(Query);
@@ -56,6 +57,7 @@ public class OutBound {
                 infoBox("Currently can not make call", "Delhi Women Cell");
                 }
             }
+            Query = "insert into calls(Number, Bound) values('"+confname+"', 'OUT')";
             }
         } catch (SQLException ex) {
             Logger.getLogger(Dlg_distressWoman.class.getName()).log(Level.SEVERE, null, ex);
