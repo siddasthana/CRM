@@ -16,8 +16,9 @@ import java.util.logging.Logger;
  * @author admin
  */
 public class Directory {
+
     long id;
-    String District, Area, Service, Info;
+    String District, Area, Service, Info, Number;
 
     public long getId() {
         return id;
@@ -43,6 +44,14 @@ public class Directory {
         this.Area = Area;
     }
 
+    public String getNumber() {
+        return Number;
+    }
+
+    public void setNumber(String Number) {
+        this.Number = Number;
+    }
+
     public String getService() {
         return Service;
     }
@@ -58,6 +67,7 @@ public class Directory {
     public void setInfo(String Info) {
         this.Info = Info;
     }
+
     public ArrayList<Directory> loadclass(String Querypart) {
         ArrayList<Directory> dt = new ArrayList<>();
         String Query = "Select * From directory where " + Querypart;
@@ -72,7 +82,8 @@ public class Directory {
                 obj.setArea(rs.getString(3));
                 obj.setService(rs.getString(4));
                 obj.setInfo(rs.getString(5));
-                dt.add(obj);
+                obj.setNumber(rs.getString("NUMBER"));
+                dt.add(obj);            
             }
             sql.Destructor();
         } catch (SQLException ex) {

@@ -22,6 +22,7 @@ public class Pnl_CallElement extends javax.swing.JPanel {
     /**
      * Creates new form xyz
      */
+    public String id;
     public Pnl_CallElement() {
         initComponents();
     }
@@ -78,46 +79,54 @@ public class Pnl_CallElement extends javax.swing.JPanel {
     private void Btn_CallElement_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CallElement_DialActionPerformed
         // TODO add your handling code here:
 //"In a queue call"" thenn uuid for call
-        String Query = "Select state from agents where name='"+Global.AgentID+"'";
+        String Query = "Select state from agents where name='" + Global.AgentID + "'";
         Sql sql = new Sql();
         ResultSet rs;
         rs = sql.ExecuteQuery(Query);
         try {
-            if(rs.next()){
-            if(rs.getString(1).equalsIgnoreCase("In a queue call"))     
-            {
-                long confname = new Date().getTime()/100;
-                Query = "Select CallUUID from call_scheduling where AgentID='"+Global.AgentID+"'";
-                ResultSet rst = sql.ExecuteQuery(Query);
-                if(rst.next()){
-                String CallUUID = rst.getString(1);
-                Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
-                Query += " value('conf','"+confname+"','"+Lbl_CallElement_number.getText()+"','GSM','0',NOW())";
-                sql.ExecuteUpdate(Query);
-                Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
-                Query += " value('conf','"+confname+"','"+CallUUID+"','UUID','0',NOW())";
-                sql.ExecuteUpdate(Query);
-                }else{
-                infoBox("Something wrong with making the call", "Delhi Women Cell");
-                
+            if (rs.next()) {
+                if (rs.getString(1).equalsIgnoreCase("In a queue call")) {
+                    long confname = new Date().getTime() / 100;
+                    Query = "Select CallUUID from call_scheduling where AgentID='" + Global.AgentID + "'";
+                    ResultSet rst = sql.ExecuteQuery(Query);
+                    if (rst.next()) {
+                        String CallUUID = rst.getString(1);
+                        Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
+                        Query += " value('conf','" + confname + "','" + Lbl_CallElement_number.getText() + "','GSM','0',NOW())";
+                        sql.ExecuteUpdate(Query);
+                        Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
+                        Query += " value('conf','" + confname + "','" + CallUUID + "','UUID','0',NOW())";
+                        sql.ExecuteUpdate(Query);
+                    } else {
+                        infoBox("Something wrong with making the call", "Delhi Women Cell");
+
+                    }
+                } else {
+                    if (false) {
+                        long confname = new Date().getTime() / 100;
+                        Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
+                        Query += " value('conf','" + confname + "','" + Lbl_CallElement_number.getText() + "','GSM','0',NOW())";
+                        sql.ExecuteUpdate(Query);
+                    } else {
+                        infoBox("Currently can not make call", "Delhi Women Cell");
+                    }
                 }
-            }else{
-                if(false){
-                long confname = new Date().getTime()/100;
-                Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
-                Query += " value('conf','"+confname+"','"+Lbl_CallElement_number.getText()+"','GSM','0',NOW())";
-                sql.ExecuteUpdate(Query);
-                }else{
-                infoBox("Currently can not make call", "Delhi Women Cell");
-                }
-            }
             }
         } catch (SQLException ex) {
             Logger.getLogger(Pnl_CallElement.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_Btn_CallElement_DialActionPerformed
- public static void infoBox(String infoMessage, String location) {
+    public void LoadElement(DataBase.Tables.Directory ob) {
+        this.Lbl_CallElement_Name.setText(ob.getInfo()+" "+ob.getService());
+        this.Lbl_CallElement_number.setText(ob.getNumber());
+        System.out.println("number"+ob.getNumber());
+        System.out.println("infor"+ob.getInfo());
+        this.id = String.valueOf(ob.getId());        
+        this.repaint();
+    }
+
+    public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.INFORMATION_MESSAGE);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
