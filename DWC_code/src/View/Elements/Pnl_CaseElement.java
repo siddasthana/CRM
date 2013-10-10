@@ -4,11 +4,14 @@
  */
 package View.Elements;
 
-import DataBase.Tables.Cases;
+import DataBase.Tables.*;
+import View.Dlg_AddTelephone;
 import View.Dlg_SelectCaller;
 import View.Dlg_SelectCase;
 import View.Global;
 import java.awt.Color;
+import java.awt.Frame;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -23,6 +26,7 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
     /**
      * Creates new form Pnl_CaseElement
      */
+    public ArrayList<Telephone> tp = new ArrayList<>();
     public String id;
 
     public Pnl_CaseElement() {
@@ -102,6 +106,7 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         CmbBx_CaseType = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         CmbBx_Status = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 255, 255), new java.awt.Color(0, 255, 255)));
@@ -151,6 +156,14 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
 
         CmbBx_Status.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Primary intervention done", "Case in progress", "Case closed" }));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/Add.jpg"))); // NOI18N
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 255, 255), new java.awt.Color(0, 255, 255)));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,6 +200,8 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
                                 .addComponent(Txt_FamiliarName))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)
+                                .addGap(26, 26, 26)
                                 .addComponent(Btn_Save)
                                 .addGap(33, 33, 33)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -214,10 +229,12 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Btn_Save)
-                    .addComponent(Btn_Select))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Btn_Save)
+                        .addComponent(Btn_Select))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -276,6 +293,30 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         cs.updatedb();
         infoBox("Case Information Updated!!", "Delhi Women Cell");
     }//GEN-LAST:event_Btn_SaveActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent().getParent().getParent().getParent().getParent().getParent().getParent(), true);
+        da.show();
+        Telephone ph = new Telephone();
+        ph.setNote(da.getTxtName().getText());
+        System.out.println("name"+da.getTxtName().getText());
+        System.out.println("number"+da.getTxtPhone().getText());
+        try {
+            ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
+            tp.add(ph);
+            ArrayList<CaseHistory> ch = new CaseHistory().loadclass(" CaseID ="+Long.parseLong(this.id));
+            for (Telephone ob : tp) {
+                ob.setCaseHid(ch.get(0).getId());
+                ob.savetodb();
+            }
+            infoBox("Number Successfully added", "Delhi Women Cell");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            infoBox("You have entered invalid number", "Delhi Women Cell");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
     }
@@ -287,6 +328,7 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
     private javax.swing.JTextField Txt_FamiliarName;
     private javax.swing.JTextField Txt_Forward;
     private javax.swing.JTextField Txt_PoliceStn;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

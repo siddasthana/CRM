@@ -4,6 +4,8 @@
  */
 package View;
 
+import DataBase.Tables.*;
+import View.Dlg_AddTelephone;
 import DataBase.OutBound;
 import DataBase.Sql;
 import DataBase.Tables.Accused;

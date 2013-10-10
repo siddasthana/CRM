@@ -569,8 +569,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
             }
         }
         OutBound ob = new OutBound();
-      ob.connect(TxtDialScreen.getText());
-        
+        ob.connect(TxtDialScreen.getText());
+
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
         Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
         pce.AudioPanel.disable();
@@ -584,15 +584,15 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         JDialog caseentry = new JDialog();
         caseentry.add(pce);
         caseentry.getContentPane().setSize(caseentry.getContentPane().getPreferredSize());
-      caseentry.setSize(caseentry.getPreferredSize());
-      caseentry.setSize(caseentry.getSize().width,caseentry.getSize().height+25);
+        caseentry.setSize(caseentry.getPreferredSize());
+        caseentry.setSize(caseentry.getSize().width, caseentry.getSize().height + 25);
         caseentry.revalidate();
         caseentry.repaint();
         caseentry.show();
-        //
-        //Calls cl = new Calls().loadclass("Bound='OUT' and Number="+ob.confname).get(0);
-        //cl.setCaseHID(pce.getElement().getId());
-        //cl.updatedb();
+        
+        /*Calls cl = new Calls().loadclass("Bound='OUT' and Number=" + ob.confname).get(0);
+        cl.setCaseHID(pce.getElement().getId());
+        cl.updatedb();*/
     }//GEN-LAST:event_Btn_DialActionPerformed
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
@@ -668,29 +668,29 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         Date dt = DtPck_Case.getDate();
         if (dt != null) {
             QueryPart += " AND DATEDIFF(DateStamp,'" + Global.JavaDateToMysql(dt) + "')=0 ";
-Casecondition+=2;
+            Casecondition += 2;
         }
         if (CmbBx_CaseType.getSelectedItem().toString().trim().length() > 1) {
             QueryPart += " AND CaseType ='" + CmbBx_CaseType.getSelectedItem().toString() + "' ";
-        Casecondition++;
+            Casecondition++;
         }
         if (SrchFld_CmpltNo.getText().length() > 1) {
             QueryPart += " AND ReadableName Like '%" + SrchFld_CmpltNo.getText() + "%'";
-        Casecondition+=2;
+            Casecondition += 2;
         }
-        if (Txt_PhoneNumber.getText().trim().length()>1){
-        try{
-        Long.parseLong(Txt_PhoneNumber.getText().trim());
-         QueryPart += " AND Number Like '%" + Txt_PhoneNumber.getText().trim() + "%'";
-         Casecondition +=2;
-        }catch(Exception e){
-        infoBox("Please eneter a valid Phone number", "Delhi Women Cell");
+        if (Txt_PhoneNumber.getText().trim().length() > 1) {
+            try {
+                Long.parseLong(Txt_PhoneNumber.getText().trim());
+                QueryPart += " AND Number Like '%" + Txt_PhoneNumber.getText().trim() + "%'";
+                Casecondition += 2;
+            } catch (Exception e) {
+                infoBox("Please eneter a valid Phone number", "Delhi Women Cell");
+            }
         }
+        if (Casecondition < 2) {
+            infoBox("Please specify atleast 2 search criteria", "Delhi Women Cell");
+            return;
         }
-if(Casecondition<2){
-infoBox("Please specify atleast 2 search criteria", "Delhi Women Cell");
-return;
-}
         String caselist = "(";
         try {
             Sql sql = new Sql();
@@ -726,41 +726,41 @@ return;
                         ArrayList<Legal> le = new Legal().loadclass(" CaseID=" + Caseid);
                         System.out.println("starts here");
                         String MSG = "";
-                        if (ac.size() > 0) {                            
+                        if (ac.size() > 0) {
                             MSG += " NAME :" + ac.get(0).getName() + "\n";
                             MSG += " Phone :" + ac.get(0).getPhone() + "\n";
                             MSG += " Address :" + ac.get(0).getAddress() + "\n";
                         }
-                        if(le.size()> 0){
-                            MSG += " DD: " + le.get(0).getDD()+ "\n";
+                        if (le.size() > 0) {
+                            MSG += " DD: " + le.get(0).getDD() + "\n";
                             MSG += " Fir: " + le.get(0).getFir() + "\n";
-                            MSG += " Challan: " + le.get(0).getChallan()+ "\n";
-                            MSG += " Judgement: " + le.get(0).getJudgement()+ "\n";
+                            MSG += " Challan: " + le.get(0).getChallan() + "\n";
+                            MSG += " Judgement: " + le.get(0).getJudgement() + "\n";
                             //MSG += 
                             System.out.println(MSG);
                         }
                         System.out.println(MSG);
-                            JTextArea ja = new JTextArea();
-                            ja.setText(MSG);
-                            ja.setSize(ja.getPreferredSize());
-                            ja.setBackground(Color.yellow);
-                            ja.revalidate();
-                            ja.repaint();
-                            //ja.disable();
-                            Pnl_Accused.removeAll();
-                            Pnl_Accused.add(ja);
-                           
-                           //  Pnl_Accused.revalidate();
+                        JTextArea ja = new JTextArea();
+                        ja.setText(MSG);
+                        ja.setSize(ja.getPreferredSize());
+                        ja.setBackground(Color.yellow);
+                        ja.revalidate();
+                        ja.repaint();
+                        //ja.disable();
+                        Pnl_Accused.removeAll();
+                        Pnl_Accused.add(ja);
+
+                        //  Pnl_Accused.revalidate();
                         //    Pnl_Accused.repaint();
-                            System.out.println("start");
-                          //  return;
-                         Pnl_Accused.revalidate();
-                            Pnl_Accused.repaint();
+                        System.out.println("start");
+                        //  return;
+                        Pnl_Accused.revalidate();
+                        Pnl_Accused.repaint();
                         for (CaseHistory ch : caseHistory) {
                             final String CaseHID = String.valueOf(ch.getId());
                             Pnl_CaseHistoryElement obj = new Pnl_CaseHistoryElement();
                             obj.LoadElement(ch);
-                            
+
                             obj.addMouseListener(new MouseListener() {
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
@@ -790,7 +790,7 @@ return;
                                     Pnl_Caller.add(obj);
                                     Pnl_Caller.revalidate();
                                     Pnl_Caller.repaint();
-                                    
+
                                 }
 
                                 @Override
@@ -799,29 +799,29 @@ return;
                                     System.out.println(" here1");
                                 }
                             });
-                        System.out.println("here2");    
+                            System.out.println("here2");
                             Pnl_CaseHistory.add(obj);
                             Pnl_CaseHistory.revalidate();
                             Pnl_CaseHistory.repaint();
                         }
-                        
-                      /*  Pnl_Accused.removeAll();
-                        ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
-                        if (ac.size() > 0) {
-                            String MSG = "";
-                            MSG += " NAME :" + ac.get(0).getName() + "\n";
-                            MSG += " Phone :" + ac.get(0).getPhone() + "\n";
-                            MSG += " Address :" + ac.get(0).getAddress() + "\n";
-                            MSG += " FIR: " + ac.get(0).getFir() + "\n";
-                            //MSG += 
-                            JTextArea ja = new JTextArea();
-                            ja.setText(MSG);
-                            ja.disable();
-                            Pnl_Accused.add(ja);
-                            Pnl_Accused.revalidate();
-                            Pnl_Accused.repaint();
-                        System.out.println("ends here");    
-                        }*/
+
+                        /*  Pnl_Accused.removeAll();
+                         ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
+                         if (ac.size() > 0) {
+                         String MSG = "";
+                         MSG += " NAME :" + ac.get(0).getName() + "\n";
+                         MSG += " Phone :" + ac.get(0).getPhone() + "\n";
+                         MSG += " Address :" + ac.get(0).getAddress() + "\n";
+                         MSG += " FIR: " + ac.get(0).getFir() + "\n";
+                         //MSG += 
+                         JTextArea ja = new JTextArea();
+                         ja.setText(MSG);
+                         ja.disable();
+                         Pnl_Accused.add(ja);
+                         Pnl_Accused.revalidate();
+                         Pnl_Accused.repaint();
+                         System.out.println("ends here");    
+                         }*/
                     }
                 });
                 //System.out.println("<Case Details>" + ob.getPoliceStn() + "," + ob.getForward() + "," + ob.getStatus());
