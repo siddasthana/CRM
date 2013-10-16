@@ -64,11 +64,11 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
         this.Lbl_DateTime = Lbl_DateTime;
     }
 
-    public JTextField getTxt_Advice() {
+    public JTextArea getTxt_Advice() {
         return Txt_Advice;
     }
 
-    public void setTxt_Advice(JTextField Txt_Advice) {
+    public void setTxt_Advice(JTextArea Txt_Advice) {
         this.Txt_Advice = Txt_Advice;
     }
 
@@ -113,13 +113,14 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         Txt_Note = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        Txt_Advice = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         Txt_Reffered = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         Lbl_CallerID = new javax.swing.JLabel();
         Btn_Save = new javax.swing.JButton();
         CmbBx_Reffered = new javax.swing.JComboBox();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Txt_Advice = new javax.swing.JTextArea();
 
         Dlg_Audio.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -172,8 +173,6 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
 
         jLabel2.setText("Advice");
 
-        Txt_Advice.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-
         jLabel3.setText("Reffered");
 
         Txt_Reffered.setForeground(new java.awt.Color(226, 0, 0));
@@ -208,15 +207,21 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+
+        Txt_Advice.setColumns(20);
+        Txt_Advice.setRows(5);
+        Txt_Advice.setEnabled(false);
+        jScrollPane3.setViewportView(Txt_Advice);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Txt_Advice)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
@@ -227,17 +232,18 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
                                 .addGap(54, 54, 54)
                                 .addComponent(CmbBx_Reffered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(Lbl_DateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(Btn_Save)
                                 .addGap(25, 25, 25))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(Lbl_Agent, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(Lbl_CallerID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -257,9 +263,9 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Txt_Advice, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Txt_Reffered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,7 +370,7 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
     private javax.swing.JLabel Lbl_Agent;
     private javax.swing.JLabel Lbl_CallerID;
     private javax.swing.JLabel Lbl_DateTime;
-    private javax.swing.JTextField Txt_Advice;
+    private javax.swing.JTextArea Txt_Advice;
     private javax.swing.JTextArea Txt_Note;
     private javax.swing.JTextField Txt_Reffered;
     private javax.swing.JButton jButton2;
@@ -373,5 +379,6 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }
