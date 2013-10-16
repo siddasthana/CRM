@@ -283,6 +283,7 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
         ch.setNote(Txt_Note.getText());
         ch.setReffered(CmbBx_Reffered.getSelectedItem().toString());
         ch.savetodb();
+        element = ch;
     }
 
     public void LoadElement(CaseHistory ch) {
@@ -304,8 +305,13 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
             Callerid = "OutBound Call";
         }
         obj.getLbl_CallerID().setText("Call From : " + Callerid);
+    element = ch;
     }
+    CaseHistory element;
+public CaseHistory getElement(){
 
+    return element;
+}
     public static void setSelectedValue(JComboBox comboBox, String value) {
         String item;
         for (int i = 0; i < comboBox.getItemCount(); i++) {

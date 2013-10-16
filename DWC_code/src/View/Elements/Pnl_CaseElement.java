@@ -255,6 +255,7 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         this.getTxt_PoliceStn().setText(ob.getPoliceStn());
         this.getTxt_Forward().setText(ob.getForward());
         setSelectedValue(this.getCmbBx_CaseType(), ob.getCaseType());
+        System.out.println("Setting Case TYpe = " + ob.getCaseType());
         setSelectedValue(this.getCmbBx_Status(), ob.getStatus());
         this.getTxt_FamiliarName().setText(ob.getReadableName());
         this.id = String.valueOf(ob.getId());

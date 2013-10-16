@@ -128,6 +128,7 @@ public class Cases {
                 obj.setStatus(rs.getString(3));
                 obj.setForward(rs.getString(4));
                 obj.ReadableName = rs.getString(5);
+                obj.setCaseType(rs.getString(6));
                 cs.add(obj);
 
             }

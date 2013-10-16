@@ -187,7 +187,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -590,9 +590,9 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         caseentry.repaint();
         caseentry.show();
         
-        /*Calls cl = new Calls().loadclass("Bound='OUT' and Number=" + ob.confname).get(0);
+        Calls cl = new Calls().loadclass("Bound='OUT' and Number=" + ob.confname).get(0);
         cl.setCaseHID(pce.getElement().getId());
-        cl.updatedb();*/
+        cl.updatedb();
     }//GEN-LAST:event_Btn_DialActionPerformed
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);

@@ -115,41 +115,37 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="CmbBx_PoliceDistrict" min="-2" pref="164" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="Txt_CallerName" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
-                                                  <Component id="Txt_CallerPhone" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
-                                                  <Component id="Txt_CallerAge" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
-                                                  <Component id="Txt_CallerAddress" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
-                                              </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="Txt_CallerName" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
+                                              <Component id="Txt_CallerPhone" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
+                                              <Component id="Txt_CallerAge" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
+                                              <Component id="Txt_CallerAddress" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="jLabel69" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="jLabel68" alignment="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel66" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel69" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                                              <Component id="jLabel68" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel66" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="CmbBx_CaseType" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jCmb_PS" min="-2" pref="116" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="SrchFld_PoliceStne" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="CmbBx_CaseType" pref="0" max="32767" attributes="0"/>
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="jCmb_PS" min="-2" pref="116" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="SrchFld_PoliceStne" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="SrchFld_Complaint" max="32767" attributes="0"/>
-                                                  <Component id="CmbBx_CaseStatus" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
+                                              <Component id="SrchFld_Complaint" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="CmbBx_CaseStatus" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
