@@ -215,7 +215,6 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         CmbBx_CaseStatus = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
-        jCmb_PS = new javax.swing.JComboBox();
 
         PopMn_Complaint.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         PopMn_Complaint.setForeground(new java.awt.Color(255, 51, 51));
@@ -746,13 +745,6 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
             }
         });
 
-        jCmb_PS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Item 2", "Item 3", "Nand Nagri" }));
-        jCmb_PS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCmb_PSActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -804,15 +796,16 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                                         .addComponent(jLabel68)
                                         .addComponent(jLabel4)
                                         .addComponent(jLabel66))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel11Layout.createSequentialGroup()
-                                            .addComponent(jCmb_PS, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(SrchFld_PoliceStne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(SrchFld_Complaint, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CmbBx_CaseStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(SrchFld_Complaint, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(CmbBx_CaseStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel11Layout.createSequentialGroup()
+                                            .addGap(21, 21, 21)
+                                            .addComponent(SrchFld_PoliceStne, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jLabel57)
                             .addComponent(jLabel55)
                             .addComponent(jLabel56)
@@ -868,8 +861,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel68)
-                                    .addComponent(SrchFld_PoliceStne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCmb_PS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(SrchFld_PoliceStne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel69)
@@ -1166,33 +1158,10 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
 
     private void CmbBx_PoliceDistrictItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CmbBx_PoliceDistrictItemStateChanged
         // TODO add your handling code here:
-        jCmb_PS.removeAllItems();
+        //jCmb_PS.removeAllItems();
         //jCmb_PS.add();
         
     }//GEN-LAST:event_CmbBx_PoliceDistrictItemStateChanged
-
-    private void jCmb_PSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmb_PSActionPerformed
-        // TODO add your handling code here:
-        // Pnl_RecrdDirctry1.removeAll();
-        Pnl_CaseDirctry.removeAll();
-        Pnl_RecrdDirctry.removeAll();
-        ArrayList<DataBase.Tables.Directory> dir = new DataBase.Tables.Directory().loadclass(" AREA like '" + (String) jCmb_PS.getSelectedItem()+"'");
-        for (DataBase.Tables.Directory ob : dir) {
-                System.out.println("Adding Directory");
-                 Pnl_CallElement obj = new Pnl_CallElement();
-                obj.LoadElement(ob);
-                final String id = obj.id;           
-                Pnl_CaseDirctry.add(obj);
-                Pnl_RecrdDirctry.add(obj);
-                Pnl_CaseDirctry.revalidate();
-                Pnl_CaseDirctry.repaint();                
-                Pnl_RecrdDirctry.revalidate();
-                Pnl_RecrdDirctry.repaint();                
-//                this.repaint();
-                System.out.println("Adding case element");
-        
-        }        
-    }//GEN-LAST:event_jCmb_PSActionPerformed
     
     
     /**
@@ -1282,7 +1251,6 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jChk_Challan;
     private javax.swing.JCheckBox jChk_Judgement;
-    private javax.swing.JComboBox jCmb_PS;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

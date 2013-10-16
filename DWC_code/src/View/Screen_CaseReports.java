@@ -32,6 +32,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.xml.bind.annotation.XmlElementDecl;
 
 /**
  *
@@ -582,7 +583,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         pce.setSize(pce.getPreferredSize());
         pce.revalidate();
         pce.repaint();
-        JDialog caseentry = new JDialog();
+        System.err.println("confName"+ob.confname);
+        JDialog caseentry = new JDialog(this, true);
         caseentry.add(pce);
         caseentry.getContentPane().setSize(caseentry.getContentPane().getPreferredSize());
         caseentry.setSize(caseentry.getPreferredSize());
@@ -591,8 +593,9 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         caseentry.repaint();
         caseentry.show();
         
-        Calls cl = new Calls().loadclass("Bound='OUT' and Number=" + ob.confname).get(0);
+        Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
         cl.setCaseHID(pce.getElement().getId());
+        cl.setAgentId(Integer.parseInt(Global.AgentID));
         cl.updatedb();
     }//GEN-LAST:event_Btn_DialActionPerformed
     public static void infoBox(String infoMessage, String location) {
