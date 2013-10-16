@@ -573,6 +573,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         pce.AudioPanel.disable();
         pce.getBtn_Save().setEnabled(true);
         pce.getTxt_Note().setEnabled(true);
+        pce.getTxt_Advice().setEnabled(true);
         pce.Agentid = Long.valueOf(Global.AgentPK);
         pce.Caseid = Caseid;
         JDialog caseentry = new JDialog();
@@ -584,9 +585,9 @@ public class Screen_Managers extends javax.swing.JFrame {
         caseentry.repaint();
         caseentry.show();
         //
-        //Calls cl = new Calls().loadclass("Bound='OUT' and Number="+ob.confname).get(0);
-        //cl.setCaseHID(pce.getElement().getId());
-        //cl.updatedb();
+       Calls cl = new Calls().loadclass("Bound='OUT' and Number="+ob.confname).get(0);
+      cl.setCaseHID(pce.getElement().getId());
+      cl.updatedb();
         
         /*
         caseentry.show();    }//GEN-LAST:event_Btn_DialActionPerformed

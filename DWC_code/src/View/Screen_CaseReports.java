@@ -576,6 +576,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         pce.AudioPanel.disable();
         pce.getBtn_Save().setEnabled(true);
         pce.getTxt_Note().setEnabled(true);
+        pce.getTxt_Advice().setEnabled(true);
         pce.Agentid = Long.valueOf(Global.AgentPK);
         pce.Caseid = Caseid;
         pce.setSize(pce.getPreferredSize());
