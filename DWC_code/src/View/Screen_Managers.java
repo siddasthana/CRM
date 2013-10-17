@@ -76,8 +76,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         DtPck_Case = new org.jdesktop.swingx.JXDatePicker();
         jXLabel2 = new org.jdesktop.swingx.JXLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        Pnl_CaseDirctry = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
         Pnl_RecrdDirctry = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -95,6 +93,8 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         Btn_Dial = new javax.swing.JButton();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        Pnl_CaseDirctry = new javax.swing.JPanel();
         Btn_Search = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Txt_PhoneNumber = new javax.swing.JTextField();
@@ -204,23 +204,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Pnl_CaseDirctry.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout Pnl_CaseDirctryLayout = new javax.swing.GroupLayout(Pnl_CaseDirctry);
-        Pnl_CaseDirctry.setLayout(Pnl_CaseDirctryLayout);
-        Pnl_CaseDirctryLayout.setHorizontalGroup(
-            Pnl_CaseDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
-        );
-        Pnl_CaseDirctryLayout.setVerticalGroup(
-            Pnl_CaseDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 111, Short.MAX_VALUE)
-        );
-
-        jScrollPane11.setViewportView(Pnl_CaseDirctry);
-
-        jPanel1.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 501, 100));
 
         jScrollPane12.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -462,6 +445,27 @@ public class Screen_Managers extends javax.swing.JFrame {
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 200, 140));
 
+        jScrollPane13.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        Pnl_CaseDirctry.setBackground(new java.awt.Color(255, 255, 255));
+        Pnl_CaseDirctry.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
+
+        javax.swing.GroupLayout Pnl_CaseDirctryLayout = new javax.swing.GroupLayout(Pnl_CaseDirctry);
+        Pnl_CaseDirctry.setLayout(Pnl_CaseDirctryLayout);
+        Pnl_CaseDirctryLayout.setHorizontalGroup(
+            Pnl_CaseDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1189, Short.MAX_VALUE)
+        );
+        Pnl_CaseDirctryLayout.setVerticalGroup(
+            Pnl_CaseDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 90, Short.MAX_VALUE)
+        );
+
+        jScrollPane13.setViewportView(Pnl_CaseDirctry);
+        Pnl_RecrdDirctry.setLayout(new WrapLayout());
+
+        jPanel1.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 490, -1));
+
         Btn_Search.setText("Search (Only Forwarded case)");
         Btn_Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -593,6 +597,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         caseentry.show();    }//GEN-LAST:event_Btn_DialActionPerformed
     */
     }
+
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
     }
@@ -600,63 +605,63 @@ public class Screen_Managers extends javax.swing.JFrame {
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton4DialKeyPad
-    
+
     private void jButton5DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton5DialKeyPad
-    
+
     private void jButton6DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton6DialKeyPad
-    
+
     private void jButton7DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton7DialKeyPad
-    
+
     private void jButton8DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton8DialKeyPad
-    
+
     private void jButton9DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton9DialKeyPad
-    
+
     private void jButton13DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton13DialKeyPad
-    
+
     private void jButton14DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton14DialKeyPad
-    
+
     private void jButton15DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton15DialKeyPad
-    
+
     private void jButton16DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton16DialKeyPad
-    
+
     private void jButton17DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton17DialKeyPad
-    
+
     private void jButton18DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton18DialKeyPad
     public static void setSelectedValue(JComboBox comboBox, String value) {
-        
+
         String item;
         for (int i = 0; i < comboBox.getItemCount(); i++) {
             item = (String) comboBox.getItemAt(i);
@@ -666,10 +671,10 @@ public class Screen_Managers extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void Btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SearchActionPerformed
         // TODO add your handling code here:
-           int Casecondition = 0;
+        int Casecondition = 0;
         Pnl_CaseHistory.removeAll();
         Pnl_Accused.removeAll();
         Pnl_CaseList.removeAll();
@@ -678,29 +683,29 @@ public class Screen_Managers extends javax.swing.JFrame {
         Date dt = DtPck_Case.getDate();
         if (dt != null) {
             QueryPart += " AND DATEDIFF(DateStamp,'" + Global.JavaDateToMysql(dt) + "')=0 ";
-            Casecondition+=2;
+            Casecondition += 2;
         }
         if (CmbBx_CaseType.getSelectedItem().toString().trim().length() > 1) {
             QueryPart += " AND CaseType ='" + CmbBx_CaseType.getSelectedItem().toString() + "' ";
-        Casecondition++;
+            Casecondition++;
         }
         if (SrchFld_CmpltNo.getText().length() > 1) {
             QueryPart += " AND ReadableName ='" + SrchFld_CmpltNo.getText() + "' ";
-        Casecondition+=2;
+            Casecondition += 2;
         }
-          if (Txt_PhoneNumber.getText().trim().length()>1){
-        try{
-        Long.parseLong(Txt_PhoneNumber.getText().trim());
-         QueryPart += " AND Number Like '%" + Txt_PhoneNumber.getText().trim() + "%'";
-         Casecondition +=2;
-        }catch(Exception e){
-        infoBox("Please eneter a valid Phone number", "Delhi Women Cell");
+        if (Txt_PhoneNumber.getText().trim().length() > 1) {
+            try {
+                Long.parseLong(Txt_PhoneNumber.getText().trim());
+                QueryPart += " AND Number Like '%" + Txt_PhoneNumber.getText().trim() + "%'";
+                Casecondition += 2;
+            } catch (Exception e) {
+                infoBox("Please eneter a valid Phone number", "Delhi Women Cell");
+            }
         }
+        if (Casecondition < 2) {
+            infoBox("Please specify atleast 2 search criteria", "Delhi Women Cell");
+            return;
         }
-          if(Casecondition<2){
-infoBox("Please specify atleast 2 search criteria", "Delhi Women Cell");
-return;
-}
 //       QueryPart +=" Intersect Select CaseID from forwardedcase where Level='"+"S"+"'";
         String caselist = "(";
         try {
@@ -741,37 +746,38 @@ return;
                                 public void mouseClicked(MouseEvent e) {
                                     //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                                 }
-                                
+
                                 @Override
                                 public void mousePressed(MouseEvent e) {
                                     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                                 }
-                                
+
                                 @Override
                                 public void mouseReleased(MouseEvent e) {
                                     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                                 }
-                                
+
                                 @Override
                                 public void mouseEntered(MouseEvent ej) {
                                     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                                     Pnl_Caller.removeAll();
                                     System.out.println("Got a mouse entered event");
-                                    try{
-                                    Caller e = new Caller().loadclass(" CallID=" + CaseHID).get(0);
-                                    Pnl_CallerElement obj = new Pnl_CallerElement();
-                                    //String Callerid = new Calls().loadclass(" CaseHID="+e.getCallid()).get(0).getNumber();
-                                    //obj.setToolTipText("Call From :"+ Callerid);
-                                    obj.LoadElement(e);
-                                    obj.remove(obj.getBtn_Select());
-                                    obj.setSize(obj.preferredSize());
-                                    Pnl_Caller.add(obj);
-                                    Pnl_Caller.revalidate();
-                                    Pnl_Caller.repaint();}catch(Exception e){
-                                    e.printStackTrace();
+                                    try {
+                                        Caller e = new Caller().loadclass(" CallID=" + CaseHID).get(0);
+                                        Pnl_CallerElement obj = new Pnl_CallerElement();
+                                        //String Callerid = new Calls().loadclass(" CaseHID="+e.getCallid()).get(0).getNumber();
+                                        //obj.setToolTipText("Call From :"+ Callerid);
+                                        obj.LoadElement(e);
+                                        obj.remove(obj.getBtn_Select());
+                                        obj.setSize(obj.preferredSize());
+                                        Pnl_Caller.add(obj);
+                                        Pnl_Caller.revalidate();
+                                        Pnl_Caller.repaint();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
                                     }
                                 }
-                                
+
                                 @Override
                                 public void mouseExited(MouseEvent e) {
                                     //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -791,17 +797,21 @@ return;
                             MSG += " Address :" + ac.get(0).getAddress() + "\n";
                             MSG += " FIR: " + ac.get(0).getFir() + "\n";
                             //MSG += 
-                            JTextArea ja = new JTextArea();
-                            ja.setText(MSG);
-                             ja.setBackground(Color.yellow);
-                            ja.setSize(ja.getPreferredSize());
-                          //  ja.disable();
-                              ja.revalidate();
-                            ja.repaint();
-                            Pnl_Accused.add(ja);
+                            if (MSG.length() != 0) {
+                                JTextArea ja = new JTextArea();
+                                ja.setText(MSG);
+                                ja.setSize(ja.getPreferredSize());
+                                ja.setBackground(Color.yellow);
+                                ja.revalidate();
+                                ja.repaint();
+
+                                //ja.disable();
+                                Pnl_Accused.removeAll();
+                                Pnl_Accused.add(ja);
+                            }                            
                         }
-                            Pnl_Accused.revalidate();
-                            Pnl_Accused.repaint();
+                        Pnl_Accused.revalidate();
+                        Pnl_Accused.repaint();
 
                     }
                 });
@@ -859,7 +869,7 @@ return;
     private org.jdesktop.swingx.JXDatePicker DtPck_Case;
     private javax.swing.JPanel Pnl_Accused;
     private javax.swing.JPanel Pnl_Caller;
-    private javax.swing.JPanel Pnl_CaseDirctry;
+    public javax.swing.JPanel Pnl_CaseDirctry;
     private javax.swing.JPanel Pnl_CaseHistory;
     private javax.swing.JPanel Pnl_CaseList;
     public javax.swing.JPanel Pnl_RecrdDirctry;
@@ -887,8 +897,8 @@ return;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane11;
     public javax.swing.JScrollPane jScrollPane12;
+    public javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

@@ -11,6 +11,7 @@ import DataBase.Tables.Calls;
 import DataBase.Tables.Caller;
 import DataBase.Tables.Cases;
 import DataBase.Tables.Directory;
+import DataBase.Tables.Legal;
 import DataBase.Tables.Telephone;
 import View.Dlg_SearchCaller;
 import View.Dlg_SearchComplain;
@@ -321,6 +322,19 @@ public class LoadData_DistressWoman {
     }
 
     private void PopulateAccuse() {
+        ArrayList<Accused> ac = new Accused().loadclass(" Caseid like '" + dc.CaseID + "'");
+        ArrayList<Legal> le = new Legal().loadclass(" CaseID like '" + dc.CaseID + "'");
+        if (ac.size() > 0) {
+            dc.getTxt_AccusedName().setText(ac.get(0).getName());
+            dc.getTxt_AccusedPhone().setText(String.valueOf(ac.get(0).getPhone()));
+            dc.getTxt_AccusedAddress().setText(ac.get(0).getAddress());
+        }
+        if (le.size() > 0) {
+            dc.getTxt_AccusedDD().setText(le.get(0).getDD());
+            dc.getTxt_AccusedFIR().setText(le.get(0).getFir());
+            dc.setChk_Challan(le.get(0).getChallan());
+            dc.setChk_Judgement(le.get(0).getJudgement());
+        }
     }
 
     public static void setSelectedValue(JComboBox comboBox, String value) {

@@ -121,6 +121,70 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         return Txt_CallerName;
     }
 
+    public void setTxt_AccusedName(JTextField Txt_CallerAge3) {
+        this.Txt_AccusedName = Txt_CallerAge3;
+    }
+
+    public JTextField getTxt_AccusedName() {
+        return Txt_AccusedName;
+    }
+
+    public void setTxt_AccusedAddress(JTextField Txt_CallerAge3) {
+        this.Txt_AccusedAddress = Txt_CallerAge3;
+    }
+
+    public JTextField getTxt_AccusedAddress() {
+        return Txt_AccusedAddress;
+    }
+
+    public void setTxt_AccusedPhone(JTextField Txt_CallerAge3) {
+        this.Txt_AccusedPhone = Txt_CallerAge3;
+    }
+
+    public JTextField getTxt_AccusedPhone() {
+        return Txt_AccusedPhone;
+    }
+
+    public void setTxt_AccusedDD(JTextField Txt_CallerAge3) {
+        this.Txt_AccusedDD = Txt_CallerAge3;
+    }
+
+    public JTextField getTxt_AccusedDD() {
+        return Txt_AccusedDD;
+    }
+
+    public void setTxt_AccusedFIR(JTextField Txt_CallerAge3) {
+        this.Txt_AccusedFIR = Txt_CallerAge3;
+    }
+
+    public JTextField getTxt_AccusedFIR() {
+        return Txt_AccusedFIR;
+    }
+
+    public void setChk_Challan(int Txt_CallerName3) {
+        if (Txt_CallerName3 == 0) {
+            this.jChk_Challan.setSelected(false);
+        } else {
+            this.jChk_Challan.setSelected(true);
+        }
+    }
+
+    public boolean getChk_Challan() {
+        return jChk_Challan.isSelected();
+    }
+
+    public void setChk_Judgement(int Txt_CallerName3) {
+        if (Txt_CallerName3 == 0) {
+            this.jChk_Judgement.setSelected(false);
+        } else {
+            this.jChk_Judgement.setSelected(true);
+        }
+    }
+
+    public boolean getChk_Judgement() {
+        return jChk_Judgement.isSelected();
+    }
+
     public void setTxt_CallerName(JTextField Txt_CallerName3) {
         this.Txt_CallerName = Txt_CallerName3;
     }
@@ -999,7 +1063,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                 setSelectedValue(CmbBx_CaseStatus, cs.getStatus());
                 setSelectedValue(CmbBx_CaseType, cs.getCaseType());
                 setSelectedValue(CmbBx_Forward, cs.getForward());
-                infoBox("Your Current case is updated to : "+ cs.getReadableName(), "Delhi Women Cell");
+                infoBox("Your Current case is updated to : " + cs.getReadableName(), "Delhi Women Cell");
             } else {
                 infoBox("You have not selected any Case", "Delhi Women Cell");
             }
@@ -1049,6 +1113,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         // TODO add your handling code here:
         boolean saved = SaveData();
         if (saved) {
+            System.err.println("newcase"+newcase+"newcaller"+newcaller+"newaccused"+newaccussed);
             ForwardCase fc = new ForwardCase();
             fc.setCaseID(CaseID);
             fc.setLevel("S");
@@ -1160,10 +1225,8 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         // TODO add your handling code here:
         //jCmb_PS.removeAllItems();
         //jCmb_PS.add();
-        
     }//GEN-LAST:event_CmbBx_PoliceDistrictItemStateChanged
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1298,6 +1361,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
             cs.setStatus(this.CmbBx_CaseStatus.getSelectedItem().toString());
             cs.setForward(this.CmbBx_Forward.getSelectedItem().toString());
             cs.setCaseType(this.CmbBx_CaseType.getSelectedItem().toString());
+            System.err.println("newcase "+newcase);
             if (newcase) {
                 cs.savetodb();
                 CaseID = cs.getId();
@@ -1305,55 +1369,6 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
             if (CaseID < 1) {
                 return false;
             }
-            if (newcase) {
-                Legal le = new Legal();                
-                    le.setDD(Txt_AccusedDD.getText());                    
-                    le.setFir(Txt_AccusedFIR.getText());
-                    le.setChallan(jChk_Challan.isSelected());
-                    le.setJudgement(jChk_Judgement.isSelected());
-                    le.setCaseID(cs.getId());
-                    le.savetodb();                
-            }
-            else{
-                Legal le = new Legal();                
-                    le.setDD(Txt_AccusedDD.getText());                    
-                    le.setFir(Txt_AccusedFIR.getText());
-                    le.setChallan(jChk_Challan.isSelected());
-                    le.setJudgement(jChk_Judgement.isSelected());
-                    le.setCaseID(cs.getId());
-                    le.updatedb();
-            }
-            
-            CaseHistory ch = new CaseHistory();
-            DataBase.Tables.Agent ag = new DataBase.Tables.Agent().loadclass(" AgentID='" + Long.valueOf(((ParentForm) this.getParent()).AgentId) + "'").get(0);
-            ch.setAgentID(ag.getId());
-            ch.setAdvice(this.Txt_Advice.getText());
-            ch.setCaseID(CaseID);
-            ch.setNote(this.Txt_Note.getText());
-            ch.setDatestamp(new Date().toLocaleString());
-            ch.setReffered(this.CmbBx_Forward.getSelectedItem().toString());
-            ch.savetodb();
-            for (Telephone ob : tp) {
-                ob.setCaseHid(ch.getId());
-                ob.savetodb();
-            }
-            Calls call = new Calls().loadclass(" TextualDate='" + TextualDate + "' and CallUUID='" + UUID + "'").get(0);
-            System.out.println("updating calls"+ "\n" + call.getId());
-            call.setCaseHID(ch.getId());
-            call.setAgentId(Integer.valueOf(((ParentForm) this.getParent()).AgentId));
-            call.updatedb();
-
-       //     System.out.println("agent id is...." + call.getAgentId());
-         //   System.out.println("casehid id is...." + call.getCaseHID());
-                        
-            Caller cl = new Caller();
-            cl.setName(this.getTxt_CallerName().getText());
-            cl.setAge(this.getTxt_CallerAge().getText());
-            cl.setCallid(ch.getId());
-            cl.setAddress(this.Txt_CallerAddress.getText());
-            cl.savetodb();
-
-
             if (newcase) {
                 Accused acd = new Accused();
                 if (Txt_AccusedName.getText().length() > 1) {
@@ -1369,8 +1384,55 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                     acd.savetodb();
                 }
             }
-popupmenu.setVisible(false);
-popupmenu = null;
+            if (newcase) {
+                Legal le = new Legal();
+                le.setDD(Txt_AccusedDD.getText());
+                le.setFir(Txt_AccusedFIR.getText());
+                le.setChallan(jChk_Challan.isSelected()?1:0);
+                le.setJudgement(jChk_Judgement.isSelected()?1:0);
+                le.setCaseID(cs.getId());
+                le.savetodb();
+            } else {
+                Legal le = new Legal();
+                le.setDD(Txt_AccusedDD.getText());
+                le.setFir(Txt_AccusedFIR.getText());
+                le.setChallan(jChk_Challan.isSelected() ? 1 : 0);
+                le.setJudgement(jChk_Judgement.isSelected() ? 1 : 0);
+                le.setCaseID(cs.getId());
+                le.updatedb();
+            }
+
+            CaseHistory ch = new CaseHistory();
+            DataBase.Tables.Agent ag = new DataBase.Tables.Agent().loadclass(" AgentID='" + Long.valueOf(((ParentForm) this.getParent()).AgentId) + "'").get(0);
+            ch.setAgentID(ag.getId());
+            ch.setAdvice(this.Txt_Advice.getText());
+            ch.setCaseID(CaseID);
+            ch.setNote(this.Txt_Note.getText());
+            ch.setDatestamp(new Date().toLocaleString());
+            ch.setReffered(this.CmbBx_Forward.getSelectedItem().toString());
+            ch.savetodb();
+            for (Telephone ob : tp) {
+                ob.setCaseHid(ch.getId());
+                ob.savetodb();
+            }
+            Calls call = new Calls().loadclass(" TextualDate='" + TextualDate + "' and CallUUID='" + UUID + "'").get(0);
+            System.out.println("updating calls" + "\n" + call.getId());
+            call.setCaseHID(ch.getId());
+            call.setAgentId(Integer.valueOf(((ParentForm) this.getParent()).AgentId));
+            call.updatedb();
+
+            //     System.out.println("agent id is...." + call.getAgentId());
+            //   System.out.println("casehid id is...." + call.getCaseHID());
+
+            Caller cl = new Caller();
+            cl.setName(this.getTxt_CallerName().getText());
+            cl.setAge(this.getTxt_CallerAge().getText());
+            cl.setCallid(ch.getId());
+            cl.setAddress(this.Txt_CallerAddress.getText());
+            cl.savetodb();
+            
+            popupmenu.setVisible(false);
+            popupmenu = null;
             return true;
         } catch (Exception e) {
             infoBox("Information is not saved", "Delhi Women Cell");

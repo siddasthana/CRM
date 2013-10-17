@@ -583,7 +583,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         pce.setSize(pce.getPreferredSize());
         pce.revalidate();
         pce.repaint();
-        System.err.println("confName"+ob.confname);
+        System.err.println("confName" + ob.confname);
         JDialog caseentry = new JDialog(this, true);
         caseentry.add(pce);
         caseentry.getContentPane().setSize(caseentry.getContentPane().getPreferredSize());
@@ -592,7 +592,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         caseentry.revalidate();
         caseentry.repaint();
         caseentry.show();
-        
+
         Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
         cl.setCaseHID(pce.getElement().getId());
         cl.setAgentId(Integer.parseInt(Global.AgentID));
@@ -744,15 +744,18 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                             System.out.println(MSG);
                         }
                         System.out.println(MSG);
-                        JTextArea ja = new JTextArea();
-                        ja.setText(MSG);
-                        ja.setSize(ja.getPreferredSize());
-                        ja.setBackground(Color.yellow);
-                        ja.revalidate();
-                        ja.repaint();
-                        //ja.disable();
-                        Pnl_Accused.removeAll();
-                        Pnl_Accused.add(ja);
+                        if (MSG.length() != 0) {
+                            JTextArea ja = new JTextArea();
+                            ja.setText(MSG);
+                            ja.setSize(ja.getPreferredSize());
+                            ja.setBackground(Color.yellow);
+                            ja.revalidate();
+                            ja.repaint();
+
+                            //ja.disable();
+                            Pnl_Accused.removeAll();
+                            Pnl_Accused.add(ja);
+                        }
 
                         //  Pnl_Accused.revalidate();
                         //    Pnl_Accused.repaint();
