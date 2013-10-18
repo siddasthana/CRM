@@ -16,6 +16,7 @@ public class Dlg_SelectCase extends javax.swing.JDialog {
      * Creates new form Dlg_SelectCase
      */
     public String id, PoliceStn,Status,Forward,ReadableName,CaseType;
+   // public boolean dispose=false;
     public Dlg_SelectCase(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

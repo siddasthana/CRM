@@ -4,14 +4,20 @@
  */
 package View.Elements;
 
+import DataBase.Sql;
 import DataBase.Tables.*;
 import View.Dlg_AddTelephone;
 import View.Dlg_SelectCaller;
 import View.Dlg_SelectCase;
 import View.Global;
+import View.Screen_TeleExecutive;
 import java.awt.Color;
 import java.awt.Frame;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -241,6 +247,28 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
 
     private void Txt_FamiliarNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_FamiliarNameActionPerformed
         // TODO add your handling code here:
+        Sql sql = new Sql();
+        ResultSet rs;
+        rs = sql.ExecuteQuery("Select ReadableName From `" + Sql.dbName + "`.`case`  where ReadableName like '" + evt.getActionCommand() + "%'");
+        try {            
+            int i = 0;
+            while (rs.next()) {
+                i++;
+                System.out.println();
+            }
+            if (i == 0) {
+                Txt_FamiliarName.setForeground(Color.GREEN);
+            } else {
+                Txt_FamiliarName.setForeground(Color.RED);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Screen_TeleExecutive.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        sql.Destructor();
+        // SrchFld_PoliceStne.getpo;
+        //System.out.println(SrchFld_PoliceStne.getFindPopupMenu().getPopupLocation(null));
+        //popupmenu.setLocation(200,200);        
+        //PopMn_Complaint.setVisible(true);
     }//GEN-LAST:event_Txt_FamiliarNameActionPerformed
 
     public JButton getBtn_Select() {

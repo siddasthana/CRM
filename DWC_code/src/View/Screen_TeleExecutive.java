@@ -330,7 +330,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         if (jRadioButton1.isSelected()) {
 
             populatingcaller = true;
-            LoadData_DistressWoman LD_DW = new LoadData_DistressWoman(this);
+            LoadData_DistressWoman LD_DW = new LoadData_DistressWoman(this);            
             // Dlg_distressWoman.setSize(pf.getSize());
             ((Dlg_distressWoman) Dlg_distressWoman).jPanel11.setSize(((Dlg_distressWoman) Dlg_distressWoman).jPanel11.getPreferredSize());
             Dlg_distressWoman.setSize(Dlg_distressWoman.getPreferredSize());

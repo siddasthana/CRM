@@ -32,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 
 /**
  *
@@ -55,6 +56,7 @@ public class LoadData_DistressWoman {
 
     public LoadData_DistressWoman(Screen_TeleExecutive str) {
         this.st = str;
+        System.out.println("str "+str);
         dc = (Dlg_distressWoman) st.Dlg_distressWoman;
 
         //if (dc.populatingcaller) {
@@ -255,14 +257,19 @@ public class LoadData_DistressWoman {
                 System.out.println("Adding case element");
             }
         }
+        boolean  b =false;
         JButton btn_searchcase = new JButton("Search a Case");
         btn_searchcase.setSize(btn_searchcase.getPreferredSize());
         btn_searchcase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dscs.setVisible(false);
+               
+               dscs.ReadableName = "dispose";
+              
                 dlg_scmpl = new Dlg_SearchComplain(st.pf, true);
-                dscs.dispose();
+                dlg_scmpl.show();
+                 dscs.setVisible(false);
+            dscs.dispose();
             }
         });
         dscs.jPanel1.add(btn_searchcase);
@@ -286,6 +293,9 @@ public class LoadData_DistressWoman {
         dscs.repaint();
         //dscs.setSize(dscs.getPreferredSize());
         dscs.show(true);
+        if(dscs.ReadableName != null){
+        if(dscs.ReadableName.equals("dispose"))return;
+        }
         System.out.println("Updating case fileds..");
         if (!dc.newcase) {
             dc.CaseID = Long.valueOf(dscs.id);

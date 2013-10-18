@@ -164,10 +164,16 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
 
         jLabel1.setText("Note");
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         Txt_Note.setColumns(20);
+        Txt_Note.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        Txt_Note.setLineWrap(true);
         Txt_Note.setRows(5);
+        Txt_Note.setWrapStyleWord(true);
+        Txt_Note.setAutoscrolls(false);
+        Txt_Note.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         Txt_Note.setEnabled(false);
         jScrollPane1.setViewportView(Txt_Note);
 
@@ -210,7 +216,11 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
         jScrollPane3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         Txt_Advice.setColumns(20);
+        Txt_Advice.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        Txt_Advice.setLineWrap(true);
         Txt_Advice.setRows(5);
+        Txt_Advice.setWrapStyleWord(true);
+        Txt_Advice.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         Txt_Advice.setEnabled(false);
         jScrollPane3.setViewportView(Txt_Advice);
 
@@ -260,18 +270,18 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Txt_Reffered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_Save)
                     .addComponent(CmbBx_Reffered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
