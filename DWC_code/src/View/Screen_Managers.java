@@ -15,6 +15,7 @@ import DataBase.Tables.Calls;
 import DataBase.Tables.CaseHistory;
 import DataBase.Tables.Cases;
 import Layout.WrapLayout;
+import View.Elements.Pnl_CallElement;
 import View.Elements.Pnl_CallerElement;
 import View.Elements.Pnl_CaseElement;
 import View.Elements.Pnl_CaseHistoryElement;
@@ -153,7 +154,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         );
         Pnl_CallerLayout.setVerticalGroup(
             Pnl_CallerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGap(0, 206, Short.MAX_VALUE)
         );
 
         jScrollPane3.setViewportView(Pnl_Caller);
@@ -168,7 +169,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         );
         Pnl_AccusedLayout.setVerticalGroup(
             Pnl_AccusedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGap(0, 329, Short.MAX_VALUE)
         );
 
         jScrollPane4.setViewportView(Pnl_Accused);
@@ -239,7 +240,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton4.setText("1");
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setIconTextGap(0);
-        jButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4DialKeyPad(evt);
@@ -250,7 +250,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton5.setText("4");
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setIconTextGap(0);
-        jButton5.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5DialKeyPad(evt);
@@ -261,7 +260,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton6.setText("7");
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton6.setIconTextGap(0);
-        jButton6.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6DialKeyPad(evt);
@@ -272,7 +270,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton7.setText("2");
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton7.setIconTextGap(0);
-        jButton7.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7DialKeyPad(evt);
@@ -283,7 +280,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton8.setText("5");
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton8.setIconTextGap(0);
-        jButton8.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8DialKeyPad(evt);
@@ -294,7 +290,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton9.setText("8");
         jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton9.setIconTextGap(0);
-        jButton9.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9DialKeyPad(evt);
@@ -305,7 +300,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton13.setText("3");
         jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton13.setIconTextGap(0);
-        jButton13.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13DialKeyPad(evt);
@@ -316,7 +310,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton14.setText("9");
         jButton14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton14.setIconTextGap(0);
-        jButton14.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14DialKeyPad(evt);
@@ -327,7 +320,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton15.setText("6");
         jButton15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton15.setIconTextGap(0);
-        jButton15.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15DialKeyPad(evt);
@@ -338,7 +330,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton16.setText("*");
         jButton16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton16.setIconTextGap(0);
-        jButton16.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton16.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jButton16.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -351,7 +342,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton17.setText("#");
         jButton17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton17.setIconTextGap(0);
-        jButton17.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton17DialKeyPad(evt);
@@ -362,7 +352,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         jButton18.setText("0");
         jButton18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton18.setIconTextGap(0);
-        jButton18.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton18DialKeyPad(evt);
@@ -381,7 +370,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 1, Short.MAX_VALUE)
                 .addComponent(Btn_Dial, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TxtDialScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -446,6 +435,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 200, 140));
 
         jScrollPane13.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane13.setPreferredSize(new java.awt.Dimension(1193, 120));
 
         Pnl_CaseDirctry.setBackground(new java.awt.Color(255, 255, 255));
         Pnl_CaseDirctry.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
@@ -458,11 +448,11 @@ public class Screen_Managers extends javax.swing.JFrame {
         );
         Pnl_CaseDirctryLayout.setVerticalGroup(
             Pnl_CaseDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         jScrollPane13.setViewportView(Pnl_CaseDirctry);
-        Pnl_RecrdDirctry.setLayout(new WrapLayout());
+        Pnl_CaseDirctry.setLayout(new WrapLayout());
 
         jPanel1.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 490, -1));
 
@@ -535,7 +525,7 @@ public class Screen_Managers extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(Txt_PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_Search))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
@@ -808,10 +798,22 @@ public class Screen_Managers extends javax.swing.JFrame {
                                 //ja.disable();
                                 Pnl_Accused.removeAll();
                                 Pnl_Accused.add(ja);
-                            }                            
+                            }
                         }
                         Pnl_Accused.revalidate();
                         Pnl_Accused.repaint();
+
+                        ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like (select PoliceStation from `case` where idCase = " + Caseid + ")");
+
+                        for (DataBase.Tables.Directory dir : dir1) {
+                            Pnl_CallElement pce = new Pnl_CallElement();
+                            pce.Lbl_CallElement_number.setText(dir.getNumber());
+                            pce.Lbl_CallElement_Name.setText(dir.getService());
+                            Pnl_CaseDirctry.add(pce);
+                            System.out.println("Added a Case directory element");
+                        }
+                        Pnl_CaseDirctry.revalidate();
+                        Pnl_CaseDirctry.repaint();
 
                     }
                 });

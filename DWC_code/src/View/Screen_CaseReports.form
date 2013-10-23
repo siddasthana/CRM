@@ -88,7 +88,7 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Txt_PhoneNumber" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -363,6 +363,9 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Pnl_CaseDirctry.setLayout(new WrapLayout());"/>
+              </AuxValues>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -553,9 +556,6 @@
                 <Property name="text" type="java.lang.String" value="1"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4DialKeyPad"/>
@@ -569,9 +569,6 @@
                 <Property name="text" type="java.lang.String" value="4"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5DialKeyPad"/>
@@ -585,9 +582,6 @@
                 <Property name="text" type="java.lang.String" value="7"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6DialKeyPad"/>
@@ -601,9 +595,6 @@
                 <Property name="text" type="java.lang.String" value="2"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7DialKeyPad"/>
@@ -617,9 +608,6 @@
                 <Property name="text" type="java.lang.String" value="5"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8DialKeyPad"/>
@@ -633,9 +621,6 @@
                 <Property name="text" type="java.lang.String" value="8"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9DialKeyPad"/>
@@ -649,9 +634,6 @@
                 <Property name="text" type="java.lang.String" value="3"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13DialKeyPad"/>
@@ -665,9 +647,6 @@
                 <Property name="text" type="java.lang.String" value="9"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14DialKeyPad"/>
@@ -681,9 +660,6 @@
                 <Property name="text" type="java.lang.String" value="6"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton15DialKeyPad"/>
@@ -697,9 +673,6 @@
                 <Property name="text" type="java.lang.String" value="*"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
                 <Property name="verticalAlignment" type="int" value="3"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
@@ -715,9 +688,6 @@
                 <Property name="text" type="java.lang.String" value="#"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton17DialKeyPad"/>
@@ -731,9 +701,6 @@
                 <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="0"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 0, 0, 0]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18DialKeyPad"/>
