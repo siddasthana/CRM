@@ -777,6 +777,9 @@
                           <Dimension value="[1191, 100]"/>
                         </Property>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Pnl_CaseDirctry.setLayout(new WrapLayout());"/>
+                      </AuxValues>
 
                       <Layout>
                         <DimensionLayout dim="0">
@@ -1170,6 +1173,7 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SrchFld_PoliceStneActionPerformed"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="SrchFld_PoliceStneFocusLost"/>
               </Events>
             </Component>
             <Component class="org.jdesktop.swingx.JXSearchField" name="SrchFld_Complaint">

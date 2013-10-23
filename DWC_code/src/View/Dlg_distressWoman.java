@@ -512,6 +512,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         );
 
         jScrollPane11.setViewportView(Pnl_CaseDirctry);
+        Pnl_CaseDirctry.setLayout(new WrapLayout());
 
         jPanel1.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 501, 100));
 
@@ -763,6 +764,11 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         SrchFld_PoliceStne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SrchFld_PoliceStneActionPerformed(evt);
+            }
+        });
+        SrchFld_PoliceStne.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                SrchFld_PoliceStneFocusLost(evt);
             }
         });
 
@@ -1226,6 +1232,19 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         //jCmb_PS.removeAllItems();
         //jCmb_PS.add();
     }//GEN-LAST:event_CmbBx_PoliceDistrictItemStateChanged
+
+    private void SrchFld_PoliceStneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SrchFld_PoliceStneFocusLost
+        // TODO add your handling code here: 
+        ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like '"+SrchFld_PoliceStne.getText()+"'");
+        for (DataBase.Tables.Directory obj : dir1){
+        Pnl_CallElement pce = new Pnl_CallElement();
+        pce.Lbl_CallElement_number.setText(obj.getNumber());
+        Pnl_CaseDirctry.add(pce);
+            System.out.println("Added a Case directory element");
+        }
+        Pnl_CaseDirctry.revalidate();
+        Pnl_CaseDirctry.repaint();
+    }//GEN-LAST:event_SrchFld_PoliceStneFocusLost
 
     /**
      * @param args the command line arguments
