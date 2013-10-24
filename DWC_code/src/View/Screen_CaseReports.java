@@ -540,14 +540,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TxtDialScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDialScreenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtDialScreenActionPerformed
-
-    private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
-        // TODO add your handling code here:
-        if (Caseid == null) {
+    public void connect(String s){
+         if (Caseid == null) {
             infoBox("Please select a Case before you proceed", "Delhi Women Cell");
             return;
         }
@@ -562,7 +556,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
             }
         }
         OutBound ob = new OutBound();
-        ob.connect(TxtDialScreen.getText());
+        ob.connect(s);
+        System.out.println("number"+s);
 
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
         Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
@@ -589,6 +584,14 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         cl.setCaseHID(pce.getElement().getId());
         cl.setAgentId(Integer.parseInt(Global.AgentID));
         cl.updatedb();
+    }
+    private void TxtDialScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDialScreenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtDialScreenActionPerformed
+
+    private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
+        // TODO add your handling code here:
+       connect(TxtDialScreen.getText());
     }//GEN-LAST:event_Btn_DialActionPerformed
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
@@ -829,9 +832,17 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                         ArrayList<DataBase.Tables.Telephone> tl1 = new DataBase.Tables.Telephone().loadclass("CaseHID in (select idCase_HIstory from case_history where CaseID = " + Caseid + ")");
 
                         for (DataBase.Tables.Directory dir : dir1) {
+
                             Pnl_CallElement pce = new Pnl_CallElement();
-                            pce.Lbl_CallElement_number.setText(dir.getNumber());
-                            pce.Lbl_CallElement_Name.setText(dir.getInfo());
+                            pce.LoadElement(dir);
+                            final String number = dir.getNumber();
+                            pce.getBtn_CallElement_Dial().removeActionListener(pce.getBtn_CallElement_Dial().getActionListeners()[0]);
+                            pce.getBtn_CallElement_Dial().addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    connect(number);
+                                }
+                            });
                             Pnl_CaseDirctry.add(pce);
                             System.out.println("Added a Case directory element");
                         }
@@ -839,6 +850,14 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                             Pnl_CallElement pce = new Pnl_CallElement();
                             pce.Lbl_CallElement_number.setText(String.valueOf(tl.getNumber()));
                             pce.Lbl_CallElement_Name.setText(tl.getNote());
+                            final String number = String.valueOf(tl.getNumber());
+                            pce.getBtn_CallElement_Dial().removeActionListener(pce.getBtn_CallElement_Dial().getActionListeners()[0]);
+                            pce.getBtn_CallElement_Dial().addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    connect(number);
+                                }
+                            });
                             Pnl_RecrdDirctry.add(pce);
                             System.out.println("Added a Record directory element");
                         }

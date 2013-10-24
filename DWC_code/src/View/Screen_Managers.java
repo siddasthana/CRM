@@ -548,42 +548,7 @@ public class Screen_Managers extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtDialScreenActionPerformed
     
     private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
-        if (Caseid == null) {
-            infoBox("Please select a Case before you proceed", "Delhi Women Cell");
-            return;
-        }
-        if (Caseid > 0) {
-            try {
-                Cases cs = new Cases().loadclass(" idCase=" + Caseid).get(0);
-                String CaseName = cs.getReadableName();
-                infoBox("You are going to work on case : " + CaseName, "Delhi Women Cell");
-            } catch (Exception e) {
-                infoBox("Please select a Case before you proceed", "Delhi Women Cell");
-                return;
-            }
-        }
-        OutBound ob = new OutBound();
-        ob.connect(TxtDialScreen.getText());
-        infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
-        Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
-        pce.AudioPanel.disable();
-        pce.getBtn_Save().setEnabled(true);
-        pce.getTxt_Note().setEnabled(true);
-        pce.getTxt_Advice().setEnabled(true);
-        pce.Agentid = Long.valueOf(Global.AgentPK);
-        pce.Caseid = Caseid;
-        JDialog caseentry = new JDialog(this, true);
-          caseentry.add(pce);
-        caseentry.getContentPane().setSize(caseentry.getContentPane().getPreferredSize());
-      caseentry.setSize(caseentry.getPreferredSize());
-      caseentry.setSize(caseentry.getSize().width,caseentry.getSize().height+25);
-        caseentry.revalidate();
-        caseentry.repaint();
-        caseentry.show();
-        //
-       Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID="+ob.confname).get(0);
-      cl.setCaseHID(pce.getElement().getId());
-      cl.updatedb();
+       connect(TxtDialScreen.getText());
         
         /*
         caseentry.show();    }//GEN-LAST:event_Btn_DialActionPerformed
@@ -812,9 +777,17 @@ public class Screen_Managers extends javax.swing.JFrame {
                         ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like (select PoliceStation from `case` where idCase = " + Caseid + ")");
                         ArrayList<DataBase.Tables.Telephone> tl1 = new DataBase.Tables.Telephone().loadclass("CaseHID in (select idCase_HIstory from case_history where CaseID = " + Caseid + ")");
                         for (DataBase.Tables.Directory dir : dir1) {
+
                             Pnl_CallElement pce = new Pnl_CallElement();
-                            pce.Lbl_CallElement_number.setText(dir.getNumber());
-                            pce.Lbl_CallElement_Name.setText(dir.getService());
+                            pce.LoadElement(dir);
+                            final String number = dir.getNumber();
+                            pce.getBtn_CallElement_Dial().removeActionListener(pce.getBtn_CallElement_Dial().getActionListeners()[0]);
+                            pce.getBtn_CallElement_Dial().addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    connect(number);
+                                }
+                            });
                             Pnl_CaseDirctry.add(pce);
                             System.out.println("Added a Case directory element");
                         }
@@ -822,24 +795,39 @@ public class Screen_Managers extends javax.swing.JFrame {
                             Pnl_CallElement pce = new Pnl_CallElement();
                             pce.Lbl_CallElement_number.setText(String.valueOf(tl.getNumber()));
                             pce.Lbl_CallElement_Name.setText(tl.getNote());
+                            final String number = String.valueOf(tl.getNumber());
+                            pce.getBtn_CallElement_Dial().removeActionListener(pce.getBtn_CallElement_Dial().getActionListeners()[0]);
+                            pce.getBtn_CallElement_Dial().addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    connect(number);
+                                }
+                            });
                             Pnl_RecrdDirctry.add(pce);
                             System.out.println("Added a Record directory element");
                         }
                         Pnl_CaseDirctry.revalidate();
-                        Pnl_CaseDirctry.repaint();
-                        Pnl_RecrdDirctry.revalidate();
-                        Pnl_RecrdDirctry.repaint();
 
+                        Pnl_CaseDirctry.repaint();
+
+                        Pnl_RecrdDirctry.revalidate();
+
+                        Pnl_RecrdDirctry.repaint();
                     }
                 });
                 //System.out.println("<Case Details>" + ob.getPoliceStn() + "," + ob.getForward() + "," + ob.getStatus());
                 // dscs.jPanel1.add(obj);
                 //dsc.jScrollPane1.add(ob);
                 Pnl_CaseList.add(obj);
+
                 Pnl_CaseList.revalidate();
+
                 Pnl_CaseList.repaint();
+
                 this.repaint();
-                System.out.println("Adding case element");
+
+                System.out.println(
+                        "Adding case element");
             }
     }//GEN-LAST:event_Btn_SearchActionPerformed
     }
@@ -848,6 +836,47 @@ public class Screen_Managers extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public void connect(String number) {
+        
+        if (Caseid == null) {
+            infoBox("Please select a Case before you proceed", "Delhi Women Cell");
+            return;
+        }
+        if (Caseid > 0) {
+            try {
+                Cases cs = new Cases().loadclass(" idCase=" + Caseid).get(0);
+                String CaseName = cs.getReadableName();
+                infoBox("You are going to work on case : " + CaseName, "Delhi Women Cell");
+            } catch (Exception ex) {
+                infoBox("Please select a Case before you proceed", "Delhi Women Cell");
+                return;
+            }
+        }
+        OutBound ob = new OutBound();
+        ob.connect(number);
+        System.out.println("number to connect" + number);
+        infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
+        Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
+        pce.AudioPanel.disable();
+        pce.getBtn_Save().setEnabled(true);
+        pce.getTxt_Note().setEnabled(true);
+        pce.getTxt_Advice().setEnabled(true);
+        pce.Agentid = Long.valueOf(Global.AgentPK);
+        pce.Caseid = Caseid;
+        JDialog caseentry = new JDialog(this, true);
+        caseentry.add(pce);
+        caseentry.getContentPane().setSize(caseentry.getContentPane().getPreferredSize());
+        caseentry.setSize(caseentry.getPreferredSize());
+        caseentry.setSize(caseentry.getSize().width, caseentry.getSize().height + 25);
+        caseentry.revalidate();
+        caseentry.repaint();
+        caseentry.show();
+        //
+        Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
+        cl.setCaseHID(pce.getElement().getId());
+        cl.updatedb();
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

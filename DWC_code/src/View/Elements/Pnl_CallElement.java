@@ -4,13 +4,17 @@
  */
 package View.Elements;
 
+import DataBase.OutBound;
 import DataBase.Sql;
 import View.Global;
+import static View.Screen_Managers.infoBox;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,8 +27,41 @@ public class Pnl_CallElement extends javax.swing.JPanel {
      * Creates new form xyz
      */
     public String id;
+
     public Pnl_CallElement() {
         initComponents();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public JButton getBtn_CallElement_Dial() {
+        return Btn_CallElement_Dial;
+    }
+
+    public void setBtn_CallElement_Dial(JButton Btn_CallElement_Dial) {
+        this.Btn_CallElement_Dial = Btn_CallElement_Dial;
+    }
+
+    public JLabel getLbl_CallElement_Name() {
+        return Lbl_CallElement_Name;
+    }
+
+    public void setLbl_CallElement_Name(JLabel Lbl_CallElement_Name) {
+        this.Lbl_CallElement_Name = Lbl_CallElement_Name;
+    }
+
+    public JLabel getLbl_CallElement_number() {
+        return Lbl_CallElement_number;
+    }
+
+    public void setLbl_CallElement_number(JLabel Lbl_CallElement_number) {
+        this.Lbl_CallElement_number = Lbl_CallElement_number;
     }
 
     /**
@@ -79,50 +116,57 @@ public class Pnl_CallElement extends javax.swing.JPanel {
     private void Btn_CallElement_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CallElement_DialActionPerformed
         // TODO add your handling code here:
 //"In a queue call"" thenn uuid for call
-        String Query = "Select state from agents where name='" + Global.AgentID + "'";
-        Sql sql = new Sql();
-        ResultSet rs;
-        rs = sql.ExecuteQuery(Query);
-        try {
-            if (rs.next()) {
-                if (rs.getString(1).equalsIgnoreCase("In a queue call")) {
-                    long confname = new Date().getTime() / 100;
-                    Query = "Select CallUUID from call_scheduling where AgentID='" + Global.AgentID + "'";
-                    ResultSet rst = sql.ExecuteQuery(Query);
-                    if (rst.next()) {
-                        String CallUUID = rst.getString(1);
-                        Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
-                        Query += " value('conf','" + confname + "','" + Lbl_CallElement_number.getText() + "','GSM','0',NOW())";
-                        sql.ExecuteUpdate(Query);
-                        Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
-                        Query += " value('conf','" + confname + "','" + CallUUID + "','UUID','0',NOW())";
-                        sql.ExecuteUpdate(Query);
-                    } else {
-                        infoBox("Something wrong with making the call", "Delhi Women Cell");
+        /*String Query = "Select state from agents where name='" + Global.AgentID + "'";
+         Sql sql = new Sql();
+         ResultSet rs;
+         rs = sql.ExecuteQuery(Query);
+         try {
+         if (rs.next()) {
+         if (rs.getString(1).equalsIgnoreCase("In a queue call")) {
+         long confname = new Date().getTime() / 100;
+         Query = "Select CallUUID from call_scheduling where AgentID='" + Global.AgentID + "'";
+         ResultSet rst = sql.ExecuteQuery(Query);
+         if (rst.next()) {
+         String CallUUID = rst.getString(1);
+         Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
+         Query += " value('conf','" + confname + "','" + Lbl_CallElement_number.getText() + "','GSM','0',NOW())";
+         sql.ExecuteUpdate(Query);
+         Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
+         Query += " value('conf','" + confname + "','" + CallUUID + "','UUID','0',NOW())";
+         sql.ExecuteUpdate(Query);
+         } else {
+         infoBox("Something wrong with making the call", "Delhi Women Cell");
 
-                    }
-                } else {
-                    if (false) {
-                        long confname = new Date().getTime() / 100;
-                        Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
-                        Query += " value('conf','" + confname + "','" + Lbl_CallElement_number.getText() + "','GSM','0',NOW())";
-                        sql.ExecuteUpdate(Query);
-                    } else {
-                        infoBox("Currently can not make call", "Delhi Women Cell");
-                    }
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Pnl_CallElement.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         }
+         } else {
+         if (false) {
+         long confname = new Date().getTime() / 100;
+         Query = "Insert into Outbound(OutType, OutName, Number, NumberType, Status, Schedule)";
+         Query += " value('conf','" + confname + "','" + Lbl_CallElement_number.getText() + "','GSM','0',NOW())";
+         sql.ExecuteUpdate(Query);
+         } else {
+         infoBox("Currently can not make call", "Delhi Women Cell");
+         }
+         }
+         }
+         } catch (SQLException ex) {
+         Logger.getLogger(Pnl_CallElement.class.getName()).log(Level.SEVERE, null, ex);
+         }*/
+        OutBound ob = new OutBound();
+        ob.connect(this.Lbl_CallElement_number.getText());
+        System.out.println("number to connect" + this.Lbl_CallElement_number.getText());
+        infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
 
     }//GEN-LAST:event_Btn_CallElement_DialActionPerformed
     public void LoadElement(DataBase.Tables.Directory ob) {
-        this.Lbl_CallElement_Name.setText(ob.getInfo()+" "+ob.getService());
+        String name=" ";
+        if(ob.getInfo()!=null){ name = ob.getInfo();}
+        if(ob.getService()!=null){name = name + " "+ob.getService();}
+        this.Lbl_CallElement_Name.setText(name);
         this.Lbl_CallElement_number.setText(ob.getNumber());
-        System.out.println("number"+ob.getNumber());
-        System.out.println("infor"+ob.getInfo());
-        this.id = String.valueOf(ob.getId());        
+        System.out.println("number" + ob.getNumber());
+        System.out.println("infor" + ob.getInfo());
+        this.id = String.valueOf(ob.getId());
         this.repaint();
     }
 

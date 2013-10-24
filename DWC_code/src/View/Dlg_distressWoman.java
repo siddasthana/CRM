@@ -498,17 +498,16 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
 
         Pnl_CaseDirctry.setBackground(new java.awt.Color(255, 255, 255));
         Pnl_CaseDirctry.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Pnl_CaseDirctry.setPreferredSize(new java.awt.Dimension(1191, 100));
 
         javax.swing.GroupLayout Pnl_CaseDirctryLayout = new javax.swing.GroupLayout(Pnl_CaseDirctry);
         Pnl_CaseDirctry.setLayout(Pnl_CaseDirctryLayout);
         Pnl_CaseDirctryLayout.setHorizontalGroup(
             Pnl_CaseDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1189, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
         Pnl_CaseDirctryLayout.setVerticalGroup(
             Pnl_CaseDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 98, Short.MAX_VALUE)
+            .addGap(0, 96, Short.MAX_VALUE)
         );
 
         jScrollPane11.setViewportView(Pnl_CaseDirctry);
@@ -516,29 +515,25 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
 
         jPanel1.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 501, 100));
 
-        jScrollPane12.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-
         Pnl_RecrdDirctry.setBackground(new java.awt.Color(255, 255, 255));
         Pnl_RecrdDirctry.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
-        Pnl_RecrdDirctry.setAutoscrolls(true);
         Pnl_RecrdDirctry.setName(""); // NOI18N
-        Pnl_RecrdDirctry.setPreferredSize(new java.awt.Dimension(1191, 100));
 
         javax.swing.GroupLayout Pnl_RecrdDirctryLayout = new javax.swing.GroupLayout(Pnl_RecrdDirctry);
         Pnl_RecrdDirctry.setLayout(Pnl_RecrdDirctryLayout);
         Pnl_RecrdDirctryLayout.setHorizontalGroup(
             Pnl_RecrdDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1189, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
         Pnl_RecrdDirctryLayout.setVerticalGroup(
             Pnl_RecrdDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 98, Short.MAX_VALUE)
+            .addGap(0, 96, Short.MAX_VALUE)
         );
 
         jScrollPane12.setViewportView(Pnl_RecrdDirctry);
         Pnl_RecrdDirctry.setLayout(new WrapLayout());
 
-        jPanel1.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 490, -1));
+        jPanel1.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 501, 100));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 255, 255), new java.awt.Color(0, 255, 255)));
@@ -1235,10 +1230,13 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
 
     private void SrchFld_PoliceStneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SrchFld_PoliceStneFocusLost
         // TODO add your handling code here: 
+        Pnl_CaseDirctry.removeAll();
         ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like '"+SrchFld_PoliceStne.getText()+"'");
         for (DataBase.Tables.Directory obj : dir1){
         Pnl_CallElement pce = new Pnl_CallElement();
         pce.Lbl_CallElement_number.setText(obj.getNumber());
+        pce.Lbl_CallElement_Name.setText(obj.getService());
+        
         Pnl_CaseDirctry.add(pce);
             System.out.println("Added a Case directory element");
         }
