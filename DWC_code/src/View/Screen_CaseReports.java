@@ -155,7 +155,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         );
         Pnl_CallerLayout.setVerticalGroup(
             Pnl_CallerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGap(0, 212, Short.MAX_VALUE)
         );
 
         jScrollPane3.setViewportView(Pnl_Caller);
@@ -170,7 +170,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         );
         Pnl_AccusedLayout.setVerticalGroup(
             Pnl_AccusedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGap(0, 335, Short.MAX_VALUE)
         );
 
         jScrollPane4.setViewportView(Pnl_Accused);
@@ -226,9 +226,11 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         jPanel1.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 501, 100));
 
         jScrollPane12.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane12.setPreferredSize(new java.awt.Dimension(1193, 110));
 
         Pnl_RecrdDirctry.setBackground(new java.awt.Color(255, 255, 255));
         Pnl_RecrdDirctry.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
+        Pnl_RecrdDirctry.setPreferredSize(new java.awt.Dimension(1191, 120));
 
         javax.swing.GroupLayout Pnl_RecrdDirctryLayout = new javax.swing.GroupLayout(Pnl_RecrdDirctry);
         Pnl_RecrdDirctry.setLayout(Pnl_RecrdDirctryLayout);
@@ -238,7 +240,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         );
         Pnl_RecrdDirctryLayout.setVerticalGroup(
             Pnl_RecrdDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGap(0, 118, Short.MAX_VALUE)
         );
 
         jScrollPane12.setViewportView(Pnl_RecrdDirctry);
@@ -522,7 +524,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                     .addComponent(Btn_Search)
                     .addComponent(jLabel2)
                     .addComponent(Txt_PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
@@ -657,6 +659,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         Pnl_Accused.removeAll();
         Pnl_CaseList.removeAll();
         Pnl_Caller.removeAll();
+        Pnl_CaseDirctry.removeAll();
+        Pnl_RecrdDirctry.removeAll();
         int Casecondition = 0;
         String QueryPart = " Select Distinct(CaseID) from Consolidate where 1=1 ";
         Date dt = DtPck_Case.getDate();
@@ -715,6 +719,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                         ArrayList<CaseHistory> caseHistory = new CaseHistory().loadclass(" CaseID =" + Caseid + " order by DateStamp DESC");
                         Pnl_Caller.removeAll();
                         Pnl_CaseHistory.removeAll();
+                        Pnl_CaseDirctry.removeAll();
+                        Pnl_RecrdDirctry.removeAll();
                         Pnl_Accused.removeAll();
                         ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
                         ArrayList<Legal> le = new Legal().loadclass(" CaseID=" + Caseid);
@@ -820,15 +826,26 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                          System.out.println("ends here");    
                          }*/
                         ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like (select PoliceStation from `case` where idCase = " + Caseid + ")");
+                        ArrayList<DataBase.Tables.Telephone> tl1 = new DataBase.Tables.Telephone().loadclass("CaseHID in (select idCase_HIstory from case_history where CaseID = " + Caseid + ")");
 
                         for (DataBase.Tables.Directory dir : dir1) {
                             Pnl_CallElement pce = new Pnl_CallElement();
                             pce.Lbl_CallElement_number.setText(dir.getNumber());
+                            pce.Lbl_CallElement_Name.setText(dir.getInfo());
                             Pnl_CaseDirctry.add(pce);
                             System.out.println("Added a Case directory element");
                         }
+                        for (DataBase.Tables.Telephone tl : tl1) {
+                            Pnl_CallElement pce = new Pnl_CallElement();
+                            pce.Lbl_CallElement_number.setText(String.valueOf(tl.getNumber()));
+                            pce.Lbl_CallElement_Name.setText(tl.getNote());
+                            Pnl_RecrdDirctry.add(pce);
+                            System.out.println("Added a Record directory element");
+                        }
                         Pnl_CaseDirctry.revalidate();
                         Pnl_CaseDirctry.repaint();
+                        Pnl_RecrdDirctry.revalidate();
+                        Pnl_RecrdDirctry.repaint();
                     }
                 });
                 //System.out.println("<Case Details>" + ob.getPoliceStn() + "," + ob.getForward() + "," + ob.getStatus());

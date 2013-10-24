@@ -154,7 +154,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         );
         Pnl_CallerLayout.setVerticalGroup(
             Pnl_CallerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 206, Short.MAX_VALUE)
+            .addGap(0, 218, Short.MAX_VALUE)
         );
 
         jScrollPane3.setViewportView(Pnl_Caller);
@@ -169,7 +169,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         );
         Pnl_AccusedLayout.setVerticalGroup(
             Pnl_AccusedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
+            .addGap(0, 341, Short.MAX_VALUE)
         );
 
         jScrollPane4.setViewportView(Pnl_Accused);
@@ -207,9 +207,11 @@ public class Screen_Managers extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane12.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane12.setPreferredSize(new java.awt.Dimension(1193, 120));
 
         Pnl_RecrdDirctry.setBackground(new java.awt.Color(255, 255, 255));
         Pnl_RecrdDirctry.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
+        Pnl_RecrdDirctry.setPreferredSize(new java.awt.Dimension(1191, 100));
 
         javax.swing.GroupLayout Pnl_RecrdDirctryLayout = new javax.swing.GroupLayout(Pnl_RecrdDirctry);
         Pnl_RecrdDirctry.setLayout(Pnl_RecrdDirctryLayout);
@@ -219,7 +221,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         );
         Pnl_RecrdDirctryLayout.setVerticalGroup(
             Pnl_RecrdDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         jScrollPane12.setViewportView(Pnl_RecrdDirctry);
@@ -669,6 +671,8 @@ public class Screen_Managers extends javax.swing.JFrame {
         Pnl_Accused.removeAll();
         Pnl_CaseList.removeAll();
         Pnl_Caller.removeAll();
+        Pnl_CaseDirctry.removeAll();
+        Pnl_RecrdDirctry.removeAll();
         String QueryPart = " Select Distinct(cs.CaseID) from Consolidate cs, forwardedcase fc where 1=1 and fc.CaseID= cs.CaseID";
         Date dt = DtPck_Case.getDate();
         if (dt != null) {
@@ -727,6 +731,8 @@ public class Screen_Managers extends javax.swing.JFrame {
                         Caseid = Long.valueOf(id);
                         ArrayList<CaseHistory> caseHistory = new CaseHistory().loadclass(" CaseID =" + Caseid + " order by DateStamp DESC");
                         Pnl_CaseHistory.removeAll();
+                        Pnl_CaseDirctry.removeAll();
+                        Pnl_RecrdDirctry.removeAll();
                         for (CaseHistory ch : caseHistory) {
                             final String CaseHID = String.valueOf(ch.getId());
                             Pnl_CaseHistoryElement obj = new Pnl_CaseHistoryElement();
@@ -804,7 +810,7 @@ public class Screen_Managers extends javax.swing.JFrame {
                         Pnl_Accused.repaint();
 
                         ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like (select PoliceStation from `case` where idCase = " + Caseid + ")");
-
+                        ArrayList<DataBase.Tables.Telephone> tl1 = new DataBase.Tables.Telephone().loadclass("CaseHID in (select idCase_HIstory from case_history where CaseID = " + Caseid + ")");
                         for (DataBase.Tables.Directory dir : dir1) {
                             Pnl_CallElement pce = new Pnl_CallElement();
                             pce.Lbl_CallElement_number.setText(dir.getNumber());
@@ -812,8 +818,17 @@ public class Screen_Managers extends javax.swing.JFrame {
                             Pnl_CaseDirctry.add(pce);
                             System.out.println("Added a Case directory element");
                         }
+                        for (DataBase.Tables.Telephone tl : tl1) {
+                            Pnl_CallElement pce = new Pnl_CallElement();
+                            pce.Lbl_CallElement_number.setText(String.valueOf(tl.getNumber()));
+                            pce.Lbl_CallElement_Name.setText(tl.getNote());
+                            Pnl_RecrdDirctry.add(pce);
+                            System.out.println("Added a Record directory element");
+                        }
                         Pnl_CaseDirctry.revalidate();
                         Pnl_CaseDirctry.repaint();
+                        Pnl_RecrdDirctry.revalidate();
+                        Pnl_RecrdDirctry.repaint();
 
                     }
                 });
