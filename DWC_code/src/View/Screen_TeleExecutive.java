@@ -11,6 +11,7 @@ import DataBase.Tables.Caller;
 import DataBase.Tables.Calls;
 import DataBase.Tables.CaseHistory;
 import DataBase.Tables.Cases;
+import DataBase.Tables.Reminder;
 import DataBase.Tables.Telephone;
 import View.Elements.Pnl_AudioElement;
 import static View.LoginScreen.infoBox;
@@ -47,6 +48,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
     public ParentForm pf;
     public Dlg_distressWoman Dlg_distressWoman;
     Player mp3player = null;
+
     /**
      * Creates new form Report
      */
@@ -69,25 +71,31 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
             }
         };
         if (Global.AgentLevel.equals("supervisor")) {
-            ReminderTimer = new Timer(120000, Reminder);
+            ReminderTimer = new Timer(12000, Reminder);
             ReminderTimer.setCoalesce(true);
             ReminderTimer.start();
-        }else{
-        System.out.println("Alaram Not enabled" + Global.AgentLevel);
+        } else {
+            System.out.println("Alaram Not enabled" + Global.AgentLevel);
         }
     }
 
     private void check_alarm() {
         System.out.println("Checking For Alarms ");
         Sql sql = new Sql();
-        ResultSet rs = sql.ExecuteQuery("Select * From Reminder where AlarmTime <= DATE_ADD(NOW(), INTERVAL 2 MINUTE) AND AlarmTime >= DATE_SUB(NOW(), INTERVAL 2 MINUTE) ");
+        DataBase.Tables.Reminder r = new Reminder();
+
+        ResultSet rs = sql.ExecuteQuery("Select * From Reminder where Status='0' AND AlarmTime <= DATE_ADD(NOW(), INTERVAL 2 MINUTE) AND AlarmTime >= DATE_SUB(NOW(), INTERVAL 2 MINUTE ) ");
         try {
             if (rs.next()) {
-               playfile pfile = new playfile();
-        Thread evenThread = new Thread(pfile, "evenThread");
-        evenThread.start();
-                infoBox("Reminder for Case :"+ rs.getString(3), "Delhi Women Cell");
+                playfile pfile = new playfile();
+                Thread evenThread = new Thread(pfile, "evenThread");
+                evenThread.start();
+                infoBox("Reminder for Case :" + rs.getString(3), "Delhi Women Cell");
+                evenThread.stop();
+                r.setId(rs.getInt("id"));
+                r.updatedb();
                 
+
             }
 
         } catch (SQLException ex) {
@@ -330,7 +338,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         if (jRadioButton1.isSelected()) {
 
             populatingcaller = true;
-            LoadData_DistressWoman LD_DW = new LoadData_DistressWoman(this);            
+            LoadData_DistressWoman LD_DW = new LoadData_DistressWoman(this);
             // Dlg_distressWoman.setSize(pf.getSize());
             ((Dlg_distressWoman) Dlg_distressWoman).jPanel11.setSize(((Dlg_distressWoman) Dlg_distressWoman).jPanel11.getPreferredSize());
             Dlg_distressWoman.setSize(Dlg_distressWoman.getPreferredSize());
@@ -390,7 +398,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
 
     private void Btn_AnsConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AnsConfirmActionPerformed
         // TODO add your handling code here:
-        String Query = "update call_scheduling set Status='Ans' where AgentID='"+Global.AgentID+"'";
+        String Query = "update call_scheduling set Status='Ans' where AgentID='" + Global.AgentID + "'";
         Sql sql = new Sql();
         sql.ExecuteUpdate(Query);
         sql.Destructor();
@@ -523,44 +531,44 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         infoBox("Your call is saved in the category: " + Category, "Delhi Women Cell");
 
     }
-   class playfile implements Runnable{
-  
-    public playfile() {
-        
-    }
-            @Override
-            public void run() {
-      try {
-          System.err.println("Playing alarm");
-          play();
-      } catch (JavaLayerException ex) {
-          Logger.getLogger(Design.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (IOException ex) {
-          Logger.getLogger(Design.class.getName()).log(Level.SEVERE, null, ex);
-      }
-            }
-public void play() throws JavaLayerException, IOException {
-//        String song = "http://sound17.mp3pk.com/indian/bhaagmilkhabhaag/[Songs.PK]%20Bhaag%20Milkha%20Bhaag%20-%2001%20-%20Gurbani.mp3";
-       // String fileurl=ServerUrl+Credential+jLabel1.getText();
-        //String fileurl="http://192.168.16.176/download.php?file=1.mp3";
-        //String fileurl = ;
-        BufferedInputStream in = null;
-        try {
-          in = new BufferedInputStream(this.getClass().getResource("/media/Alarm.mp3").openStream());
-          mp3player = new Player(in);
-          mp3player.play();
-        } catch (MalformedURLException ex) {
-            ex.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JavaLayerException e) {
-            e.printStackTrace();
-        } catch (NullPointerException ex) {
-      ex.printStackTrace();
-        }
-        
-}
 
-} 
-    
+    class playfile implements Runnable {
+
+        public playfile() {
+        }
+
+        @Override
+        public void run() {
+            try {
+                System.err.println("Playing alarm");
+                play();
+            } catch (JavaLayerException ex) {
+                Logger.getLogger(Design.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Design.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        public void play() throws JavaLayerException, IOException {
+//        String song = "http://sound17.mp3pk.com/indian/bhaagmilkhabhaag/[Songs.PK]%20Bhaag%20Milkha%20Bhaag%20-%2001%20-%20Gurbani.mp3";
+            // String fileurl=ServerUrl+Credential+jLabel1.getText();
+            //String fileurl="http://192.168.16.176/download.php?file=1.mp3";
+            //String fileurl = ;
+            BufferedInputStream in = null;
+            try {
+                in = new BufferedInputStream(this.getClass().getResource("/media/Alarm.mp3").openStream());
+                mp3player = new Player(in);
+                mp3player.play();
+            } catch (MalformedURLException ex) {
+                ex.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JavaLayerException e) {
+                e.printStackTrace();
+            } catch (NullPointerException ex) {
+                ex.printStackTrace();
+            }
+
+        }
+    }
 }

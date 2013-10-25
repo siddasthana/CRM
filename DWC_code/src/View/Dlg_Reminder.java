@@ -4,6 +4,8 @@
  */
 package View;
 
+import DataBase.Tables.Reminder;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.jdesktop.swingx.JXSearchField;
 
@@ -28,7 +30,7 @@ public class Dlg_Reminder extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-String ComplaintNo="";
+    String ComplaintNo = "";
 
     public String getComplaintNo() {
         return ComplaintNo;
@@ -160,9 +162,21 @@ String ComplaintNo="";
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Date dt = jXDatePicker3.getDate();
-        dt.setHours((int) Lst_Hour.getSelectedValue());
-        dt.setMinutes((int) Lst_Minute.getSelectedValue());
-        String Query = "Insert Into Reminder (AlarmTime, Complaint";
+        Reminder r = new Reminder();
+        
+        dt.setHours(Integer.parseInt(String.valueOf(Lst_Hour.getSelectedValue())));
+        dt.setMinutes(Integer.parseInt(String.valueOf(Lst_Minute.getSelectedValue())));
+        System.out.println("date " + dt.getYear() + " " + dt.getMonth() + " " + dt.getDate());              
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        System.out.println("Current Date: " + ft.format(dt));
+        r.setAlarmTime(ft.format(dt));
+        r.setComplaint(SrchFld_Complaint.getText());
+        r.setSeverity(CmbBx_Severity.getSelectedItem().toString());
+        r.setStatus("0");
+        r.savetodb();
+        this.dispose();
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

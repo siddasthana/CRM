@@ -50,6 +50,8 @@ public class Audio {
     public void setNumber(String Number) {
         this.Number = Number;
     }
+    
+    
     public ArrayList<Audio> loadclass(String Querypart){
     ArrayList<Audio> au = new ArrayList<>();
         String Query = "Select * From audio where " + Querypart;
