@@ -5,6 +5,7 @@
 package View;
 
 import DataBase.Tables.Reminder;
+import static View.Screen_TeleExecutive.infoBox;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.jdesktop.swingx.JXSearchField;
@@ -163,7 +164,7 @@ public class Dlg_Reminder extends javax.swing.JDialog {
         // TODO add your handling code here:
         Date dt = jXDatePicker3.getDate();
         Reminder r = new Reminder();
-        
+        try{
         dt.setHours(Integer.parseInt(String.valueOf(Lst_Hour.getSelectedValue())));
         dt.setMinutes(Integer.parseInt(String.valueOf(Lst_Minute.getSelectedValue())));
         System.out.println("date " + dt.getYear() + " " + dt.getMonth() + " " + dt.getDate());              
@@ -175,7 +176,8 @@ public class Dlg_Reminder extends javax.swing.JDialog {
         r.setStatus("0");
         r.savetodb();
         this.dispose();
-        
+        }
+        catch (Exception e){infoBox("Please Select time Properly!" , "Delhi Women Cell");}
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
