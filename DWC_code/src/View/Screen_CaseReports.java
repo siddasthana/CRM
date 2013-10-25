@@ -230,17 +230,16 @@ public class Screen_CaseReports extends javax.swing.JFrame {
 
         Pnl_RecrdDirctry.setBackground(new java.awt.Color(255, 255, 255));
         Pnl_RecrdDirctry.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
-        Pnl_RecrdDirctry.setPreferredSize(new java.awt.Dimension(1191, 120));
 
         javax.swing.GroupLayout Pnl_RecrdDirctryLayout = new javax.swing.GroupLayout(Pnl_RecrdDirctry);
         Pnl_RecrdDirctry.setLayout(Pnl_RecrdDirctryLayout);
         Pnl_RecrdDirctryLayout.setHorizontalGroup(
             Pnl_RecrdDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1189, Short.MAX_VALUE)
+            .addGap(0, 486, Short.MAX_VALUE)
         );
         Pnl_RecrdDirctryLayout.setVerticalGroup(
             Pnl_RecrdDirctryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 118, Short.MAX_VALUE)
+            .addGap(0, 89, Short.MAX_VALUE)
         );
 
         jScrollPane12.setViewportView(Pnl_RecrdDirctry);

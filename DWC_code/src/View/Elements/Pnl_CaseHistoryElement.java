@@ -194,7 +194,7 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
             }
         });
 
-        Lbl_CallerID.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        Lbl_CallerID.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         Lbl_CallerID.setForeground(new java.awt.Color(0, 51, 255));
         Lbl_CallerID.setText("CallerID :");
 
