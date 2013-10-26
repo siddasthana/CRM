@@ -149,4 +149,26 @@ public class Accused {
         }
     return ac;
     }
+  public void updatedb() {
+        String Query = "UPDATE `accused`  SET Name =?,`Phone`=?, `Address`=?, WHERE CaseId = ? ";
+        PreparedStatement stmt1 = sql.GetPrepareStmt(Query);
+        System.out.println("Querry Accused Update " + Query);
+        try {
+            stmt1.setString(1, getName());
+            stmt1.setLong(2, getPhone());
+            stmt1.setString(3, getAddress());            
+            stmt1.setLong(4, getCaseID());            
+            stmt1.executeUpdate();
+            
+            
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        //Query += " VALUES ('"+getCaseHID()+"', '"+getStartTime()+"', '"+getDuration()+"', '"+getQueueTime()+"', '"+getAgentId()+"', '"+getNumber()+"', '"+getBound()+"')";
+
+        System.out.println(Query);
+        //sql.ExecuteUpdate(Query);
+        sql.Destructor();
+    }
 }

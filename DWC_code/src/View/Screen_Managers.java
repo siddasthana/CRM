@@ -15,6 +15,7 @@ import DataBase.Tables.Calls;
 import DataBase.Tables.CaseHistory;
 import DataBase.Tables.Cases;
 import Layout.WrapLayout;
+import View.Elements.Pnl_AccusedElement;
 import View.Elements.Pnl_CallElement;
 import View.Elements.Pnl_CallerElement;
 import View.Elements.Pnl_CaseElement;
@@ -694,14 +695,78 @@ public class Screen_Managers extends javax.swing.JFrame {
                     public void actionPerformed(ActionEvent e) {
                         Caseid = Long.valueOf(id);
                         ArrayList<CaseHistory> caseHistory = new CaseHistory().loadclass(" CaseID =" + Caseid + " order by DateStamp DESC");
+                        Pnl_Caller.removeAll();
                         Pnl_CaseHistory.removeAll();
                         Pnl_CaseDirctry.removeAll();
                         Pnl_RecrdDirctry.removeAll();
+                        Pnl_Accused.removeAll();
+                        ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
+                        ArrayList<Legal> le = new Legal().loadclass(" CaseID=" + Caseid);
+                        Caller ca = new Caller().loadclass("CallID in (select idCase_History from case_history where CaseID =" + Caseid + " ) order by idCaller DESC").get(0);
+                        /*System.out.println("starts here");
+                        String MSG = "";
+                        if (ac.size() > 0) {
+                            MSG += " NAME :" + ac.get(0).getName() + "\n";
+                            MSG += " Phone :" + ac.get(0).getPhone() + "\n";
+                            MSG += " Address :" + ac.get(0).getAddress() + "\n";
+                        }
+                        if (le.size() > 0) {
+                            MSG += " DD: " + le.get(0).getDD() + "\n";
+                            MSG += " Fir: " + le.get(0).getFir() + "\n";
+                            MSG += " Challan: " + le.get(0).getChallan() + "\n";
+                            MSG += " Judgement: " + le.get(0).getJudgement() + "\n";
+                            //MSG += 
+                            System.out.println(MSG);
+                        }
+                        System.out.println(MSG);
+                        if (MSG.length() != 0) {
+                            JTextArea ja = new JTextArea();
+                            ja.setText(MSG);
+                            ja.setSize(ja.getPreferredSize());
+                            ja.setBackground(Color.yellow);
+                            ja.revalidate();
+                            ja.repaint();
+
+                            //ja.disable();
+                            Pnl_Accused.removeAll();
+                            Pnl_Accused.add(ja);
+                        }
+
+                        //  Pnl_Accused.revalidate();
+                        //    Pnl_Accused.repaint();
+                        System.out.println("start");
+                        //  return;
+                        Pnl_Accused.revalidate();
+                        Pnl_Accused.repaint();
+                        Pnl_Caller.removeAll();*/
+                        System.out.println("Adding Caller element");
+                        Pnl_CallerElement ce = new Pnl_CallerElement();
+                        ce.LoadElement(ca);
+                        ce.getBtn_Select().disable();
+                        ce.remove(ce.getBtn_Select());
+                        ce.setSize(ce.preferredSize());
+                        Pnl_Caller.add(ce);
+                        Pnl_Caller.revalidate();
+                        Pnl_Caller.repaint();
+                        
+                        Pnl_AccusedElement pae = new Pnl_AccusedElement();
+                        try {
+                            if (ac.size() > 0) {pae.LoadElement_Accused(ac.get(0));}
+                            if(le.size() > 0){pae.LoadElement_Legal(le.get(0));}
+                        } catch (Exception ex) {
+                            System.err.println("accused panel error" + ex);
+                        }
+                        pae.EnableSave(Caseid);
+                        pae.setSize(291, 291);                        
+                        Pnl_Accused.add(pae);
+                        Pnl_Accused.revalidate();
+                        Pnl_Accused.repaint();
+                        System.out.println("in accuse panel printing block");
                         for (CaseHistory ch : caseHistory) {
                             final String CaseHID = String.valueOf(ch.getId());
                             Pnl_CaseHistoryElement obj = new Pnl_CaseHistoryElement();
                             obj.LoadElement(ch);
-                            obj.addMouseListener(new MouseListener() {
+                            /*obj.addMouseListener(new MouseListener() {
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
                                     //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -742,12 +807,12 @@ public class Screen_Managers extends javax.swing.JFrame {
                                 public void mouseExited(MouseEvent e) {
                                     //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                                 }
-                            });
+                            });*/
                             Pnl_CaseHistory.add(obj);
                             Pnl_CaseHistory.revalidate();
                             Pnl_CaseHistory.repaint();
                         }
-                        Pnl_Accused.removeAll();
+                        /*Pnl_Accused.removeAll();
                         ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
                         Pnl_Accused.removeAll();
                         if (ac.size() > 0) {
@@ -771,7 +836,7 @@ public class Screen_Managers extends javax.swing.JFrame {
                             }
                         }
                         Pnl_Accused.revalidate();
-                        Pnl_Accused.repaint();
+                        Pnl_Accused.repaint();*/
 
                         ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like (select PoliceStation from `case` where idCase = " + Caseid + ")");
                         ArrayList<DataBase.Tables.Telephone> tl1 = new DataBase.Tables.Telephone().loadclass("CaseHID in (select idCase_HIstory from case_history where CaseID = " + Caseid + ")");

@@ -1415,7 +1415,8 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                 le.setFir(Txt_AccusedFIR.getText());
                 le.setChallan(jChk_Challan.isSelected() ? 1 : 0);
                 le.setJudgement(jChk_Judgement.isSelected() ? 1 : 0);
-                le.setCaseID(cs.getId());
+                le.setCaseID(CaseID);
+                System.out.println("distress sheet accused update"+CaseID);
                 le.updatedb();
             }
 

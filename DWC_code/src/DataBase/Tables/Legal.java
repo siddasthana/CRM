@@ -135,9 +135,11 @@ public class Legal {
             stmt1.setString(2, getFir());
             stmt1.setInt(3, getChallan());
             stmt1.setInt(4, getJudgement());
-            stmt1.setLong(5, getId());
-            stmt1.setLong(6, getCaseID());
+            stmt1.setLong(5, getCaseID());            
             stmt1.executeUpdate();
+            System.out.println("caseid"+getCaseID());System.out.println("judgement"+getJudgement());System.out.println("challan"+getChallan());
+            
+            
         } catch (SQLException e) {
             System.out.println(e);
         }

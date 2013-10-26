@@ -14,6 +14,7 @@ import DataBase.Tables.CaseHistory;
 import DataBase.Tables.Cases;
 import DataBase.Tables.Legal;
 import Layout.WrapLayout;
+import View.Elements.Pnl_AccusedElement;
 import View.Elements.Pnl_CallElement;
 import View.Elements.Pnl_CallerElement;
 import View.Elements.Pnl_CaseElement;
@@ -539,8 +540,9 @@ public class Screen_CaseReports extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void connect(String s){
-         if (Caseid == null) {
+
+    public void connect(String s) {
+        if (Caseid == null) {
             infoBox("Please select a Case before you proceed", "Delhi Women Cell");
             return;
         }
@@ -556,7 +558,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         }
         OutBound ob = new OutBound();
         ob.connect(s);
-        System.out.println("number"+s);
+        System.out.println("number" + s);
 
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
         Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
@@ -590,7 +592,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
 
     private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
         // TODO add your handling code here:
-       connect(TxtDialScreen.getText());
+        connect(TxtDialScreen.getText());
     }//GEN-LAST:event_Btn_DialActionPerformed
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
@@ -726,34 +728,36 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                         Pnl_Accused.removeAll();
                         ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
                         ArrayList<Legal> le = new Legal().loadclass(" CaseID=" + Caseid);
+                        Caller ca = new Caller().loadclass("CallID in (select idCase_History from case_history where CaseID =" + Caseid + " ) order by idCaller DESC").get(0);
+
                         System.out.println("starts here");
                         String MSG = "";
-                        if (ac.size() > 0) {
-                            MSG += " NAME :" + ac.get(0).getName() + "\n";
-                            MSG += " Phone :" + ac.get(0).getPhone() + "\n";
-                            MSG += " Address :" + ac.get(0).getAddress() + "\n";
-                        }
-                        if (le.size() > 0) {
-                            MSG += " DD: " + le.get(0).getDD() + "\n";
-                            MSG += " Fir: " + le.get(0).getFir() + "\n";
-                            MSG += " Challan: " + le.get(0).getChallan() + "\n";
-                            MSG += " Judgement: " + le.get(0).getJudgement() + "\n";
-                            //MSG += 
-                            System.out.println(MSG);
-                        }
-                        System.out.println(MSG);
-                        if (MSG.length() != 0) {
-                            JTextArea ja = new JTextArea();
-                            ja.setText(MSG);
-                            ja.setSize(ja.getPreferredSize());
-                            ja.setBackground(Color.yellow);
-                            ja.revalidate();
-                            ja.repaint();
+                        /*if (ac.size() > 0) {
+                         MSG += " NAME :" + ac.get(0).getName() + "\n";
+                         MSG += " Phone :" + ac.get(0).getPhone() + "\n";
+                         MSG += " Address :" + ac.get(0).getAddress() + "\n";
+                         }
+                         if (le.size() > 0) {
+                         MSG += " DD: " + le.get(0).getDD() + "\n";
+                         MSG += " Fir: " + le.get(0).getFir() + "\n";
+                         MSG += " Challan: " + le.get(0).getChallan() + "\n";
+                         MSG += " Judgement: " + le.get(0).getJudgement() + "\n";
+                         //MSG += 
+                         System.out.println(MSG);
+                         }
+                         System.out.println(MSG);
+                         if (MSG.length() != 0) {
+                         JTextArea ja = new JTextArea();
+                         ja.setText(MSG);
+                         ja.setSize(ja.getPreferredSize());
+                         ja.setBackground(Color.yellow);
+                         ja.revalidate();
+                         ja.repaint();
 
-                            //ja.disable();
-                            Pnl_Accused.removeAll();
-                            Pnl_Accused.add(ja);
-                        }
+                         //ja.disable();
+                         Pnl_Accused.removeAll();
+                         Pnl_Accused.add(ja);
+                         }*/
 
                         //  Pnl_Accused.revalidate();
                         //    Pnl_Accused.repaint();
@@ -761,12 +765,36 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                         //  return;
                         Pnl_Accused.revalidate();
                         Pnl_Accused.repaint();
+                        Pnl_Caller.removeAll();
+                        System.out.println("Adding Caller element");
+                        Pnl_CallerElement ce = new Pnl_CallerElement();
+                        ce.LoadElement(ca);
+                        ce.getBtn_Select().disable();
+                        ce.remove(ce.getBtn_Select());
+                        ce.setSize(ce.preferredSize());
+                        Pnl_Caller.add(ce);
+                        Pnl_Caller.revalidate();
+                        Pnl_Caller.repaint();
+                        Pnl_AccusedElement pae = new Pnl_AccusedElement();
+                        try {
+                            if (ac.size() > 0) {pae.LoadElement_Accused(ac.get(0));}
+                            if(le.size() > 0){pae.LoadElement_Legal(le.get(0));}
+                        } catch (Exception ex) {
+                            System.err.println("accused panel error" + ex);
+                        }
+                        pae.setSize(291, 291);
+                        pae.EnableSave(Caseid);
+                        Pnl_Accused.add(pae);
+                        Pnl_Accused.revalidate();
+                        Pnl_Accused.repaint();
+                        System.out.println("in accuse panel printing block");
+
                         for (CaseHistory ch : caseHistory) {
                             final String CaseHID = String.valueOf(ch.getId());
                             Pnl_CaseHistoryElement obj = new Pnl_CaseHistoryElement();
                             obj.LoadElement(ch);
 
-                            obj.addMouseListener(new MouseListener() {
+                            /*obj.addMouseListener(new MouseListener() {
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
                                     //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -803,7 +831,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                                     //                                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                                     System.out.println(" here1");
                                 }
-                            });
+                            });*/
                             System.out.println("here2");
                             Pnl_CaseHistory.add(obj);
                             Pnl_CaseHistory.revalidate();
