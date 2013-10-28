@@ -1401,6 +1401,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                     acd.savetodb();
                 }
             }
+            else{ }
             if (newcase) {
                 Legal le = new Legal();
                 le.setDD(Txt_AccusedDD.getText());

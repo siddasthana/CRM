@@ -13,13 +13,17 @@ import DataBase.Tables.Calls;
 import DataBase.Tables.CaseHistory;
 import DataBase.Tables.Cases;
 import DataBase.Tables.Legal;
+import DataBase.Tables.Telephone;
 import Layout.WrapLayout;
+import static View.Dlg_distressWoman.infoBox;
 import View.Elements.Pnl_AccusedElement;
 import View.Elements.Pnl_CallElement;
 import View.Elements.Pnl_CallerElement;
 import View.Elements.Pnl_CaseElement;
+import static View.Elements.Pnl_CaseElement.infoBox;
 import View.Elements.Pnl_CaseHistoryElement;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -45,6 +49,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
     /**
      * Creates new form Screen_CaseReports
      */
+    public ArrayList<Telephone> tp = new ArrayList<>();
     public Screen_CaseReports() {
         initComponents();
     }
@@ -559,7 +564,31 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         final OutBound ob = new OutBound();
         ob.connect(s);
         System.out.println("number" + s);
-
+        
+        
+        
+        Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
+        da.getTxtPhone().setText(s);
+        da.show();
+        Telephone ph = new Telephone();
+        ph.setNote(da.getTxtName().getText());
+        try {
+            ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
+            tp.add(ph);
+            ArrayList<CaseHistory> ch = new CaseHistory().loadclass(" CaseID ="+Caseid);
+            for (Telephone obj : tp) {
+                obj.setCaseHid(ch.get(0).getId());
+                obj.savetodb();
+            }
+            infoBox("Number Successfully added", "Delhi Women Cell");
+        } catch (Exception e) {
+            e.printStackTrace();
+            infoBox("You have entered invalid number", "Delhi Women Cell");
+        }
+        
+        
+        
+        
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
         final Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
         pce.AudioPanel.disable();
@@ -595,13 +624,13 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         caseentry.revalidate();
         caseentry.repaint();
         caseentry.show();
-
-
+        
+        
     }
     private void TxtDialScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDialScreenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtDialScreenActionPerformed
-
+    
     private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
         // TODO add your handling code here:
         connect(TxtDialScreen.getText());
@@ -613,62 +642,62 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton4DialKeyPad
-
+    
     private void jButton5DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton5DialKeyPad
-
+    
     private void jButton6DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton6DialKeyPad
-
+    
     private void jButton7DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton7DialKeyPad
-
+    
     private void jButton8DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton8DialKeyPad
-
+    
     private void jButton9DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton9DialKeyPad
-
+    
     private void jButton13DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton13DialKeyPad
-
+    
     private void jButton14DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton14DialKeyPad
-
+    
     private void jButton15DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton15DialKeyPad
-
+    
     private void jButton16DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton16DialKeyPad
-
+    
     private void jButton17DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton17DialKeyPad
-
+    
     private void jButton18DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton18DialKeyPad
-
+    
     private void Btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SearchActionPerformed
         // TODO add your handling code here:
         Pnl_CaseHistory.removeAll();
@@ -740,8 +769,8 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                         Pnl_Accused.removeAll();
                         ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
                         ArrayList<Legal> le = new Legal().loadclass(" CaseID=" + Caseid);
-                        Caller ca = new Caller().loadclass("CallID in (select idCase_History from case_history where CaseID =" + Caseid + " ) order by idCaller DESC").get(0);
-
+                        ArrayList<Caller> ca = new Caller().loadclass("CallID in (select idCase_History from case_history where CaseID =" + Caseid + " ) order by idCaller DESC");
+                        
                         System.out.println("starts here");
                         String MSG = "";
                         /*if (ac.size() > 0) {
@@ -780,8 +809,16 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                         Pnl_Caller.removeAll();
                         System.out.println("Adding Caller element");
                         Pnl_CallerElement ce = new Pnl_CallerElement();
-                        ce.LoadElement(ca);
+                        try {
+                            if (ca.size() > 0) {
+                                ce.LoadElement(ca.get(0));
+                            }
+                            else {infoBox("No caller information available.", "Delhi Women Cell");}
+                        } catch (Exception ex) {
+                            System.err.println("Caller panel error" + ex);
+                        }
                         ce.getBtn_Select().disable();
+                        ce.EnableSave();
                         ce.remove(ce.getBtn_Select());
                         ce.setSize(ce.preferredSize());
                         Pnl_Caller.add(ce);
@@ -804,7 +841,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                         Pnl_Accused.revalidate();
                         Pnl_Accused.repaint();
                         System.out.println("in accuse panel printing block");
-
+                        
                         for (CaseHistory ch : caseHistory) {
                             final String CaseHID = String.valueOf(ch.getId());
                             Pnl_CaseHistoryElement obj = new Pnl_CaseHistoryElement();
@@ -873,9 +910,9 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                          }*/
                         ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like (select PoliceStation from `case` where idCase = " + Caseid + ")");
                         ArrayList<DataBase.Tables.Telephone> tl1 = new DataBase.Tables.Telephone().loadclass("CaseHID in (select idCase_HIstory from case_history where CaseID = " + Caseid + ")");
-
+                        
                         for (DataBase.Tables.Directory dir : dir1) {
-
+                            
                             Pnl_CallElement pce = new Pnl_CallElement();
                             pce.LoadElement(dir);
                             final String number = dir.getNumber();
@@ -914,17 +951,22 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                 // dscs.jPanel1.add(obj);
                 //dsc.jScrollPane1.add(ob);
                 Pnl_CaseList.add(obj);
+                
                 Pnl_CaseList.revalidate();
+                
                 Pnl_CaseList.repaint();
+                
                 this.repaint();
-                System.out.println("Adding case element");
-
+                
+                System.out.println(
+                        "Adding case element");
+                
             }
     }//GEN-LAST:event_Btn_SearchActionPerformed
     }
-
+    
     public static void setSelectedValue(JComboBox comboBox, String value) {
-
+        
         String item;
         for (int i = 0; i < comboBox.getItemCount(); i++) {
             item = (String) comboBox.getItemAt(i);

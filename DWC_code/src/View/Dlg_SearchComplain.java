@@ -16,7 +16,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -234,6 +236,30 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
         ChckBx_Phone.setSelected(false);
         }
     }//GEN-LAST:event_Txt_NumberActionPerformed
+
+    public JTextField getTxt_Number() {
+        return Txt_Number;
+    }
+
+    public void setTxt_Number(JTextField Txt_Number) {
+        this.Txt_Number = Txt_Number;
+    }
+
+    public Long getCaseid() {
+        return Caseid;
+    }
+
+    public void setCaseid(Long Caseid) {
+        this.Caseid = Caseid;
+    }
+
+    public JButton getBtn_Select() {
+        return Btn_Select;
+    }
+
+    public void setBtn_Select(JButton Btn_Select) {
+        this.Btn_Select = Btn_Select;
+    }
 
     private void Btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SearchActionPerformed
         // TODO add your handling code here:

@@ -56,7 +56,7 @@ public class LoadData_DistressWoman {
 
     public LoadData_DistressWoman(Screen_TeleExecutive str) {
         this.st = str;
-        System.out.println("str "+str);
+        System.out.println("str " + str);
         dc = (Dlg_distressWoman) st.Dlg_distressWoman;
 
         //if (dc.populatingcaller) {
@@ -233,7 +233,7 @@ public class LoadData_DistressWoman {
     }
 
     private void PopulateCase() {
-        ArrayList<Long> caseid = new ArrayList<>();
+        final ArrayList<Long> caseid = new ArrayList<>();
         if (caseHistory != null) {
             for (CaseHistory e : caseHistory) {
                 System.out.println("Adding case ID");
@@ -257,19 +257,51 @@ public class LoadData_DistressWoman {
                 System.out.println("Adding case element");
             }
         }
-        boolean  b =false;
+        boolean b = false;
         JButton btn_searchcase = new JButton("Search a Case");
         btn_searchcase.setSize(btn_searchcase.getPreferredSize());
         btn_searchcase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
-               dscs.ReadableName = "dispose";
-              
+
+                //dscs.ReadableName = "dispose";
+
                 dlg_scmpl = new Dlg_SearchComplain(st.pf, true);
+
+                dscs.setVisible(false);
+                dlg_scmpl.getBtn_Select().removeActionListener(dlg_scmpl.getBtn_Select().getActionListeners()[0]);
+                dlg_scmpl.getBtn_Select().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        caseid.add(dlg_scmpl.getCaseid());
+                        System.out.println("even occured");
+                        System.err.println("caseid" + dlg_scmpl.getCaseid());
+                        //dscs.ReadableName=dlg_
+                        cases = new Cases().loadclass(" idCase = " + dlg_scmpl.getCaseid());
+                        for (Cases ob : cases) {
+                            System.out.println("Adding Cases");
+                            Pnl_CaseElement obj = new Pnl_CaseElement();
+                            obj.LoadElement(ob);
+                            // Global.LoadCaseElement(obj, ob);
+                            System.out.println("<Case Details>" + ob.getPoliceStn() + "," + ob.getForward() + "," + ob.getStatus());
+                            dscs.jPanel1.add(obj);
+                            //dsc.jScrollPane1.add(ob);
+                            System.out.println("Adding case element");
+                        }
+                        dlg_scmpl.dispose();
+                        dscs.jPanel1.setSize(dscs.jPanel1.getPreferredSize());
+                        dscs.jPanel1.updateUI();
+                        dscs.jPanel1.repaint();
+                        dscs.repaint();
+                        PreviousCallFromSameNumber(dlg_scmpl.getTxt_Number().getText());
+                        PopulateCaller();
+                        //dscs.setSize(dscs.getPreferredSize());
+                        dscs.show(true);
+
+                    }
+                });
+                //dscs.dispose();
                 dlg_scmpl.show();
-                 dscs.setVisible(false);
-            dscs.dispose();
             }
         });
         dscs.jPanel1.add(btn_searchcase);
@@ -293,8 +325,10 @@ public class LoadData_DistressWoman {
         dscs.repaint();
         //dscs.setSize(dscs.getPreferredSize());
         dscs.show(true);
-        if(dscs.ReadableName != null){
-        if(dscs.ReadableName.equals("dispose"))return;
+        if (dscs.ReadableName != null) {
+            if (dscs.ReadableName.equals("dispose")) {
+                return;
+            }
         }
         System.out.println("Updating case fileds..");
         if (!dc.newcase) {

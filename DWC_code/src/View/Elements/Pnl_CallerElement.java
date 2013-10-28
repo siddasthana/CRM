@@ -22,6 +22,7 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
      */
     public ArrayList<Long> CaseHID = new ArrayList<>();
     public long id;
+
     public JButton getBtn_Select() {
         return Btn_Select;
     }
@@ -174,10 +175,15 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
         obj.getTxt_CallerAddress().setText(e.getAddress());
         obj.CaseHID.add(e.getCallid());
         obj.id = e.getId();
+
+    }
+
+    public void EnableSave() {
         if (Global.AgentLevel.equals("supervisor")) {
             this.Btn_Save.setEnabled(true);
         }
     }
+
     private void Btn_SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SelectActionPerformed
         // TODO add your handling code here:
         Dlg_SelectCaller dc = (Dlg_SelectCaller) this.getRootPane().getParent();
@@ -201,7 +207,6 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
         cl.setId(id);
         cl.updatedb();
     }//GEN-LAST:event_Btn_SaveActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Save;
     private javax.swing.JButton Btn_Select;

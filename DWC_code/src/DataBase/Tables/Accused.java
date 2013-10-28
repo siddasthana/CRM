@@ -101,7 +101,8 @@ public class Accused {
     String Query = "INSERT INTO `"+Sql.dbName+"`.`accused` (`idAccused`, `Caseid`, `Name`, `Phone`, `Address`, `Fir`)" + " values(null,?,?,?,?,?) ";
     //Query += " VALUES ('"+getCaseID()+"', '"+getName()+"', '"+getPhone()+"', '"+getAddress()+"', '"+getFir()+"')";
    // Sql sql = new Sql();
-    PreparedStatement stmt=sql.GetPrepareStmt(Query); 
+    PreparedStatement stmt=sql.GetPrepareStmt(Query);
+        System.out.println("accused query"+Query);
     try
     {
         stmt.setLong(1,getCaseID());

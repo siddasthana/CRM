@@ -22,6 +22,7 @@ import View.Elements.Pnl_CaseElement;
 import View.Elements.Pnl_CaseHistoryElement;
 import static View.Screen_CaseReports.infoBox;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -46,6 +47,7 @@ public class Screen_Managers extends javax.swing.JFrame {
     /**
      * Creates new form Screen_Supervisor
      */
+        public ArrayList<Telephone> tp = new ArrayList<>();
     public Screen_Managers() {
         initComponents();
     }
@@ -702,7 +704,7 @@ public class Screen_Managers extends javax.swing.JFrame {
                         Pnl_Accused.removeAll();
                         ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
                         ArrayList<Legal> le = new Legal().loadclass(" CaseID=" + Caseid);
-                        Caller ca = new Caller().loadclass("CallID in (select idCase_History from case_history where CaseID =" + Caseid + " ) order by idCaller DESC").get(0);
+                        ArrayList<Caller> ca = new Caller().loadclass("CallID in (select idCase_History from case_history where CaseID =" + Caseid + " ) order by idCaller DESC");
                         /*System.out.println("starts here");
                         String MSG = "";
                         if (ac.size() > 0) {
@@ -739,9 +741,16 @@ public class Screen_Managers extends javax.swing.JFrame {
                         Pnl_Accused.revalidate();
                         Pnl_Accused.repaint();
                         Pnl_Caller.removeAll();*/
-                        System.out.println("Adding Caller element");
                         Pnl_CallerElement ce = new Pnl_CallerElement();
-                        ce.LoadElement(ca);
+                        System.out.println("Adding Caller element");
+                         try {
+                            if (ca.size() > 0) {
+                                ce.LoadElement(ca.get(0));
+                            }
+                            else {infoBox("No caller information available.", "Delhi Women Cell");}
+                        } catch (Exception ex) {
+                            System.err.println("Caller panel error" + ex);
+                        }                        
                         ce.getBtn_Select().disable();
                         ce.remove(ce.getBtn_Select());
                         ce.setSize(ce.preferredSize());
@@ -919,6 +928,28 @@ public class Screen_Managers extends javax.swing.JFrame {
         final OutBound ob = new OutBound();
         ob.connect(number);
         System.out.println("number to connect" + number);
+        
+        Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
+        da.getTxtPhone().setText(number);
+        da.show();
+        Telephone ph = new Telephone();
+        ph.setNote(da.getTxtName().getText());
+        try {
+            ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
+            tp.add(ph);
+            ArrayList<CaseHistory> ch = new CaseHistory().loadclass(" CaseID ="+Caseid);
+            for (Telephone obj : tp) {
+                obj.setCaseHid(ch.get(0).getId());
+                obj.savetodb();
+            }
+            infoBox("Number Successfully added", "Delhi Women Cell");
+        } catch (Exception e) {
+            e.printStackTrace();
+            infoBox("You have entered invalid number", "Delhi Women Cell");
+        }
+        
+        
+        
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
         final Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
         pce.AudioPanel.disable();

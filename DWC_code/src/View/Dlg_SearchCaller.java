@@ -4,6 +4,9 @@
  */
 package View;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author admin
@@ -16,6 +19,22 @@ public class Dlg_SearchCaller extends javax.swing.JDialog {
     public Dlg_SearchCaller(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public JButton getjButton1() {
+        return jButton1;
+    }
+
+    public void setjButton1(JButton jButton1) {
+        this.jButton1 = jButton1;
+    }
+
+    public JTextField getTxt_OldNumber() {
+        return Txt_OldNumber;
+    }
+
+    public void setTxt_OldNumber(JTextField Txt_OldNumber) {
+        this.Txt_OldNumber = Txt_OldNumber;
     }
 
     /**
@@ -41,6 +60,11 @@ public class Dlg_SearchCaller extends javax.swing.JDialog {
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setText("Find");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -78,6 +102,10 @@ public class Dlg_SearchCaller extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
