@@ -556,14 +556,29 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                 return;
             }
         }
-        OutBound ob = new OutBound();
+        final OutBound ob = new OutBound();
         ob.connect(s);
         System.out.println("number" + s);
 
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
-        Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
+        final Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
         pce.AudioPanel.disable();
         pce.getBtn_Save().setEnabled(true);
+        pce.getBtn_Save().removeActionListener(pce.getBtn_Save().getActionListeners()[0]);
+        pce.getBtn_Save().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /* action to be performed on save buttn to save the history*/
+                pce.savedb();
+                System.out.println(pce.getElement().getId());
+                
+                Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
+                cl.setCaseHID(pce.getElement().getId());
+                
+                cl.setAgentId(Integer.parseInt(Global.AgentID));
+                cl.updatedb();
+            }
+        });
         pce.getTxt_Note().setEnabled(true);
         pce.getTxt_Advice().setEnabled(true);
         pce.Agentid = Long.valueOf(Global.AgentPK);
@@ -572,7 +587,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         pce.revalidate();
         pce.repaint();
         System.err.println("confName" + ob.confname);
-        JDialog caseentry = new JDialog(this, true);
+        JDialog caseentry = new JDialog(this);
         caseentry.add(pce);
         caseentry.getContentPane().setSize(caseentry.getContentPane().getPreferredSize());
         caseentry.setSize(caseentry.getPreferredSize());
@@ -581,10 +596,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         caseentry.repaint();
         caseentry.show();
 
-        Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
-        cl.setCaseHID(pce.getElement().getId());
-        cl.setAgentId(Integer.parseInt(Global.AgentID));
-        cl.updatedb();
+
     }
     private void TxtDialScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDialScreenActionPerformed
         // TODO add your handling code here:
@@ -777,8 +789,12 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                         Pnl_Caller.repaint();
                         Pnl_AccusedElement pae = new Pnl_AccusedElement();
                         try {
-                            if (ac.size() > 0) {pae.LoadElement_Accused(ac.get(0));}
-                            if(le.size() > 0){pae.LoadElement_Legal(le.get(0));}
+                            if (ac.size() > 0) {
+                                pae.LoadElement_Accused(ac.get(0));
+                            }
+                            if (le.size() > 0) {
+                                pae.LoadElement_Legal(le.get(0));
+                            }
                         } catch (Exception ex) {
                             System.err.println("accused panel error" + ex);
                         }
@@ -795,43 +811,43 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                             obj.LoadElement(ch);
 
                             /*obj.addMouseListener(new MouseListener() {
-                                @Override
-                                public void mouseClicked(MouseEvent e) {
-                                    //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                }
+                             @Override
+                             public void mouseClicked(MouseEvent e) {
+                             //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             }
 
-                                @Override
-                                public void mousePressed(MouseEvent e) {
-                                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                }
+                             @Override
+                             public void mousePressed(MouseEvent e) {
+                             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             }
 
-                                @Override
-                                public void mouseReleased(MouseEvent e) {
-                                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                }
+                             @Override
+                             public void mouseReleased(MouseEvent e) {
+                             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             }
 
-                                @Override
-                                public void mouseEntered(MouseEvent ej) {
-                                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                    Pnl_Caller.removeAll();
-                                    System.out.println("Got a mouse entered event");
-                                    Caller e = new Caller().loadclass(" CallID=" + CaseHID).get(0);
-                                    Pnl_CallerElement obj = new Pnl_CallerElement();
-                                    obj.LoadElement(e);
-                                    obj.remove(obj.getBtn_Select());
-                                    obj.setSize(obj.preferredSize());
-                                    Pnl_Caller.add(obj);
-                                    Pnl_Caller.revalidate();
-                                    Pnl_Caller.repaint();
+                             @Override
+                             public void mouseEntered(MouseEvent ej) {
+                             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             Pnl_Caller.removeAll();
+                             System.out.println("Got a mouse entered event");
+                             Caller e = new Caller().loadclass(" CallID=" + CaseHID).get(0);
+                             Pnl_CallerElement obj = new Pnl_CallerElement();
+                             obj.LoadElement(e);
+                             obj.remove(obj.getBtn_Select());
+                             obj.setSize(obj.preferredSize());
+                             Pnl_Caller.add(obj);
+                             Pnl_Caller.revalidate();
+                             Pnl_Caller.repaint();
 
-                                }
+                             }
 
-                                @Override
-                                public void mouseExited(MouseEvent e) {
-                                    //                                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                    System.out.println(" here1");
-                                }
-                            });*/
+                             @Override
+                             public void mouseExited(MouseEvent e) {
+                             //                                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             System.out.println(" here1");
+                             }
+                             });*/
                             System.out.println("here2");
                             Pnl_CaseHistory.add(obj);
                             Pnl_CaseHistory.revalidate();

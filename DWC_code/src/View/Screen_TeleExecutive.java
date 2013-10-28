@@ -469,7 +469,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
     }
 
     private void CheckagentStatus() {
-        Sql sql = new Sql();
+        Sql sql = new Sql();        
         ResultSet rs = sql.ExecuteQuery("Select Status From agents where name= '" + pf.AgentId + "'");
         try {
             if (rs.next()) {

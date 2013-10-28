@@ -916,18 +916,33 @@ public class Screen_Managers extends javax.swing.JFrame {
                 return;
             }
         }
-        OutBound ob = new OutBound();
+        final OutBound ob = new OutBound();
         ob.connect(number);
         System.out.println("number to connect" + number);
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
-        Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
+        final Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
         pce.AudioPanel.disable();
         pce.getBtn_Save().setEnabled(true);
+        pce.getBtn_Save().removeActionListener(pce.getBtn_Save().getActionListeners()[0]);
+        pce.getBtn_Save().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /* action to be performed on save buttn to save the history*/
+                pce.savedb();
+                System.out.println(pce.getElement().getId());
+                
+                Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
+                cl.setCaseHID(pce.getElement().getId());
+                
+                cl.setAgentId(Integer.parseInt(Global.AgentID));
+                cl.updatedb();
+            }
+        });
         pce.getTxt_Note().setEnabled(true);
         pce.getTxt_Advice().setEnabled(true);
         pce.Agentid = Long.valueOf(Global.AgentPK);
         pce.Caseid = Caseid;
-        JDialog caseentry = new JDialog(this, true);
+        JDialog caseentry = new JDialog(this);
         caseentry.add(pce);
         caseentry.getContentPane().setSize(caseentry.getContentPane().getPreferredSize());
         caseentry.setSize(caseentry.getPreferredSize());
@@ -935,10 +950,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         caseentry.revalidate();
         caseentry.repaint();
         caseentry.show();
-        //
-        Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
-        cl.setCaseHID(pce.getElement().getId());
-        cl.updatedb();
+       
     }
 
     public static void main(String args[]) {

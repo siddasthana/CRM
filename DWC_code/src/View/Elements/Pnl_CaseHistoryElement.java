@@ -27,6 +27,25 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
     public Long CaseHisoryID;
     public Long Caseid;
     public Long Agentid;
+    public long confname;
+    public long Number;
+
+    public long getConfname() {
+        return confname;
+    }
+
+    public void setConfname(long confname) {
+        this.confname = confname;
+    }
+
+    public long getNumber() {
+        return Number;
+    }
+
+    public void setNumber(long Number) {
+        this.Number = Number;
+    }
+    
 
     public JComboBox getCmbBx_Reffered() {
         return CmbBx_Reffered;
