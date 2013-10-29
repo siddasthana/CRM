@@ -35,6 +35,7 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
     }
     public boolean show = false;
     Long Caseid;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,6 +61,8 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
         DtPck_EndDt = new org.jdesktop.swingx.JXDatePicker();
         jScrollPane1 = new javax.swing.JScrollPane();
         Pnl_CaseList = new javax.swing.JPanel();
+        ChckBx_complaintID = new javax.swing.JCheckBox();
+        Txt_complaintID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -94,8 +97,13 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
                 Txt_NumberActionPerformed(evt);
             }
         });
+        Txt_Number.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Txt_NumberKeyTyped(evt);
+            }
+        });
 
-        CmbBx_CaseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select a Category" }));
+        CmbBx_CaseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select a Category", "Others", "Abduction", "Acid_Attack", "Callback_from_100", "Child_Sexual_Abuse (POSCO)", "Dangerous_Attack", "Domestic_Violence", "Dowry_Death", "Dowry_Violence", "Illegal_Confinement", "Incoming_obscene", "Kidnaping", "Life_Threatening_attack_by_Family", "Missing", "Murder", "Obscene_Call", "Petty_Quarrel", "Property_cases", "Rape", "Sexual_Abuse", "Stalking", "Threat_To_Life", "Violence_by_Khap_Biradari_Panchayat" }));
         CmbBx_CaseType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbBx_CaseTypeActionPerformed(evt);
@@ -139,6 +147,20 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
         jScrollPane1.setViewportView(Pnl_CaseList);
         Pnl_CaseList.setLayout(new WrapLayout());
 
+        ChckBx_complaintID.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        ChckBx_complaintID.setText("Complaint ID");
+
+        Txt_complaintID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Txt_complaintIDActionPerformed(evt);
+            }
+        });
+        Txt_complaintID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Txt_complaintIDKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,7 +172,7 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
                         .addComponent(Btn_Search))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
                                 .addComponent(jLabel24))
@@ -158,22 +180,29 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ChckBx_Phone)
                                     .addComponent(ChkBx_Date))
-                                .addGap(36, 36, 36)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(DtPck_EndDt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel28))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(Txt_Number, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(DtPck_StartDt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel27))))
+                                        .addGap(36, 36, 36)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(DtPck_EndDt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel28))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(DtPck_StartDt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel27))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Txt_Number, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Chk_BxCaseType)
                                 .addGap(12, 12, 12)
-                                .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ChckBx_complaintID)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Txt_complaintID)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -183,8 +212,8 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,16 +223,20 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jLabel24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ChckBx_complaintID)
+                            .addComponent(Txt_complaintID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ChckBx_Phone)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
+                                .addComponent(Txt_Number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(ChkBx_Date)
                                     .addComponent(DtPck_StartDt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel27)))
-                            .addComponent(Txt_Number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel27))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DtPck_EndDt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,10 +263,10 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
 
     private void Txt_NumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_NumberActionPerformed
         // TODO add your handling code here:
-        if(Txt_Number.getText().length()>0){
-        ChckBx_Phone.setSelected(true);
-        }else{
-        ChckBx_Phone.setSelected(false);
+        if (Txt_Number.getText().length() > 0) {
+            ChckBx_Phone.setSelected(true);
+        } else {
+            ChckBx_Phone.setSelected(false);
         }
     }//GEN-LAST:event_Txt_NumberActionPerformed
 
@@ -264,29 +297,34 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
     private void Btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SearchActionPerformed
         // TODO add your handling code here:
         String Query = " Select Distinct(CaseID) from Consolidate where 1=1";
-        System.out.println("query in search "+Query);
-        if(ChckBx_Phone.isSelected()){
-        Query += " AND CallNumber="+Txt_Number.getText();
+        System.out.println("query in search " + Query);
+        if (ChckBx_complaintID.isSelected()) {
+            Query += " AND ReadableName = '" + Txt_complaintID.getText() + "'";
         }
-        if(ChkBx_Date.isSelected()){
-        Date sdt = DtPck_StartDt.getDate();
-        Date edt = DtPck_EndDt.getDate();
-        if(sdt!=null){
-        Query += " AND DateStamp >="+Global.JavaDateToMysql(sdt)+"\"" ;
-        }else{
-        infoBox("Please Specify Start date or Uncheck date criteria", "Delhi Women Cell");
+        if (ChckBx_Phone.isSelected()) {
+            Query += " AND CallNumber=" + Txt_Number.getText();
         }
-        if(edt!=null){
-        Query += " AND DateStamp <= \""+Global.JavaDateToMysql(edt)+"\"" ;
-        }else{
-          infoBox("Please Specify End date or Uncheck date criteria", "Delhi Women Cell");
+        if (ChkBx_Date.isSelected()) {
+            Date sdt = DtPck_StartDt.getDate();
+            Date edt = DtPck_EndDt.getDate();
+            if (sdt != null) {
+                Query += " AND DateStamp >='" + Global.JavaDateToMysql(sdt) + "'";
+            } else {
+                infoBox("Please Specify Start date or Uncheck date criteria", "Delhi Women Cell");
+                return;
+            }
+            if (edt != null) {
+                Query += " AND DateStamp <= '" + Global.JavaDateToMysql(edt) + "'";
+            } else {
+                infoBox("Please Specify End date or Uncheck date criteria", "Delhi Women Cell");
+                return;
+            }
+
         }
-                
+        if (Chk_BxCaseType.isSelected()) {
+            Query += " AND CaseType='" + CmbBx_CaseType.getSelectedItem().toString() + "'";
         }
-        if(Chk_BxCaseType.isSelected()){
-        Query +=" AND CaseType='"+CmbBx_CaseType.getSelectedItem().toString()+"'";
-        }
-                        String caselist = "(";
+        String caselist = "(";
         try {
             Sql sql = new Sql();
             ResultSet rs = sql.ExecuteQuery(Query);
@@ -324,7 +362,7 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
                             DskPn_CaseHistory.revalidate();
                             DskPn_CaseHistory.repaint();
                         }
-                        
+
                     }
                 });
                 Pnl_CaseList.add(obj);
@@ -333,39 +371,65 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
                 this.repaint();
                 System.out.println("Adding case element");
             }
-    }
+        }
     }//GEN-LAST:event_Btn_SearchActionPerformed
-public static void infoBox(String infoMessage, String location) {
+    public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
     }
     private void DtPck_StartDtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DtPck_StartDtActionPerformed
         // TODO add your handling code here:
-       
+
         ChkBx_Date.setSelected(true);
-       
+
     }//GEN-LAST:event_DtPck_StartDtActionPerformed
 
     private void DtPck_EndDtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DtPck_EndDtActionPerformed
         // TODO add your handling code here:
-       
+
         ChkBx_Date.setSelected(true);
-       
+
     }//GEN-LAST:event_DtPck_EndDtActionPerformed
 
     private void CmbBx_CaseTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbBx_CaseTypeActionPerformed
         // TODO add your handling code here:
-        if(!CmbBx_CaseType.getSelectedItem().toString().equals("Select a Category")){
-        Chk_BxCaseType.setSelected(true);
-        }else{
-        Chk_BxCaseType.setSelected(false);
+        if (!CmbBx_CaseType.getSelectedItem().toString().equals("Select a Category")) {
+            Chk_BxCaseType.setSelected(true);
+        } else {
+            Chk_BxCaseType.setSelected(false);
         }
     }//GEN-LAST:event_CmbBx_CaseTypeActionPerformed
 
     private void Btn_SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SelectActionPerformed
         // TODO add your handling code here:
-       
-        
     }//GEN-LAST:event_Btn_SelectActionPerformed
+
+    private void Txt_complaintIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_complaintIDActionPerformed
+        // TODO add your handling code here:
+        if (Txt_complaintID.getText().length() > 0) {
+            ChckBx_complaintID.setSelected(true);
+        } else {
+            ChckBx_complaintID.setSelected(false);
+        }
+    }//GEN-LAST:event_Txt_complaintIDActionPerformed
+
+    private void Txt_complaintIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Txt_complaintIDKeyTyped
+        // TODO add your handling code here:
+        if (Txt_complaintID.getText().length() > 0) {
+            ChckBx_complaintID.setSelected(true);
+        } else {
+            ChckBx_complaintID.setSelected(false);
+        }
+
+    }//GEN-LAST:event_Txt_complaintIDKeyTyped
+
+    private void Txt_NumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Txt_NumberKeyTyped
+        // TODO add your handling code here:
+        if (Txt_Number.getText().length() > 0) {
+            ChckBx_Phone.setSelected(true);
+        } else {
+            ChckBx_Phone.setSelected(false);
+        }
+    }//GEN-LAST:event_Txt_NumberKeyTyped
 
     /**
      * @param args the command line arguments
@@ -412,6 +476,7 @@ public static void infoBox(String infoMessage, String location) {
     private javax.swing.JButton Btn_Search;
     private javax.swing.JButton Btn_Select;
     private javax.swing.JCheckBox ChckBx_Phone;
+    private javax.swing.JCheckBox ChckBx_complaintID;
     private javax.swing.JCheckBox ChkBx_Date;
     private javax.swing.JCheckBox Chk_BxCaseType;
     private javax.swing.JComboBox CmbBx_CaseType;
@@ -420,6 +485,7 @@ public static void infoBox(String infoMessage, String location) {
     private org.jdesktop.swingx.JXDatePicker DtPck_StartDt;
     private javax.swing.JPanel Pnl_CaseList;
     private javax.swing.JTextField Txt_Number;
+    private javax.swing.JTextField Txt_complaintID;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;

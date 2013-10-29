@@ -1295,7 +1295,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
     private javax.swing.JComboBox CmbBx_CaseType;
     private javax.swing.JComboBox CmbBx_Forward;
     private javax.swing.JComboBox CmbBx_PoliceDistrict;
-    private javax.swing.JPanel Pnl_CaseDirctry;
+    public javax.swing.JPanel Pnl_CaseDirctry;
     public javax.swing.JPanel Pnl_CaseHistory;
     public javax.swing.JPanel Pnl_RecrdDirctry;
     private javax.swing.JPopupMenu PopMn_Complaint;
@@ -1388,7 +1388,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
             }
             if (newcase) {
                 Accused acd = new Accused();
-                if (Txt_AccusedName.getText().length() > 1) {
+                if (Txt_AccusedName.getText().length() > 1 || Txt_AccusedPhone.getText().length()> 1) {
                     acd.setName(Txt_AccusedName.getText());
                     try {
                         acd.setPhone(Long.valueOf(Txt_AccusedPhone.getText()));

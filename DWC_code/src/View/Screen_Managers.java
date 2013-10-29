@@ -47,7 +47,7 @@ public class Screen_Managers extends javax.swing.JFrame {
     /**
      * Creates new form Screen_Supervisor
      */
-        public ArrayList<Telephone> tp = new ArrayList<>();
+        
     public Screen_Managers() {
         initComponents();
     }
@@ -550,7 +550,26 @@ public class Screen_Managers extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtDialScreenActionPerformed
     
     private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
-       connect(TxtDialScreen.getText());
+       Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
+       ArrayList<Telephone> tp = new ArrayList<>();
+        da.getTxtPhone().setText(TxtDialScreen.getText());
+        da.show();
+        Telephone ph = new Telephone();
+        ph.setNote(da.getTxtName().getText());
+        try {
+            ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
+            tp.add(ph);
+            ArrayList<CaseHistory> ch = new CaseHistory().loadclass(" CaseID ="+Caseid);
+            for (Telephone obj : tp) {
+                obj.setCaseHid(ch.get(0).getId());
+                obj.savetodb();
+            }
+            infoBox("Number Successfully added", "Delhi Women Cell");
+        } catch (Exception e) {
+            e.printStackTrace();
+            infoBox("You have entered invalid number", "Delhi Women Cell");
+        }
+        connect(TxtDialScreen.getText());
         
         /*
         caseentry.show();    }//GEN-LAST:event_Btn_DialActionPerformed
@@ -706,67 +725,72 @@ public class Screen_Managers extends javax.swing.JFrame {
                         ArrayList<Legal> le = new Legal().loadclass(" CaseID=" + Caseid);
                         ArrayList<Caller> ca = new Caller().loadclass("CallID in (select idCase_History from case_history where CaseID =" + Caseid + " ) order by idCaller DESC");
                         /*System.out.println("starts here");
-                        String MSG = "";
-                        if (ac.size() > 0) {
-                            MSG += " NAME :" + ac.get(0).getName() + "\n";
-                            MSG += " Phone :" + ac.get(0).getPhone() + "\n";
-                            MSG += " Address :" + ac.get(0).getAddress() + "\n";
-                        }
-                        if (le.size() > 0) {
-                            MSG += " DD: " + le.get(0).getDD() + "\n";
-                            MSG += " Fir: " + le.get(0).getFir() + "\n";
-                            MSG += " Challan: " + le.get(0).getChallan() + "\n";
-                            MSG += " Judgement: " + le.get(0).getJudgement() + "\n";
-                            //MSG += 
-                            System.out.println(MSG);
-                        }
-                        System.out.println(MSG);
-                        if (MSG.length() != 0) {
-                            JTextArea ja = new JTextArea();
-                            ja.setText(MSG);
-                            ja.setSize(ja.getPreferredSize());
-                            ja.setBackground(Color.yellow);
-                            ja.revalidate();
-                            ja.repaint();
+                         String MSG = "";
+                         if (ac.size() > 0) {
+                         MSG += " NAME :" + ac.get(0).getName() + "\n";
+                         MSG += " Phone :" + ac.get(0).getPhone() + "\n";
+                         MSG += " Address :" + ac.get(0).getAddress() + "\n";
+                         }
+                         if (le.size() > 0) {
+                         MSG += " DD: " + le.get(0).getDD() + "\n";
+                         MSG += " Fir: " + le.get(0).getFir() + "\n";
+                         MSG += " Challan: " + le.get(0).getChallan() + "\n";
+                         MSG += " Judgement: " + le.get(0).getJudgement() + "\n";
+                         //MSG += 
+                         System.out.println(MSG);
+                         }
+                         System.out.println(MSG);
+                         if (MSG.length() != 0) {
+                         JTextArea ja = new JTextArea();
+                         ja.setText(MSG);
+                         ja.setSize(ja.getPreferredSize());
+                         ja.setBackground(Color.yellow);
+                         ja.revalidate();
+                         ja.repaint();
 
-                            //ja.disable();
-                            Pnl_Accused.removeAll();
-                            Pnl_Accused.add(ja);
-                        }
+                         //ja.disable();
+                         Pnl_Accused.removeAll();
+                         Pnl_Accused.add(ja);
+                         }
 
-                        //  Pnl_Accused.revalidate();
-                        //    Pnl_Accused.repaint();
-                        System.out.println("start");
-                        //  return;
-                        Pnl_Accused.revalidate();
-                        Pnl_Accused.repaint();
-                        Pnl_Caller.removeAll();*/
+                         //  Pnl_Accused.revalidate();
+                         //    Pnl_Accused.repaint();
+                         System.out.println("start");
+                         //  return;
+                         Pnl_Accused.revalidate();
+                         Pnl_Accused.repaint();
+                         Pnl_Caller.removeAll();*/
                         Pnl_CallerElement ce = new Pnl_CallerElement();
                         System.out.println("Adding Caller element");
-                         try {
+                        try {
                             if (ca.size() > 0) {
                                 ce.LoadElement(ca.get(0));
+                            } else {
+                                infoBox("No caller information available.", "Delhi Women Cell");
                             }
-                            else {infoBox("No caller information available.", "Delhi Women Cell");}
                         } catch (Exception ex) {
                             System.err.println("Caller panel error" + ex);
-                        }                        
+                        }
                         ce.getBtn_Select().disable();
                         ce.remove(ce.getBtn_Select());
                         ce.setSize(ce.preferredSize());
                         Pnl_Caller.add(ce);
                         Pnl_Caller.revalidate();
                         Pnl_Caller.repaint();
-                        
+
                         Pnl_AccusedElement pae = new Pnl_AccusedElement();
                         try {
-                            if (ac.size() > 0) {pae.LoadElement_Accused(ac.get(0));}
-                            if(le.size() > 0){pae.LoadElement_Legal(le.get(0));}
+                            if (ac.size() > 0) {
+                                pae.LoadElement_Accused(ac.get(0));
+                            }
+                            if (le.size() > 0) {
+                                pae.LoadElement_Legal(le.get(0));
+                            }
                         } catch (Exception ex) {
                             System.err.println("accused panel error" + ex);
                         }
                         pae.EnableSave(Caseid);
-                        pae.setSize(291, 291);                        
+                        pae.setSize(291, 291);
                         Pnl_Accused.add(pae);
                         Pnl_Accused.revalidate();
                         Pnl_Accused.repaint();
@@ -776,76 +800,76 @@ public class Screen_Managers extends javax.swing.JFrame {
                             Pnl_CaseHistoryElement obj = new Pnl_CaseHistoryElement();
                             obj.LoadElement(ch);
                             /*obj.addMouseListener(new MouseListener() {
-                                @Override
-                                public void mouseClicked(MouseEvent e) {
-                                    //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                }
+                             @Override
+                             public void mouseClicked(MouseEvent e) {
+                             //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             }
 
-                                @Override
-                                public void mousePressed(MouseEvent e) {
-                                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                }
+                             @Override
+                             public void mousePressed(MouseEvent e) {
+                             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             }
 
-                                @Override
-                                public void mouseReleased(MouseEvent e) {
-                                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                }
+                             @Override
+                             public void mouseReleased(MouseEvent e) {
+                             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             }
 
-                                @Override
-                                public void mouseEntered(MouseEvent ej) {
-                                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                    Pnl_Caller.removeAll();
-                                    System.out.println("Got a mouse entered event");
-                                    try {
-                                        Caller e = new Caller().loadclass(" CallID=" + CaseHID).get(0);
-                                        Pnl_CallerElement obj = new Pnl_CallerElement();
-                                        //String Callerid = new Calls().loadclass(" CaseHID="+e.getCallid()).get(0).getNumber();
-                                        //obj.setToolTipText("Call From :"+ Callerid);
-                                        obj.LoadElement(e);
-                                        obj.remove(obj.getBtn_Select());
-                                        obj.setSize(obj.preferredSize());
-                                        Pnl_Caller.add(obj);
-                                        Pnl_Caller.revalidate();
-                                        Pnl_Caller.repaint();
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
+                             @Override
+                             public void mouseEntered(MouseEvent ej) {
+                             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             Pnl_Caller.removeAll();
+                             System.out.println("Got a mouse entered event");
+                             try {
+                             Caller e = new Caller().loadclass(" CallID=" + CaseHID).get(0);
+                             Pnl_CallerElement obj = new Pnl_CallerElement();
+                             //String Callerid = new Calls().loadclass(" CaseHID="+e.getCallid()).get(0).getNumber();
+                             //obj.setToolTipText("Call From :"+ Callerid);
+                             obj.LoadElement(e);
+                             obj.remove(obj.getBtn_Select());
+                             obj.setSize(obj.preferredSize());
+                             Pnl_Caller.add(obj);
+                             Pnl_Caller.revalidate();
+                             Pnl_Caller.repaint();
+                             } catch (Exception e) {
+                             e.printStackTrace();
+                             }
+                             }
 
-                                @Override
-                                public void mouseExited(MouseEvent e) {
-                                    //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                }
-                            });*/
+                             @Override
+                             public void mouseExited(MouseEvent e) {
+                             //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             }
+                             });*/
                             Pnl_CaseHistory.add(obj);
                             Pnl_CaseHistory.revalidate();
                             Pnl_CaseHistory.repaint();
                         }
                         /*Pnl_Accused.removeAll();
-                        ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
-                        Pnl_Accused.removeAll();
-                        if (ac.size() > 0) {
-                            String MSG = "";
-                            MSG += " NAME :" + ac.get(0).getName() + "\n";
-                            MSG += " Phone :" + ac.get(0).getPhone() + "\n";
-                            MSG += " Address :" + ac.get(0).getAddress() + "\n";
-                            MSG += " FIR: " + ac.get(0).getFir() + "\n";
-                            //MSG += 
-                            if (MSG.length() != 0) {
-                                JTextArea ja = new JTextArea();
-                                ja.setText(MSG);
-                                ja.setSize(ja.getPreferredSize());
-                                ja.setBackground(Color.yellow);
-                                ja.revalidate();
-                                ja.repaint();
+                         ArrayList<Accused> ac = new Accused().loadclass(" Caseid=" + Caseid);
+                         Pnl_Accused.removeAll();
+                         if (ac.size() > 0) {
+                         String MSG = "";
+                         MSG += " NAME :" + ac.get(0).getName() + "\n";
+                         MSG += " Phone :" + ac.get(0).getPhone() + "\n";
+                         MSG += " Address :" + ac.get(0).getAddress() + "\n";
+                         MSG += " FIR: " + ac.get(0).getFir() + "\n";
+                         //MSG += 
+                         if (MSG.length() != 0) {
+                         JTextArea ja = new JTextArea();
+                         ja.setText(MSG);
+                         ja.setSize(ja.getPreferredSize());
+                         ja.setBackground(Color.yellow);
+                         ja.revalidate();
+                         ja.repaint();
 
-                                //ja.disable();
-                                Pnl_Accused.removeAll();
-                                Pnl_Accused.add(ja);
-                            }
-                        }
-                        Pnl_Accused.revalidate();
-                        Pnl_Accused.repaint();*/
+                         //ja.disable();
+                         Pnl_Accused.removeAll();
+                         Pnl_Accused.add(ja);
+                         }
+                         }
+                         Pnl_Accused.revalidate();
+                         Pnl_Accused.repaint();*/
 
                         ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like (select PoliceStation from `case` where idCase = " + Caseid + ")");
                         ArrayList<DataBase.Tables.Telephone> tl1 = new DataBase.Tables.Telephone().loadclass("CaseHID in (select idCase_HIstory from case_history where CaseID = " + Caseid + ")");
@@ -910,7 +934,7 @@ public class Screen_Managers extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public void connect(String number) {
-        
+
         if (Caseid == null) {
             infoBox("Please select a Case before you proceed", "Delhi Women Cell");
             return;
@@ -928,28 +952,6 @@ public class Screen_Managers extends javax.swing.JFrame {
         final OutBound ob = new OutBound();
         ob.connect(number);
         System.out.println("number to connect" + number);
-        
-        Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
-        da.getTxtPhone().setText(number);
-        da.show();
-        Telephone ph = new Telephone();
-        ph.setNote(da.getTxtName().getText());
-        try {
-            ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
-            tp.add(ph);
-            ArrayList<CaseHistory> ch = new CaseHistory().loadclass(" CaseID ="+Caseid);
-            for (Telephone obj : tp) {
-                obj.setCaseHid(ch.get(0).getId());
-                obj.savetodb();
-            }
-            infoBox("Number Successfully added", "Delhi Women Cell");
-        } catch (Exception e) {
-            e.printStackTrace();
-            infoBox("You have entered invalid number", "Delhi Women Cell");
-        }
-        
-        
-        
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
         final Pnl_CaseHistoryElement pce = new Pnl_CaseHistoryElement();
         pce.AudioPanel.disable();
@@ -961,10 +963,10 @@ public class Screen_Managers extends javax.swing.JFrame {
                 /* action to be performed on save buttn to save the history*/
                 pce.savedb();
                 System.out.println(pce.getElement().getId());
-                
+
                 Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
                 cl.setCaseHID(pce.getElement().getId());
-                
+
                 cl.setAgentId(Integer.parseInt(Global.AgentID));
                 cl.updatedb();
             }
@@ -981,7 +983,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         caseentry.revalidate();
         caseentry.repaint();
         caseentry.show();
-       
+
     }
 
     public static void main(String args[]) {

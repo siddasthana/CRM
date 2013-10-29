@@ -151,7 +151,7 @@ public class Accused {
     return ac;
     }
   public void updatedb() {
-        String Query = "UPDATE `accused`  SET Name =?,`Phone`=?, `Address`=?, WHERE CaseId = ? ";
+        String Query = "UPDATE `accused`  SET Name =?,`Phone`=?, `Address`=? WHERE CaseId = ? ";
         PreparedStatement stmt1 = sql.GetPrepareStmt(Query);
         System.out.println("Querry Accused Update " + Query);
         try {

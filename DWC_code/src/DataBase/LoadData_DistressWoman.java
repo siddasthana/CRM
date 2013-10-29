@@ -116,7 +116,20 @@ public class LoadData_DistressWoman {
     }
 
     private void Fill_caseDirectory() {
-        ArrayList<DataBase.Tables.Directory> Dr = new DataBase.Tables.Directory().loadclass(" Area ='as'");
+        
+        try {
+            ArrayList<DataBase.Tables.Directory> Dr = new DataBase.Tables.Directory().loadclass(" Area IN (select PoliceStation from `case` where idCase = " + dc.CaseID + ")");
+
+            for (DataBase.Tables.Directory dir : Dr) {
+                Pnl_CallElement pce_record = new Pnl_CallElement();
+                pce_record.Lbl_CallElement_Name.setText(dir.getService());
+                pce_record.Lbl_CallElement_number.setText(String.valueOf(dir.getNumber()));
+                dc.Pnl_CaseDirctry.add(pce_record);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
 
     }
@@ -293,14 +306,22 @@ public class LoadData_DistressWoman {
                         dscs.jPanel1.updateUI();
                         dscs.jPanel1.repaint();
                         dscs.repaint();
-                        PreviousCallFromSameNumber(dlg_scmpl.getTxt_Number().getText());
+                        if (dlg_scmpl.getTxt_Number().getText().length() > 1) {
+                            PreviousCallFromSameNumber(dlg_scmpl.getTxt_Number().getText());
+                        } else {
+                            ArrayList<Calls> call = new Calls().loadclass("Bound='IN' and CaseHID in (select idCase_History from case_history where CaseID = "+dlg_scmpl.getCaseid()+")");
+                            PreviousCallFromSameNumber(call.get(0).getNumber());        
+                        }
                         PopulateCaller();
+
                         //dscs.setSize(dscs.getPreferredSize());
+                        //dscs.get
                         dscs.show(true);
 
                     }
                 });
                 //dscs.dispose();
+
                 dlg_scmpl.show();
             }
         });

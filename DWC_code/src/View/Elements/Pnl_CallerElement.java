@@ -22,6 +22,7 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
      */
     public ArrayList<Long> CaseHID = new ArrayList<>();
     public long id;
+    boolean newentry = false;
 
     public JButton getBtn_Select() {
         return Btn_Select;
@@ -182,6 +183,16 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
         if (Global.AgentLevel.equals("supervisor")) {
             this.Btn_Save.setEnabled(true);
         }
+        newentry = false;
+    }
+
+    public void EnableSave(Long s) {
+        if (Global.AgentLevel.equals("supervisor")) {
+            this.Btn_Save.setEnabled(true);
+        }
+        this.CaseHID.add(s);
+        newentry = true;
+        System.out.println("casehid " + s);
     }
 
     private void Btn_SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SelectActionPerformed
@@ -205,7 +216,11 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
         cl.setCallid(CaseHID.get(0));
         cl.setName(Txt_CallerName.getText());
         cl.setId(id);
-        cl.updatedb();
+        if (newentry) {
+            cl.updatedb();
+        } else {
+            cl.savetodb();
+        }
     }//GEN-LAST:event_Btn_SaveActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Save;

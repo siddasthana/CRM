@@ -776,6 +776,7 @@
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Pnl_CaseDirctry.setLayout(new WrapLayout());"/>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
 
                       <Layout>
