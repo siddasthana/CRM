@@ -1434,7 +1434,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                 ob.setCaseHid(ch.getId());
                 ob.savetodb();
             }
-            Calls call = new Calls().loadclass(" TextualDate='" + TextualDate + "' and CallUUID='" + UUID + "'").get(0);
+            Calls call = new Calls().loadclass(" TextualDate='" + TextualDate + "' and CallUUID='" + UUID + "' ORDER BY idCall DESC").get(0);
             System.out.println("updating calls" + "\n" + call.getId());
             call.setCaseHID(ch.getId());
             call.setAgentId(Integer.valueOf(((ParentForm) this.getParent()).AgentId));

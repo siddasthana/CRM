@@ -6,24 +6,24 @@ package View;
 
 import DataBase.OutBound;
 import DataBase.Sql;
-import DataBase.Tables.Accused;
 import DataBase.Tables.Caller;
 import DataBase.Tables.Calls;
 import DataBase.Tables.CaseHistory;
 import DataBase.Tables.Cases;
 import DataBase.Tables.ForwardCase;
 import DataBase.Tables.Telephone;
-import DataBase.Tables.Legal;
 import Layout.WrapLayout;
-import View.Elements.Pnl_CallElement;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import static java.awt.image.ImageObserver.ALLBITS;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,36 +58,12 @@ public class Dlg_Agency extends javax.swing.JDialog {
         this.CmbBx_CaseType = CmbBx_CaseType;
     }
 
-    public JComboBox getCmbBx_PoliceDistrict() {
-        return CmbBx_PoliceDistrict;
-    }
-
-    public void setCmbBx_PoliceDistrict(JComboBox CmbBx_PoliceDistrict) {
-        this.CmbBx_PoliceDistrict = CmbBx_PoliceDistrict;
-    }
-
     public JXSearchField getSrchFld_Complaint() {
         return SrchFld_Complaint;
     }
 
     public void setSrchFld_Complaint(JXSearchField SrchFld_Complaint) {
         this.SrchFld_Complaint = SrchFld_Complaint;
-    }
-
-    public JXSearchField getSrchFld_PoliceStne() {
-        return SrchFld_PoliceStne;
-    }
-
-    public void setSrchFld_PoliceStne(JXSearchField SrchFld_PoliceStne) {
-        this.SrchFld_PoliceStne = SrchFld_PoliceStne;
-    }
-
-    public JComboBox getCmbBx_Forward() {
-        return CmbBx_Forward;
-    }
-
-    public void setCmbBx_Forward(JComboBox CmbBx_Forward) {
-        this.CmbBx_Forward = CmbBx_Forward;
     }
     /**
      * Creates new form Dlg_distresswoman
@@ -101,88 +77,40 @@ public class Dlg_Agency extends javax.swing.JDialog {
 
     }
 
-    public JTextField getTxt_CallerAddress() {
-        return Txt_CallerAddress;
-    }
-
-    public void setTxt_CallerAddress(JTextField Txt_CallerAddress3) {
-        this.Txt_CallerAddress = Txt_CallerAddress3;
-    }
-
-    public JTextField getTxt_CallerAge() {
-        return Txt_CallerAge;
-    }
-
-    public void setTxt_CallerAge(JTextField Txt_CallerAge3) {
-        this.Txt_CallerAge = Txt_CallerAge3;
-    }
-
     public JTextField getTxt_CallerName() {
         return Txt_CallerName;
     }
 
-    public void setTxt_AccusedName(JTextField Txt_CallerAge3) {
-        this.Txt_AccusedName = Txt_CallerAge3;
+    public void setTxt_AgencyName(JTextField Txt_CallerAge3) {
+        this.Txt_AgencyName = Txt_CallerAge3;
     }
 
-    public JTextField getTxt_AccusedName() {
-        return Txt_AccusedName;
+    public JTextField getTxt_AgencyName() {
+        return Txt_AgencyName;
     }
 
-    public void setTxt_AccusedAddress(JTextField Txt_CallerAge3) {
-        this.Txt_AccusedAddress = Txt_CallerAge3;
+    public void setTxt_AgencyAddress(JTextField Txt_CallerAge3) {
+        this.Txt_AgencyAddress = Txt_CallerAge3;
     }
 
-    public JTextField getTxt_AccusedAddress() {
-        return Txt_AccusedAddress;
+    public JTextField getTxt_AgencyAddress() {
+        return Txt_AgencyAddress;
     }
 
-    public void setTxt_AccusedPhone(JTextField Txt_CallerAge3) {
-        this.Txt_AccusedPhone = Txt_CallerAge3;
+    public void setTxt_AgencyPhone(JTextField Txt_CallerAge3) {
+        this.Txt_AgencyPhone = Txt_CallerAge3;
     }
 
-    public JTextField getTxt_AccusedPhone() {
-        return Txt_AccusedPhone;
+    public JTextField getTxt_AgencyPhone() {
+        return Txt_AgencyPhone;
     }
 
-    public void setTxt_AccusedDD(JTextField Txt_CallerAge3) {
-        this.Txt_AccusedDD = Txt_CallerAge3;
+    public void setTxt_AgencyMobile(JTextField Txt_CallerAge3) {
+        this.Txt_AgencyMobile = Txt_CallerAge3;
     }
 
-    public JTextField getTxt_AccusedDD() {
-        return Txt_AccusedDD;
-    }
-
-    public void setTxt_AccusedFIR(JTextField Txt_CallerAge3) {
-        this.Txt_AccusedFIR = Txt_CallerAge3;
-    }
-
-    public JTextField getTxt_AccusedFIR() {
-        return Txt_AccusedFIR;
-    }
-
-    public void setChk_Challan(int Txt_CallerName3) {
-        if (Txt_CallerName3 == 0) {
-            this.jChk_Challan.setSelected(false);
-        } else {
-            this.jChk_Challan.setSelected(true);
-        }
-    }
-
-    public boolean getChk_Challan() {
-        return jChk_Challan.isSelected();
-    }
-
-    public void setChk_Judgement(int Txt_CallerName3) {
-        if (Txt_CallerName3 == 0) {
-            this.jChk_Judgement.setSelected(false);
-        } else {
-            this.jChk_Judgement.setSelected(true);
-        }
-    }
-
-    public boolean getChk_Judgement() {
-        return jChk_Judgement.isSelected();
+    public JTextField getTxt_AgencyMobile() {
+        return Txt_AgencyMobile;
     }
 
     public void setTxt_CallerName(JTextField Txt_CallerName3) {
@@ -212,8 +140,6 @@ public class Dlg_Agency extends javax.swing.JDialog {
         jPanel11 = new javax.swing.JPanel();
         jLabel55 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
         jLabel60 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -222,28 +148,17 @@ public class Dlg_Agency extends javax.swing.JDialog {
         Txt_Advice = new javax.swing.JTextArea();
         Txt_CallerName = new javax.swing.JTextField();
         Txt_CallerPhone = new javax.swing.JTextField();
-        Txt_CallerAddress = new javax.swing.JTextField();
-        jLabel61 = new javax.swing.JLabel();
-        Txt_CallerAge = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jLabel62 = new javax.swing.JLabel();
-        Txt_AccusedName = new javax.swing.JTextField();
+        Txt_AgencyName = new javax.swing.JTextField();
         jLabel63 = new javax.swing.JLabel();
-        Txt_AccusedPhone = new javax.swing.JTextField();
-        Txt_AccusedAddress = new javax.swing.JTextField();
+        Txt_AgencyPhone = new javax.swing.JTextField();
+        Txt_AgencyAddress = new javax.swing.JTextField();
         jLabel64 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
-        Txt_AccusedDD = new javax.swing.JTextField();
-        jLabel71 = new javax.swing.JLabel();
-        Txt_AccusedFIR = new javax.swing.JTextField();
-        jChk_Challan = new javax.swing.JCheckBox();
-        jChk_Judgement = new javax.swing.JCheckBox();
+        Txt_AgencyMobile = new javax.swing.JTextField();
         jLabel66 = new javax.swing.JLabel();
         CmbBx_CaseType = new javax.swing.JComboBox();
-        jLabel67 = new javax.swing.JLabel();
-        CmbBx_Forward = new javax.swing.JComboBox();
-        jLabel68 = new javax.swing.JLabel();
-        CmbBx_PoliceDistrict = new javax.swing.JComboBox();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
@@ -271,14 +186,12 @@ public class Dlg_Agency extends javax.swing.JDialog {
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
-        SrchFld_PoliceStne = new org.jdesktop.swingx.JXSearchField();
         SrchFld_Complaint = new org.jdesktop.swingx.JXSearchField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Pnl_CaseHistory = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         CmbBx_CaseStatus = new javax.swing.JComboBox();
-        jButton2 = new javax.swing.JButton();
 
         PopMn_Complaint.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         PopMn_Complaint.setForeground(new java.awt.Color(255, 51, 51));
@@ -292,12 +205,6 @@ public class Dlg_Agency extends javax.swing.JDialog {
 
         jLabel56.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel56.setText("Phone");
-
-        jLabel57.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel57.setText("Address");
-
-        jLabel58.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel58.setText("Police District");
 
         jLabel59.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel59.setText("Case Briefing");
@@ -319,28 +226,25 @@ public class Dlg_Agency extends javax.swing.JDialog {
             }
         });
 
-        jLabel61.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel61.setText("Age");
-
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Accused", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(51, 255, 255))); // NOI18N
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agency", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(51, 255, 255))); // NOI18N
         jPanel12.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
         jLabel62.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel62.setText("Name");
 
-        Txt_AccusedName.addActionListener(new java.awt.event.ActionListener() {
+        Txt_AgencyName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Txt_AccusedNameActionPerformed(evt);
+                Txt_AgencyNameActionPerformed(evt);
             }
         });
 
         jLabel63.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel63.setText("Phone");
 
-        Txt_AccusedPhone.addActionListener(new java.awt.event.ActionListener() {
+        Txt_AgencyPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Txt_AccusedPhoneActionPerformed(evt);
+                Txt_AgencyPhoneActionPerformed(evt);
             }
         });
 
@@ -348,51 +252,31 @@ public class Dlg_Agency extends javax.swing.JDialog {
         jLabel64.setText("Address");
 
         jLabel65.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel65.setText("DD No.");
+        jLabel65.setText("Mobile");
 
-        Txt_AccusedDD.setName(""); // NOI18N
-        Txt_AccusedDD.addActionListener(new java.awt.event.ActionListener() {
+        Txt_AgencyMobile.setName(""); // NOI18N
+        Txt_AgencyMobile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Txt_AccusedDDActionPerformed(evt);
+                Txt_AgencyMobileActionPerformed(evt);
             }
         });
-
-        jLabel71.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel71.setText("FIR No.");
-
-        Txt_AccusedFIR.setName(""); // NOI18N
-        Txt_AccusedFIR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Txt_AccusedFIRActionPerformed(evt);
-            }
-        });
-
-        jChk_Challan.setText("Challan");
-
-        jChk_Judgement.setText("Judgement");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel62, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel63, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel64, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel71, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jChk_Challan))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jChk_Judgement)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(Txt_AccusedPhone)
-                        .addComponent(Txt_AccusedName)
-                        .addComponent(Txt_AccusedAddress)
-                        .addComponent(Txt_AccusedDD, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                        .addComponent(Txt_AccusedFIR, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel62, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel63, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel64, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Txt_AgencyPhone)
+                    .addComponent(Txt_AgencyName)
+                    .addComponent(Txt_AgencyAddress)
+                    .addComponent(Txt_AgencyMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
                 .addGap(23, 23, 23))
         );
         jPanel12Layout.setVerticalGroup(
@@ -401,27 +285,20 @@ public class Dlg_Agency extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel62)
-                    .addComponent(Txt_AccusedName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_AgencyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Txt_AccusedPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txt_AgencyPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel63))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Txt_AccusedAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txt_AgencyAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel64))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Txt_AccusedDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txt_AgencyMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel65))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel71)
-                    .addComponent(Txt_AccusedFIR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jChk_Challan)
-                    .addComponent(jChk_Judgement)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jLabel66.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -432,23 +309,6 @@ public class Dlg_Agency extends javax.swing.JDialog {
         CmbBx_CaseType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbBx_CaseTypeActionPerformed(evt);
-            }
-        });
-
-        jLabel67.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel67.setText("Reffered");
-
-        CmbBx_Forward.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        CmbBx_Forward.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Other", "100", "1096", "SHO PS", "DCP/ACP", "DLSA", "DCW", "Mahila Panchayat", "Shelter Home", "Protection Ofiicer", "Child Welfare Comitee", "GRC", "Awaaj Uthao", "IHBAS", "DTC", "NGO", "Hospital", "Ambulance" }));
-
-        jLabel68.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel68.setText("Police Station");
-
-        CmbBx_PoliceDistrict.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        CmbBx_PoliceDistrict.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CENTRAL", "EAST", "NEW DELHI", "NORTH", "NORTH EAST", "NORTH WEST", "SOUTH", "SOUTH EAST ", "SOUTH WEST", "OUTER DISTRICT", "WEST" }));
-        CmbBx_PoliceDistrict.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                CmbBx_PoliceDistrictItemStateChanged(evt);
             }
         });
 
@@ -755,18 +615,6 @@ public class Dlg_Agency extends javax.swing.JDialog {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 200, 140));
 
-        SrchFld_PoliceStne.setFindPopupMenu(popupmenu);
-        SrchFld_PoliceStne.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SrchFld_PoliceStneActionPerformed(evt);
-            }
-        });
-        SrchFld_PoliceStne.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                SrchFld_PoliceStneFocusLost(evt);
-            }
-        });
-
         SrchFld_Complaint.setFindPopupMenu(PopMn_Complaint);
         SrchFld_Complaint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -802,89 +650,60 @@ public class Dlg_Agency extends javax.swing.JDialog {
         CmbBx_CaseStatus.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         CmbBx_CaseStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Primary intervention done", "Case in progress", "Case closed" }));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/Add.jpg"))); // NOI18N
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 255, 255), new java.awt.Color(0, 255, 255)));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(59, 59, 59)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jLabel67)
-                                .addGap(55, 55, 55)
-                                .addComponent(CmbBx_Forward, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel11Layout.createSequentialGroup()
-                                    .addComponent(jButton10)
-                                    .addGap(30, 30, 30)
-                                    .addComponent(jButton11)
-                                    .addGap(30, 30, 30)
-                                    .addComponent(jButton12)
-                                    .addGap(53, 53, 53)
-                                    .addComponent(Btn_Reminder))
-                                .addGroup(jPanel11Layout.createSequentialGroup()
-                                    .addComponent(jLabel59)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel11Layout.createSequentialGroup()
-                                    .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(38, 38, 38)
-                                    .addComponent(jScrollPane10)))))
+                                .addComponent(jButton10)
+                                .addGap(30, 30, 30)
+                                .addComponent(jButton11)
+                                .addGap(30, 30, 30)
+                                .addComponent(jButton12)
+                                .addGap(53, 53, 53)
+                                .addComponent(Btn_Reminder))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel59)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(jScrollPane10))))
                     .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
-                                    .addComponent(jLabel58)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(CmbBx_PoliceDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
                                     .addGap(95, 95, 95)
                                     .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(Txt_CallerName, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Txt_CallerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Txt_CallerAge, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Txt_CallerAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(Txt_CallerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel11Layout.createSequentialGroup()
                                     .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel68)
                                         .addComponent(jLabel4)
                                         .addComponent(jLabel66))
-                                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel11Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(SrchFld_Complaint, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(CmbBx_CaseStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(jPanel11Layout.createSequentialGroup()
-                                            .addGap(21, 21, 21)
-                                            .addComponent(SrchFld_PoliceStne, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(jLabel57)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(SrchFld_Complaint, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CmbBx_CaseStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel55)
-                            .addComponent(jLabel56)
-                            .addComponent(jLabel61))
+                            .addComponent(jLabel56))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
                                 .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel70, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(74, 74, 74)
                                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -896,38 +715,26 @@ public class Dlg_Agency extends javax.swing.JDialog {
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                 .addGap(23, 23, 23)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel70)))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel55)
                                     .addComponent(Txt_CallerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                .addGap(25, 25, 25)
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel61)
-                                    .addComponent(Txt_CallerAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(Txt_CallerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel56))
-                                    .addComponent(jButton2))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel57)
-                                    .addComponent(Txt_CallerAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel58)
-                                    .addComponent(CmbBx_PoliceDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel68)
-                                    .addComponent(SrchFld_PoliceStne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
+                                    .addComponent(Txt_CallerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel56))
+                                .addGap(22, 22, 22)
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel69)
                                     .addComponent(SrchFld_Complaint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -938,19 +745,8 @@ public class Dlg_Agency extends javax.swing.JDialog {
                                 .addGap(14, 14, 14)
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel66)
-                                    .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel70))
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(CmbBx_Forward, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel67))
-                                .addGap(28, 28, 28)))
+                                    .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel59)
                             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -958,8 +754,8 @@ public class Dlg_Agency extends javax.swing.JDialog {
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel60)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton12)
@@ -989,51 +785,6 @@ public class Dlg_Agency extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SrchFld_PoliceStneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SrchFld_PoliceStneActionPerformed
-        // TODO add your handling code here:
-        if (popupmenu.getComponentCount() > 0) {
-            for (int i = 0; i < popupmenu.getComponentCount(); i++) {
-                JMenuItem ji = (JMenuItem) popupmenu.getComponentAtIndex(i);
-                if (ji.getText().equals(evt.getActionCommand().toString())) {
-                    return;
-                }
-            }
-        }
-
-        System.out.println(evt.getActionCommand());
-        popupmenu.setVisible(false);
-        boolean b = SrchFld_PoliceStne.isUseNativeSearchFieldIfPossible();
-        //Fetch Data
-        Sql sql = new Sql();
-        ResultSet rs;
-        rs = sql.ExecuteQuery("Select * From directory where area like '%" + evt.getActionCommand() + "%' Limit 4");
-        try {
-            popupmenu.removeAll();
-            while (rs.next()) {
-                System.out.println();
-                JMenuItem ji = new JMenuItem(rs.getString(3));
-                ji.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        click(evt);
-                    }
-
-                    private void click(ActionEvent evt) {
-                        SrchFld_PoliceStne.setText(evt.getActionCommand());
-                    }
-                });
-
-                popupmenu.add(ji);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Screen_TeleExecutive.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        sql.Destructor();
-        // SrchFld_PoliceStne.getpo;
-        //System.out.println(SrchFld_PoliceStne.getFindPopupMenu().getPopupLocation(null));
-        //popupmenu.setLocation(200,200);
-        popupmenu.setFocusable(false);
-        popupmenu.setVisible(true);
-    }//GEN-LAST:event_SrchFld_PoliceStneActionPerformed
     public static void setSelectedValue(JComboBox comboBox, String value) {
 
         String item;
@@ -1059,11 +810,11 @@ public class Dlg_Agency extends javax.swing.JDialog {
                 newcase = false;
                 Cases cs = new Cases().loadclass(" idCase=" + dc.Caseid).get(0);
                 CaseID = cs.getId();
-                SrchFld_PoliceStne.setText(cs.getPoliceStn());
+                //SrchFld_PoliceStne.setText(cs.getPoliceStn());
                 SrchFld_Complaint.setText(cs.getReadableName());
                 setSelectedValue(CmbBx_CaseStatus, cs.getStatus());
                 setSelectedValue(CmbBx_CaseType, cs.getCaseType());
-                setSelectedValue(CmbBx_Forward, cs.getForward());
+                //setSelectedValue(CmbBx_Forward, cs.getForward());
                 infoBox("Your Current case is updated to : " + cs.getReadableName(), "Delhi Women Cell");
             } else {
                 infoBox("You have not selected any Case", "Delhi Women Cell");
@@ -1102,9 +853,9 @@ public class Dlg_Agency extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_CmbBx_CaseTypeActionPerformed
 
-    private void Txt_AccusedNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_AccusedNameActionPerformed
+    private void Txt_AgencyNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_AgencyNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Txt_AccusedNameActionPerformed
+    }//GEN-LAST:event_Txt_AgencyNameActionPerformed
 
     private void Txt_CallerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_CallerNameActionPerformed
         // TODO add your handling code here:
@@ -1114,7 +865,7 @@ public class Dlg_Agency extends javax.swing.JDialog {
         // TODO add your handling code here:
         boolean saved = SaveData();
         if (saved) {
-            System.err.println("newcase"+newcase+"newcaller"+newcaller+"newaccused"+newaccussed);
+            System.err.println("newcase" + newcase + "newcaller" + newcaller + "newaccused" + newaccussed);
             ForwardCase fc = new ForwardCase();
             fc.setCaseID(CaseID);
             fc.setLevel("S");
@@ -1178,22 +929,6 @@ public class Dlg_Agency extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
-        da.show();
-        Telephone ph = new Telephone();
-        ph.setNote(da.getTxtName().getText());
-        try {
-            ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
-            tp.add(ph);
-        } catch (Exception e) {
-            e.printStackTrace();
-            infoBox("You have entered invalid number", "Delhi Women Cell");
-        }
-
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void TxtDialScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDialScreenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtDialScreenActionPerformed
@@ -1210,39 +945,13 @@ public class Dlg_Agency extends javax.swing.JDialog {
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
     }//GEN-LAST:event_Btn_DialActionPerformed
 
-    private void Txt_AccusedDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_AccusedDDActionPerformed
+    private void Txt_AgencyMobileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_AgencyMobileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Txt_AccusedDDActionPerformed
+    }//GEN-LAST:event_Txt_AgencyMobileActionPerformed
 
-    private void Txt_AccusedPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_AccusedPhoneActionPerformed
+    private void Txt_AgencyPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_AgencyPhoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Txt_AccusedPhoneActionPerformed
-
-    private void Txt_AccusedFIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_AccusedFIRActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Txt_AccusedFIRActionPerformed
-
-    private void CmbBx_PoliceDistrictItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CmbBx_PoliceDistrictItemStateChanged
-        // TODO add your handling code here:
-        //jCmb_PS.removeAllItems();
-        //jCmb_PS.add();
-    }//GEN-LAST:event_CmbBx_PoliceDistrictItemStateChanged
-
-    private void SrchFld_PoliceStneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SrchFld_PoliceStneFocusLost
-        // TODO add your handling code here: 
-        Pnl_CaseDirctry.removeAll();
-        ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like '"+SrchFld_PoliceStne.getText()+"'");
-        for (DataBase.Tables.Directory obj : dir1){
-        Pnl_CallElement pce = new Pnl_CallElement();
-        pce.Lbl_CallElement_number.setText(obj.getNumber());
-        pce.Lbl_CallElement_Name.setText(obj.getService());
-        
-        Pnl_CaseDirctry.add(pce);
-            System.out.println("Added a Case directory element");
-        }
-        Pnl_CaseDirctry.revalidate();
-        Pnl_CaseDirctry.repaint();
-    }//GEN-LAST:event_SrchFld_PoliceStneFocusLost
+    }//GEN-LAST:event_Txt_AgencyPhoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1293,23 +1002,17 @@ public class Dlg_Agency extends javax.swing.JDialog {
     private javax.swing.JButton Btn_Reminder;
     public javax.swing.JComboBox CmbBx_CaseStatus;
     private javax.swing.JComboBox CmbBx_CaseType;
-    private javax.swing.JComboBox CmbBx_Forward;
-    private javax.swing.JComboBox CmbBx_PoliceDistrict;
     public javax.swing.JPanel Pnl_CaseDirctry;
     public javax.swing.JPanel Pnl_CaseHistory;
     public javax.swing.JPanel Pnl_RecrdDirctry;
     private javax.swing.JPopupMenu PopMn_Complaint;
     private org.jdesktop.swingx.JXSearchField SrchFld_Complaint;
-    private org.jdesktop.swingx.JXSearchField SrchFld_PoliceStne;
     private javax.swing.JTextField TxtDialScreen;
-    private javax.swing.JTextField Txt_AccusedAddress;
-    private javax.swing.JTextField Txt_AccusedDD;
-    private javax.swing.JTextField Txt_AccusedFIR;
-    private javax.swing.JTextField Txt_AccusedName;
-    private javax.swing.JTextField Txt_AccusedPhone;
     private javax.swing.JTextArea Txt_Advice;
-    private javax.swing.JTextField Txt_CallerAddress;
-    private javax.swing.JTextField Txt_CallerAge;
+    private javax.swing.JTextField Txt_AgencyAddress;
+    private javax.swing.JTextField Txt_AgencyMobile;
+    private javax.swing.JTextField Txt_AgencyName;
+    private javax.swing.JTextField Txt_AgencyPhone;
     private javax.swing.JTextField Txt_CallerName;
     private javax.swing.JTextField Txt_CallerPhone;
     private javax.swing.JTextArea Txt_Note;
@@ -1322,35 +1025,26 @@ public class Dlg_Agency extends javax.swing.JDialog {
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JCheckBox jChk_Challan;
-    private javax.swing.JCheckBox jChk_Judgement;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
@@ -1372,53 +1066,59 @@ public class Dlg_Agency extends javax.swing.JDialog {
     public Cases cs = new Cases();
 
     private boolean SaveData() {
-        try {
-            cs.setPoliceStn(this.getSrchFld_PoliceStne().getText());
+        Sql sql = new Sql();
+       String Query = "INSERT INTO `" + Sql.dbName + "`.`agency` (`id`, `Name`, `Address`, `Landline`, `Mobile`)" + " values(null,?,?,?,?) ";
+        //  Query += " VALUES ('" + getPoliceStn() + "', '" + getStatus() + "', '" + getForward() + "', '" + getReadableName() + "', '" + getCaseType() + "')";
+        //Sql s = new Sql();
+        System.out.println(Query);
+        CallableStatement cs = null;
+        try{
+            cs = sql.getConnection().prepareCall("{call savadata(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            cs.registerOutParameter(1, Types.BIGINT);
+            cs.registerOutParameter(2, Types.BIGINT);
+            cs.registerOutParameter(3, Types.BIGINT);
+            cs.registerOutParameter(4, Types.BIGINT);
+            cs.registerOutParameter(5, Types.BIGINT);
+            
+            cs.setString(6, getCmbBx_CaseStatus().getSelectedItem().toString());
+            cs.setString(7, getCmbBx_CaseType().getSelectedItem().toString());
+            cs.setInt(8, Integer.valueOf(((ParentForm) this.getParent()).AgentId));
+            cs.setString(9, this.Txt_Note.getText());
+            cs.setString(10, this.Txt_Advice.getText());
+            cs.setString(11, getTxt_AgencyName().toString());
+            cs.setString(12, getTxt_AgencyAddress().toString());
+            cs.setString(13, getTxt_AgencyPhone().toString());
+            cs.setString(14, getTxt_AgencyMobile().toString());
+            cs.setString(15, getTxt_CallerName().toString());
+            cs.setString(16, getTxt_CallerPhone().toString());
+            cs.setString(17, TextualDate);
+            cs.setString(18, UUID);
+            //cs.setString(14, geta);
+            
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        return true;
+        /*try {            
+            
+        } catch (SQLException ex) {
+            
+        }*/
+        /* try {
+            //cs.setPoliceStn(this.getSrchFld_PoliceStne().getText());
             cs.setReadableName(this.getSrchFld_Complaint().getText());
             cs.setStatus(this.CmbBx_CaseStatus.getSelectedItem().toString());
-            cs.setForward(this.CmbBx_Forward.getSelectedItem().toString());
+            //cs.setForward(this.CmbBx_Forward.getSelectedItem().toString());
             cs.setCaseType(this.CmbBx_CaseType.getSelectedItem().toString());
-            System.err.println("newcase "+newcase);
+            System.err.println("newcase " + newcase);
             if (newcase) {
                 cs.savetodb();
                 CaseID = cs.getId();
             }
             if (CaseID < 1) {
                 return false;
-            }
-            if (newcase) {
-                Accused acd = new Accused();
-                if (Txt_AccusedName.getText().length() > 1 || Txt_AccusedPhone.getText().length()> 1) {
-                    acd.setName(Txt_AccusedName.getText());
-                    try {
-                        acd.setPhone(Long.valueOf(Txt_AccusedPhone.getText()));
-                    } catch (NumberFormatException e) {
-                        acd.setPhone(0);
-                    }
-                    acd.setAddress(Txt_AccusedAddress.getText());
-                    acd.setFir(Txt_AccusedDD.getText());
-                    acd.setCaseID(cs.getId());
-                    acd.savetodb();
-                }
-            }
-            else{ }
-            if (newcase) {
-                Legal le = new Legal();
-                le.setDD(Txt_AccusedDD.getText());
-                le.setFir(Txt_AccusedFIR.getText());
-                le.setChallan(jChk_Challan.isSelected()?1:0);
-                le.setJudgement(jChk_Judgement.isSelected()?1:0);
-                le.setCaseID(cs.getId());
-                le.savetodb();
-            } else {
-                Legal le = new Legal();
-                le.setDD(Txt_AccusedDD.getText());
-                le.setFir(Txt_AccusedFIR.getText());
-                le.setChallan(jChk_Challan.isSelected() ? 1 : 0);
-                le.setJudgement(jChk_Judgement.isSelected() ? 1 : 0);
-                le.setCaseID(CaseID);
-                System.out.println("distress sheet accused update"+CaseID);
-                le.updatedb();
             }
 
             CaseHistory ch = new CaseHistory();
@@ -1428,7 +1128,7 @@ public class Dlg_Agency extends javax.swing.JDialog {
             ch.setCaseID(CaseID);
             ch.setNote(this.Txt_Note.getText());
             ch.setDatestamp(new Date().toLocaleString());
-            ch.setReffered(this.CmbBx_Forward.getSelectedItem().toString());
+            //ch.setReffered(this.CmbBx_Forward.getSelectedItem().toString());
             ch.savetodb();
             for (Telephone ob : tp) {
                 ob.setCaseHid(ch.getId());
@@ -1445,11 +1145,11 @@ public class Dlg_Agency extends javax.swing.JDialog {
 
             Caller cl = new Caller();
             cl.setName(this.getTxt_CallerName().getText());
-            cl.setAge(this.getTxt_CallerAge().getText());
+            //cl.setAge(this.getTxt_CallerAge().getText());
             cl.setCallid(ch.getId());
-            cl.setAddress(this.Txt_CallerAddress.getText());
+            //cl.setAddress(this.Txt_CallerAddress.getText());
             cl.savetodb();
-            
+
             popupmenu.setVisible(false);
             popupmenu = null;
             return true;
@@ -1467,5 +1167,5 @@ public class Dlg_Agency extends javax.swing.JDialog {
         // CaseHid = new ArrayList<>();
         // CaseID = new ArrayList<>();
         // Dlg_distressWoman.
-    }
+    */}
 }
