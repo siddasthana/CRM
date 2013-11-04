@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -144,6 +145,11 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         Txt_FamiliarName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Txt_FamiliarNameActionPerformed(evt);
+            }
+        });
+        Txt_FamiliarName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Txt_FamiliarNameKeyReleased(evt);
             }
         });
 
@@ -346,6 +352,41 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
             infoBox("You have entered invalid number", "Delhi Women Cell");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Txt_FamiliarNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Txt_FamiliarNameKeyReleased
+        // TODO add your handling code here:
+        Sql sql = new Sql();
+        ResultSet rs;
+        rs = sql.ExecuteQuery("Select ReadableName From `" + Sql.dbName + "`.`case`  where ReadableName like '" + Txt_FamiliarName.getText() + "%'");
+        try {
+            //PopMn_Complaint.removeAll();
+            int i = 0;
+            while (rs.next()) {
+                i++;
+                System.out.println();
+                JMenuItem ji = new JMenuItem(rs.getString(1));
+                //ji.addActionListener(new java.awt.event.ActionListener() {
+                //  public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //    click(evt);
+                // }
+
+                // private void click(ActionEvent evt) {
+                // SrchFld_PoliceStne.setText(evt.getActionCommand());
+                //}
+                // });
+
+                //PopMn_Complaint.add(ji);
+            }
+            if (i == 0) {
+                Txt_FamiliarName.setForeground(Color.GREEN);
+            } else {
+                Txt_FamiliarName.setForeground(Color.RED);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Screen_TeleExecutive.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        sql.Destructor();
+    }//GEN-LAST:event_Txt_FamiliarNameKeyReleased
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
     }
