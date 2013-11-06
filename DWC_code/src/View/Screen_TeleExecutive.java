@@ -147,6 +147,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
         CmbBx_AgentStatus = new javax.swing.JComboBox();
         Btn_CaseReports = new javax.swing.JButton();
         Btn_FrwdedCase = new javax.swing.JButton();
@@ -195,24 +196,32 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         jRadioButton4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jRadioButton4.setText("Blank & Irrelevant");
 
+        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioButton5);
+        jRadioButton5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jRadioButton5.setText("Agency or Individual");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(204, 204, 204)
-                .addComponent(Btn_ProcessCall, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(204, 204, 204)
+                        .addComponent(Btn_ProcessCall, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jRadioButton1)
+                        .addGap(10, 10, 10)
+                        .addComponent(jRadioButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButton1)
-                .addGap(46, 46, 46)
-                .addComponent(jRadioButton2)
-                .addGap(48, 48, 48)
-                .addComponent(jRadioButton3)
-                .addGap(41, 41, 41)
-                .addComponent(jRadioButton4)
-                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +231,8 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2)
                     .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
+                    .addComponent(jRadioButton4)
+                    .addComponent(jRadioButton5))
                 .addGap(18, 18, 18)
                 .addComponent(Btn_ProcessCall)
                 .addContainerGap())
@@ -273,17 +283,17 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
                 .addComponent(Lbl_number, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(383, 383, 383))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(319, 319, 319)
                         .addComponent(CmbBx_AgentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(129, 129, 129)
                         .addComponent(Btn_AnsConfirm)
-                        .addGap(101, 101, 101)))
+                        .addGap(101, 101, 101))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Btn_FrwdedCase)
                     .addComponent(Btn_CaseReports, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -302,7 +312,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
                     .addComponent(Btn_CaseReports, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Btn_FrwdedCase, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Btn_AnsConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -327,6 +337,8 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
                 pf.Serving = rs.getString(1);
                 ((Dlg_distressWoman) Dlg_distressWoman).TextualDate = rs.getString(2);
                 ((Dlg_distressWoman) Dlg_distressWoman).UUID = rs.getString(3);
+                System.out.println("TextualDate "+rs.getString(2));
+                System.out.println("UUID "+rs.getString(3));
             } else {
                 infoBox("Please answer the call before you can proceed!!", "Delhi Woman Cell");
                 return;
@@ -353,6 +365,14 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
             SaveData("Men");
         } else if (jRadioButton4.isSelected()) {
             SaveData("Blank and Irrelevant");
+        }
+        else if (jRadioButton5.isSelected()) {
+            Dlg_Agency d = new Dlg_Agency(pf, closable);
+            ((Dlg_Agency) d).jPanel11.setSize(((Dlg_Agency) d).jPanel11.getPreferredSize());
+            d.loadelement(pf.Serving);
+            d.setSize(d.getPreferredSize());
+
+            d.show(true);
         }
     }//GEN-LAST:event_Btn_ProcessCallActionPerformed
 
@@ -421,6 +441,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
     // End of variables declaration//GEN-END:variables
     boolean newcaller, newcase, newaccussed;
     public boolean populatingcaller, populatingcase, populatincasehistory;

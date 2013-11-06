@@ -6,6 +6,8 @@ package View;
 
 import DataBase.OutBound;
 import DataBase.Sql;
+import DataBase.Tables.Agency;
+import DataBase.Tables.AgencyCaller;
 import DataBase.Tables.Caller;
 import DataBase.Tables.Calls;
 import DataBase.Tables.CaseHistory;
@@ -13,6 +15,7 @@ import DataBase.Tables.Cases;
 import DataBase.Tables.ForwardCase;
 import DataBase.Tables.Telephone;
 import Layout.WrapLayout;
+import static View.Screen_Managers.infoBox;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Frame;
@@ -1065,107 +1068,143 @@ public class Dlg_Agency extends javax.swing.JDialog {
     public long CaseID;//= new ArrayList<>();
     public Cases cs = new Cases();
 
+    public void loadelement(String number) {
+        /*Load sheet when an agency caller calls back or agency gives us call*/
+        int agn = new Agency().loadclass(" Number like '" + number + "'").size();
+        int agncl = new AgencyCaller().loadclass(" Number like '" + number + "'").size();
+        ArrayList<Cases> ca;
+        CaseHistory ch = new CaseHistory();
+
+
+        if (agn > 0) {
+            ca=new Cases().loadclass(" idCase IN ( select distinct CaseID from case_history where idCase_History in (select CaseHID from agentcaller where Number like '" + number + "'))");
+        }
+        if (agncl > 0) {
+            ca=new Cases().loadclass(" idCase IN ( select distinct CaseID from case_history where idCase_History in (select CaseHID from agentcaller where AgencyID in (select idAgency from agency where Landline like '" + number + "' or Mobile like '" + number + "')))");
+        }
+    }
+
     private boolean SaveData() {
         Sql sql = new Sql();
-       String Query = "INSERT INTO `" + Sql.dbName + "`.`agency` (`id`, `Name`, `Address`, `Landline`, `Mobile`)" + " values(null,?,?,?,?) ";
+        //String Query = "INSERT INTO `" + Sql.dbName + "`.`agency` (`id`, `Name`, `Address`, `Landline`, `Mobile`)" + " values(null,?,?,?,?) ";
         //  Query += " VALUES ('" + getPoliceStn() + "', '" + getStatus() + "', '" + getForward() + "', '" + getReadableName() + "', '" + getCaseType() + "')";
         //Sql s = new Sql();
-        System.out.println(Query);
+        //System.out.println(Query);
         CallableStatement cs = null;
-        try{
-            cs = sql.getConnection().prepareCall("{call savadata(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-            cs.registerOutParameter(1, Types.BIGINT);
-            cs.registerOutParameter(2, Types.BIGINT);
-            cs.registerOutParameter(3, Types.BIGINT);
-            cs.registerOutParameter(4, Types.BIGINT);
-            cs.registerOutParameter(5, Types.BIGINT);
-            
+        try {
+
+            cs = sql.getConnection().prepareCall("{call savedata(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            cs.registerOutParameter("idCaseHistory", Types.BIGINT);
+            cs.registerOutParameter("idCallP", Types.BIGINT);
+            cs.registerOutParameter("idAgency", Types.BIGINT);
+            cs.registerOutParameter("idAgencyCaller", Types.BIGINT);
+            cs.registerOutParameter("idCase", Types.BIGINT);
+            cs.registerOutParameter("COMPLAINTID", Types.VARCHAR);
+            cs.registerOutParameter("CallUUID", Types.VARCHAR);
+            cs.registerOutParameter("textualDate", Types.VARCHAR);
+
+            /*cs.reg
+             cs.setInt(1, 123456789);
+             cs.setInt(2, 123456789);
+             cs.setInt(3, 123456789);
+             cs.setInt(4, 123456789);
+             cs.setInt(5, 123456789);*/
+
             cs.setString(6, getCmbBx_CaseStatus().getSelectedItem().toString());
             cs.setString(7, getCmbBx_CaseType().getSelectedItem().toString());
             cs.setInt(8, Integer.valueOf(((ParentForm) this.getParent()).AgentId));
             cs.setString(9, this.Txt_Note.getText());
             cs.setString(10, this.Txt_Advice.getText());
-            cs.setString(11, getTxt_AgencyName().toString());
-            cs.setString(12, getTxt_AgencyAddress().toString());
-            cs.setString(13, getTxt_AgencyPhone().toString());
-            cs.setString(14, getTxt_AgencyMobile().toString());
-            cs.setString(15, getTxt_CallerName().toString());
-            cs.setString(16, getTxt_CallerPhone().toString());
+            cs.setString("AgencyName", this.Txt_AgencyName.getText());
+
+            cs.setString(12, this.Txt_AgencyAddress.getText());
+            cs.setString(13, this.Txt_AgencyPhone.getText());
+            cs.setString(14, this.Txt_AgencyMobile.getText());
+            cs.setString(15, this.Txt_CallerName.getText());
+            cs.setString(16, this.Txt_CallerPhone.getText());
             cs.setString(17, TextualDate);
             cs.setString(18, UUID);
             //cs.setString(14, geta);
-            
-        }
-        catch(Exception ex){
+            cs.executeUpdate();
+            System.out.println("idCase " + cs.getInt("idCase"));
+            System.out.println("idCaseHistory " + cs.getInt("idCaseHistory"));
+            System.out.println("idCall " + cs.getInt("idCallP"));
+            System.out.println("idAgency " + cs.getInt("idAgency"));
+            System.out.println("idAgencyCaller " + cs.getInt("idAgencyCaller"));
+            System.out.println("COMPLAINTID " + cs.getString("COMPLAINTID"));
+            System.out.println("UUID " + cs.getString("CallUUID"));
+            System.out.println("TextualDate " + cs.getString("textualDate"));
+            infoBox("ComplaintID = " + cs.getString("COMPLAINTID"), "Delhi Women Cell");
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
         return true;
         /*try {            
             
-        } catch (SQLException ex) {
+         } catch (SQLException ex) {
             
-        }*/
+         }*/
         /* try {
-            //cs.setPoliceStn(this.getSrchFld_PoliceStne().getText());
-            cs.setReadableName(this.getSrchFld_Complaint().getText());
-            cs.setStatus(this.CmbBx_CaseStatus.getSelectedItem().toString());
-            //cs.setForward(this.CmbBx_Forward.getSelectedItem().toString());
-            cs.setCaseType(this.CmbBx_CaseType.getSelectedItem().toString());
-            System.err.println("newcase " + newcase);
-            if (newcase) {
-                cs.savetodb();
-                CaseID = cs.getId();
-            }
-            if (CaseID < 1) {
-                return false;
-            }
+         //cs.setPoliceStn(this.getSrchFld_PoliceStne().getText());
+         cs.setReadableName(this.getSrchFld_Complaint().getText());
+         cs.setStatus(this.CmbBx_CaseStatus.getSelectedItem().toString());
+         //cs.setForward(this.CmbBx_Forward.getSelectedItem().toString());
+         cs.setCaseType(this.CmbBx_CaseType.getSelectedItem().toString());
+         System.err.println("newcase " + newcase);
+         if (newcase) {
+         cs.savetodb();
+         CaseID = cs.getId();
+         }
+         if (CaseID < 1) {
+         return false;
+         }
 
-            CaseHistory ch = new CaseHistory();
-            DataBase.Tables.Agent ag = new DataBase.Tables.Agent().loadclass(" AgentID='" + Long.valueOf(((ParentForm) this.getParent()).AgentId) + "'").get(0);
-            ch.setAgentID(ag.getId());
-            ch.setAdvice(this.Txt_Advice.getText());
-            ch.setCaseID(CaseID);
-            ch.setNote(this.Txt_Note.getText());
-            ch.setDatestamp(new Date().toLocaleString());
-            //ch.setReffered(this.CmbBx_Forward.getSelectedItem().toString());
-            ch.savetodb();
-            for (Telephone ob : tp) {
-                ob.setCaseHid(ch.getId());
-                ob.savetodb();
-            }
-            Calls call = new Calls().loadclass(" TextualDate='" + TextualDate + "' and CallUUID='" + UUID + "'").get(0);
-            System.out.println("updating calls" + "\n" + call.getId());
-            call.setCaseHID(ch.getId());
-            call.setAgentId(Integer.valueOf(((ParentForm) this.getParent()).AgentId));
-            call.updatedb();
+         CaseHistory ch = new CaseHistory();
+         DataBase.Tables.Agent ag = new DataBase.Tables.Agent().loadclass(" AgentID='" + Long.valueOf(((ParentForm) this.getParent()).AgentId) + "'").get(0);
+         ch.setAgentID(ag.getId());
+         ch.setAdvice(this.Txt_Advice.getText());
+         ch.setCaseID(CaseID);
+         ch.setNote(this.Txt_Note.getText());
+         ch.setDatestamp(new Date().toLocaleString());
+         //ch.setReffered(this.CmbBx_Forward.getSelectedItem().toString());
+         ch.savetodb();
+         for (Telephone ob : tp) {
+         ob.setCaseHid(ch.getId());
+         ob.savetodb();
+         }
+         Calls call = new Calls().loadclass(" TextualDate='" + TextualDate + "' and CallUUID='" + UUID + "'").get(0);
+         System.out.println("updating calls" + "\n" + call.getId());
+         call.setCaseHID(ch.getId());
+         call.setAgentId(Integer.valueOf(((ParentForm) this.getParent()).AgentId));
+         call.updatedb();
 
-            //     System.out.println("agent id is...." + call.getAgentId());
-            //   System.out.println("casehid id is...." + call.getCaseHID());
+         //     System.out.println("agent id is...." + call.getAgentId());
+         //   System.out.println("casehid id is...." + call.getCaseHID());
 
-            Caller cl = new Caller();
-            cl.setName(this.getTxt_CallerName().getText());
-            //cl.setAge(this.getTxt_CallerAge().getText());
-            cl.setCallid(ch.getId());
-            //cl.setAddress(this.Txt_CallerAddress.getText());
-            cl.savetodb();
+         Caller cl = new Caller();
+         cl.setName(this.getTxt_CallerName().getText());
+         //cl.setAge(this.getTxt_CallerAge().getText());
+         cl.setCallid(ch.getId());
+         //cl.setAddress(this.Txt_CallerAddress.getText());
+         cl.savetodb();
 
-            popupmenu.setVisible(false);
-            popupmenu = null;
-            return true;
-        } catch (Exception e) {
-            infoBox("Information is not saved", "Delhi Women Cell");
-            e.printStackTrace();
-            return false;
-        }
+         popupmenu.setVisible(false);
+         popupmenu = null;
+         return true;
+         } catch (Exception e) {
+         infoBox("Information is not saved", "Delhi Women Cell");
+         e.printStackTrace();
+         return false;
+         }
 
-        // Reset the variable after
-        // cs = new Cases();
-        // newcaller=false;
-        // newcase=false;
-        // newaccussed= false;
-        // CaseHid = new ArrayList<>();
-        // CaseID = new ArrayList<>();
-        // Dlg_distressWoman.
-    */}
+         // Reset the variable after
+         // cs = new Cases();
+         // newcaller=false;
+         // newcase=false;
+         // newaccussed= false;
+         // CaseHid = new ArrayList<>();
+         // CaseID = new ArrayList<>();
+         // Dlg_distressWoman.
+         */    }
 }
