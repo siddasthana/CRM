@@ -62,7 +62,7 @@ public class AgencyCaller {
     
 
     public void updatedb() {
-        String Query = "Update `" + Sql.dbName + "`.`angecycaller` Set ";
+        String Query = "Update `" + Sql.dbName + "`.`agencycaller` Set ";
         Query += "CaseHID='" + getCaseHID()+ "'";
         Query += ", AgencyID='" + getAgencyID()+ "'";
         Query += ", Name='" + getName()+ "'";
@@ -75,7 +75,7 @@ public class AgencyCaller {
     }
 
     public void savetodb() {
-        String Query = "INSERT INTO `" + Sql.dbName + "`.`angecycaller` (`id`, `AgencyID`, `CaseHID`, `Name`, `Number`)" + " values(null,?,?,?,?) ";
+        String Query = "INSERT INTO `" + Sql.dbName + "`.`agencycaller` (`id`, `AgencyID`, `CaseHID`, `Name`, `Number`)" + " values(null,?,?,?,?) ";
         //  Query += " VALUES ('" + getPoliceStn() + "', '" + getStatus() + "', '" + getForward() + "', '" + getReadableName() + "', '" + getCaseType() + "')";
         //Sql s = new Sql();
         System.out.println(Query);
@@ -106,7 +106,7 @@ public class AgencyCaller {
 
     public ArrayList<AgencyCaller> loadclass(String Querypart) {
         ArrayList<AgencyCaller> ac = new ArrayList<>();
-        String Query = "Select * From " + Sql.dbName + ".angecycaller where " + Querypart;
+        String Query = "Select * From " + Sql.dbName + ".agencycaller where " + Querypart;
         Sql sql = new Sql();
         System.out.println(Query);
         ResultSet rs = sql.ExecuteQuery(Query);

@@ -388,6 +388,7 @@ public CaseHistory getElement(){
     public void setBtn_Save(JButton Btn_Save) {
         this.Btn_Save = Btn_Save;
     }
+    
 
     private void Btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SaveActionPerformed
         // TODO add your handling code here:

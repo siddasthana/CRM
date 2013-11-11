@@ -44,27 +44,27 @@ import org.jdesktop.swingx.JXSearchField;
  * @author admin
  */
 public class Dlg_Agency extends javax.swing.JDialog {
-
+    
     public JComboBox getCmbBx_CaseStatus() {
         return CmbBx_CaseStatus;
     }
-
+    
     public void setCmbBx_CaseStatus(JComboBox CmbBx_CaseStatus) {
         this.CmbBx_CaseStatus = CmbBx_CaseStatus;
     }
-
+    
     public JComboBox getCmbBx_CaseType() {
         return CmbBx_CaseType;
     }
-
+    
     public void setCmbBx_CaseType(JComboBox CmbBx_CaseType) {
         this.CmbBx_CaseType = CmbBx_CaseType;
     }
-
+    
     public JXSearchField getSrchFld_Complaint() {
         return SrchFld_Complaint;
     }
-
+    
     public void setSrchFld_Complaint(JXSearchField SrchFld_Complaint) {
         this.SrchFld_Complaint = SrchFld_Complaint;
     }
@@ -73,57 +73,57 @@ public class Dlg_Agency extends javax.swing.JDialog {
      */
     Dlg_SearchComplain dc = new Dlg_SearchComplain((Frame) this.getParent(), rootPaneCheckingEnabled);
     Dlg_Reminder dr = new Dlg_Reminder((Frame) this.getParent(), rootPaneCheckingEnabled);
-
+    
     public Dlg_Agency(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        
     }
-
+    
     public JTextField getTxt_CallerName() {
         return Txt_CallerName;
     }
-
+    
     public void setTxt_AgencyName(JTextField Txt_CallerAge3) {
         this.Txt_AgencyName = Txt_CallerAge3;
     }
-
+    
     public JTextField getTxt_AgencyName() {
         return Txt_AgencyName;
     }
-
+    
     public void setTxt_AgencyAddress(JTextField Txt_CallerAge3) {
         this.Txt_AgencyAddress = Txt_CallerAge3;
     }
-
+    
     public JTextField getTxt_AgencyAddress() {
         return Txt_AgencyAddress;
     }
-
+    
     public void setTxt_AgencyPhone(JTextField Txt_CallerAge3) {
         this.Txt_AgencyPhone = Txt_CallerAge3;
     }
-
+    
     public JTextField getTxt_AgencyPhone() {
         return Txt_AgencyPhone;
     }
-
+    
     public void setTxt_AgencyMobile(JTextField Txt_CallerAge3) {
         this.Txt_AgencyMobile = Txt_CallerAge3;
     }
-
+    
     public JTextField getTxt_AgencyMobile() {
         return Txt_AgencyMobile;
     }
-
+    
     public void setTxt_CallerName(JTextField Txt_CallerName3) {
         this.Txt_CallerName = Txt_CallerName3;
     }
-
+    
     public JTextField getTxt_CallerPhone() {
         return Txt_CallerPhone;
     }
-
+    
     public void setTxt_CallerPhone(JTextField Txt_CallerPhone3) {
         this.Txt_CallerPhone = Txt_CallerPhone3;
     }
@@ -660,8 +660,8 @@ public class Dlg_Agency extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(68, 68, 68)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jButton10)
                                 .addGap(30, 30, 30)
@@ -670,14 +670,15 @@ public class Dlg_Agency extends javax.swing.JDialog {
                                 .addComponent(jButton12)
                                 .addGap(53, 53, 53)
                                 .addComponent(Btn_Reminder))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jLabel59)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jScrollPane10))))
+                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                    .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(jScrollPane10))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                    .addComponent(jLabel59)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -789,7 +790,7 @@ public class Dlg_Agency extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void setSelectedValue(JComboBox comboBox, String value) {
-
+        
         String item;
         for (int i = 0; i < comboBox.getItemCount(); i++) {
             item = (String) comboBox.getItemAt(i);
@@ -810,7 +811,7 @@ public class Dlg_Agency extends javax.swing.JDialog {
             dc.setSize(dc.getPreferredSize());
             dc.setVisible(true);
             if (dc.Caseid >= 1) {
-                newcase = false;
+                //newcase = false;
                 Cases cs = new Cases().loadclass(" idCase=" + dc.Caseid).get(0);
                 CaseID = cs.getId();
                 //SrchFld_PoliceStne.setText(cs.getPoliceStn());
@@ -818,13 +819,14 @@ public class Dlg_Agency extends javax.swing.JDialog {
                 setSelectedValue(CmbBx_CaseStatus, cs.getStatus());
                 setSelectedValue(CmbBx_CaseType, cs.getCaseType());
                 //setSelectedValue(CmbBx_Forward, cs.getForward());
+                loadelement();
                 infoBox("Your Current case is updated to : " + cs.getReadableName(), "Delhi Women Cell");
             } else {
                 infoBox("You have not selected any Case", "Delhi Women Cell");
             }
         }
     }//GEN-LAST:event_jComboBox4ActionPerformed
-
+    
     private void Btn_ReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ReminderActionPerformed
         // TODO add your handling code here:
 
@@ -838,7 +840,7 @@ public class Dlg_Agency extends javax.swing.JDialog {
         dr.setSize(dr.getPreferredSize());
         dr.setVisible(true);
     }//GEN-LAST:event_Btn_ReminderActionPerformed
-
+    
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         boolean saved = SaveData();
@@ -851,24 +853,24 @@ public class Dlg_Agency extends javax.swing.JDialog {
             infoBox(Msg, "Delhi Women Cell");
         }
     }//GEN-LAST:event_jButton10ActionPerformed
-
+    
     private void CmbBx_CaseTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbBx_CaseTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CmbBx_CaseTypeActionPerformed
-
+    
     private void Txt_AgencyNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_AgencyNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Txt_AgencyNameActionPerformed
-
+    
     private void Txt_CallerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_CallerNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Txt_CallerNameActionPerformed
-
+    
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         boolean saved = SaveData();
         if (saved) {
-            System.err.println("newcase" + newcase + "newcaller" + newcaller + "newaccused" + newaccussed);
+            //System.err.println("newcase" + newcase + "newcaller" + newcaller + "newaccused" + newaccussed);
             ForwardCase fc = new ForwardCase();
             fc.setCaseID(CaseID);
             fc.setLevel("S");
@@ -878,16 +880,16 @@ public class Dlg_Agency extends javax.swing.JDialog {
             fc.savetodb();
             this.setVisible(false);
             this.dispose();
-
-
+            
+            
         } else {
             String Msg = "Unable to save Data \n";
             Msg += "Please Check you have not given Blank Values in Complaint";
             infoBox(Msg, "Delhi Women Cell");
         }
-
+        
     }//GEN-LAST:event_jButton11ActionPerformed
-
+    
     private void SrchFld_ComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SrchFld_ComplaintActionPerformed
         // TODO add your handling code here:
         Sql sql = new Sql();
@@ -931,27 +933,27 @@ public class Dlg_Agency extends javax.swing.JDialog {
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
     }
-
+    
     private void TxtDialScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDialScreenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtDialScreenActionPerformed
-
+    
     private void DialKeyPad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DialKeyPad
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_DialKeyPad
-
+    
     private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
         // TODO add your handling code here:
         OutBound ob = new OutBound();
         ob.connect(TxtDialScreen.getText());
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
     }//GEN-LAST:event_Btn_DialActionPerformed
-
+    
     private void Txt_AgencyMobileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_AgencyMobileActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Txt_AgencyMobileActionPerformed
-
+    
     private void Txt_AgencyPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_AgencyPhoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Txt_AgencyPhoneActionPerformed
@@ -1060,55 +1062,86 @@ public class Dlg_Agency extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JPopupMenu popupmenu;
     // End of variables declaration//GEN-END:variables
-    public boolean newcaller = false, newcase = false, newaccussed = false;
-    public boolean populatingcaller, populatingcase, populatincasehistory;
-    public ArrayList<Long> CaseHid = new ArrayList<>();
-    public ArrayList<Telephone> tp = new ArrayList<>();
+    //public boolean newcaller = false, newcase = false, newaccussed = false;
+    //public boolean populatingcaller, populatingcase, populatincasehistory;
+    //public ArrayList<Long> CaseHid = new ArrayList<>();
+    //public ArrayList<Telephone> tp = new ArrayList<>();
     public String TextualDate, UUID;
-    public long CaseID;//= new ArrayList<>();
+    public long CaseID, AgencyID;//= new ArrayList<>();
     public Cases cs = new Cases();
-
-    public void loadelement(String number) {
+    
+    public void loadelement() {
         /*Load sheet when an agency caller calls back or agency gives us call*/
-        int agn = new Agency().loadclass(" Number like '" + number + "'").size();
-        int agncl = new AgencyCaller().loadclass(" Number like '" + number + "'").size();
+        ArrayList<Agency> agn = new Agency().loadclass(" Landline like '" + this.getTxt_CallerPhone().getText() + "' OR Mobile like '" + this.getTxt_CallerPhone().getText() + "'");
+        ArrayList<AgencyCaller> agncl = new AgencyCaller().loadclass(" Number like '" + this.getTxt_CallerPhone().getText() + "'");
         ArrayList<Cases> ca;
-        CaseHistory ch = new CaseHistory();
-
-
-        if (agn > 0) {
-            ca=new Cases().loadclass(" idCase IN ( select distinct CaseID from case_history where idCase_History in (select CaseHID from agentcaller where Number like '" + number + "'))");
+        //CaseHistory ch = new CaseHistory();
+        
+        if (agn.size() > 0) {
+            ca = new Cases().loadclass(" idCase IN ( select distinct CaseID from case_history where idCase_History in (select CaseHID from agencycaller where AgencyID in (select id from agency where Landline like '" + this.getTxt_CallerPhone().getText() + "' or Mobile like '" + this.getTxt_CallerPhone().getText() + "')))");
+            
+            AgencyID = agn.get(0).getId();
+            CaseID = ca.get(0).getId();
+            showelement(ca.get(0), agn.get(0), agncl.size() > 0 ? agncl.get(0) : null);
         }
-        if (agncl > 0) {
-            ca=new Cases().loadclass(" idCase IN ( select distinct CaseID from case_history where idCase_History in (select CaseHID from agentcaller where AgencyID in (select idAgency from agency where Landline like '" + number + "' or Mobile like '" + number + "')))");
-        }
+        if (agncl.size() > 0) {
+            ca = new Cases().loadclass(" idCase IN ( select distinct CaseID from case_history where idCase_History in (select CaseHID from agencycaller where Number like '" + this.getTxt_CallerPhone().getText() + "'))");
+            AgencyID = agncl.get(0).getAgencyID();
+            CaseID = ca.get(0).getId();
+            ArrayList<Agency> a = new Agency().loadclass(" id = " + AgencyID);
+            showelement(ca.get(0), agn.size() > 0 ? agn.get(0) : a.get(0), agncl.get(0));
+        }      
     }
-
+    
+    public void showelement(Cases c, Agency a, AgencyCaller ac) {
+        this.SrchFld_Complaint.setText(c.getReadableName().isEmpty() ? "" : c.getReadableName());
+        this.CmbBx_CaseType.setSelectedItem(c.getCaseType().isEmpty() ? "" : c.getCaseType());
+        this.CmbBx_CaseStatus.setSelectedItem(c.getStatus().isEmpty() ? "" : c.getStatus());
+        //if(a.)
+        try {
+            this.Txt_AgencyName.setText(a.getName().isEmpty() ? "" : a.getName());
+            this.Txt_AgencyAddress.setText(a.getAddress().isEmpty() ? "" : a.getAddress());
+            this.Txt_AgencyPhone.setText(a.getLandline().isEmpty() ? "" : a.getLandline());
+            this.Txt_AgencyMobile.setText(a.getMobile().isEmpty() ? "" : a.getMobile());
+        } catch (Exception e) {
+            System.out.println("No Agency Found");
+            e.printStackTrace();
+            
+        }
+        try {
+            this.Txt_CallerName.setText(ac.getName().isEmpty() ? "" : ac.getName());
+            this.Txt_CallerPhone.setText(ac.getNumber().isEmpty() ? "" : ac.getNumber());
+        } catch (Exception e) {
+            System.out.println("No Agency Caller Found");
+            e.printStackTrace();
+        }
+        
+    }
+    
     private boolean SaveData() {
+        System.out.println("caseid "+ CaseID+ "AgencyID "+ AgencyID);
         Sql sql = new Sql();
+        sql.autocommit();
         //String Query = "INSERT INTO `" + Sql.dbName + "`.`agency` (`id`, `Name`, `Address`, `Landline`, `Mobile`)" + " values(null,?,?,?,?) ";
         //  Query += " VALUES ('" + getPoliceStn() + "', '" + getStatus() + "', '" + getForward() + "', '" + getReadableName() + "', '" + getCaseType() + "')";
         //Sql s = new Sql();
         //System.out.println(Query);
         CallableStatement cs = null;
-        try {
-
+        try {            
+            
             cs = sql.getConnection().prepareCall("{call savedata(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            cs.setLong("idCaseP", CaseID); //EXISTING CASE
+            cs.setLong("idAgency", AgencyID); //EXISTING AGENCY
             cs.registerOutParameter("idCaseHistory", Types.BIGINT);
             cs.registerOutParameter("idCallP", Types.BIGINT);
             cs.registerOutParameter("idAgency", Types.BIGINT);
             cs.registerOutParameter("idAgencyCaller", Types.BIGINT);
-            cs.registerOutParameter("idCase", Types.BIGINT);
+            cs.registerOutParameter("idCaseP", Types.BIGINT);
             cs.registerOutParameter("COMPLAINTID", Types.VARCHAR);
             cs.registerOutParameter("CallUUID", Types.VARCHAR);
             cs.registerOutParameter("textualDate", Types.VARCHAR);
-
-            /*cs.reg
-             cs.setInt(1, 123456789);
-             cs.setInt(2, 123456789);
-             cs.setInt(3, 123456789);
-             cs.setInt(4, 123456789);
-             cs.setInt(5, 123456789);*/
+            
+            
 
             cs.setString(6, getCmbBx_CaseStatus().getSelectedItem().toString());
             cs.setString(7, getCmbBx_CaseType().getSelectedItem().toString());
@@ -1116,7 +1149,7 @@ public class Dlg_Agency extends javax.swing.JDialog {
             cs.setString(9, this.Txt_Note.getText());
             cs.setString(10, this.Txt_Advice.getText());
             cs.setString("AgencyName", this.Txt_AgencyName.getText());
-
+            
             cs.setString(12, this.Txt_AgencyAddress.getText());
             cs.setString(13, this.Txt_AgencyPhone.getText());
             cs.setString(14, this.Txt_AgencyMobile.getText());
@@ -1126,7 +1159,7 @@ public class Dlg_Agency extends javax.swing.JDialog {
             cs.setString(18, UUID);
             //cs.setString(14, geta);
             cs.executeUpdate();
-            System.out.println("idCase " + cs.getInt("idCase"));
+            System.out.println("idCase " + cs.getInt("idCaseP"));
             System.out.println("idCaseHistory " + cs.getInt("idCaseHistory"));
             System.out.println("idCall " + cs.getInt("idCallP"));
             System.out.println("idAgency " + cs.getInt("idAgency"));
@@ -1134,77 +1167,13 @@ public class Dlg_Agency extends javax.swing.JDialog {
             System.out.println("COMPLAINTID " + cs.getString("COMPLAINTID"));
             System.out.println("UUID " + cs.getString("CallUUID"));
             System.out.println("TextualDate " + cs.getString("textualDate"));
+            sql.commit();
             infoBox("ComplaintID = " + cs.getString("COMPLAINTID"), "Delhi Women Cell");
         } catch (Exception ex) {
+            sql.rollback();
+            infoBox("Unable to Save Data!" , "Delhi Women Cell");
             ex.printStackTrace();
-        }
-
+        }        
         return true;
-        /*try {            
-            
-         } catch (SQLException ex) {
-            
-         }*/
-        /* try {
-         //cs.setPoliceStn(this.getSrchFld_PoliceStne().getText());
-         cs.setReadableName(this.getSrchFld_Complaint().getText());
-         cs.setStatus(this.CmbBx_CaseStatus.getSelectedItem().toString());
-         //cs.setForward(this.CmbBx_Forward.getSelectedItem().toString());
-         cs.setCaseType(this.CmbBx_CaseType.getSelectedItem().toString());
-         System.err.println("newcase " + newcase);
-         if (newcase) {
-         cs.savetodb();
-         CaseID = cs.getId();
-         }
-         if (CaseID < 1) {
-         return false;
-         }
-
-         CaseHistory ch = new CaseHistory();
-         DataBase.Tables.Agent ag = new DataBase.Tables.Agent().loadclass(" AgentID='" + Long.valueOf(((ParentForm) this.getParent()).AgentId) + "'").get(0);
-         ch.setAgentID(ag.getId());
-         ch.setAdvice(this.Txt_Advice.getText());
-         ch.setCaseID(CaseID);
-         ch.setNote(this.Txt_Note.getText());
-         ch.setDatestamp(new Date().toLocaleString());
-         //ch.setReffered(this.CmbBx_Forward.getSelectedItem().toString());
-         ch.savetodb();
-         for (Telephone ob : tp) {
-         ob.setCaseHid(ch.getId());
-         ob.savetodb();
-         }
-         Calls call = new Calls().loadclass(" TextualDate='" + TextualDate + "' and CallUUID='" + UUID + "'").get(0);
-         System.out.println("updating calls" + "\n" + call.getId());
-         call.setCaseHID(ch.getId());
-         call.setAgentId(Integer.valueOf(((ParentForm) this.getParent()).AgentId));
-         call.updatedb();
-
-         //     System.out.println("agent id is...." + call.getAgentId());
-         //   System.out.println("casehid id is...." + call.getCaseHID());
-
-         Caller cl = new Caller();
-         cl.setName(this.getTxt_CallerName().getText());
-         //cl.setAge(this.getTxt_CallerAge().getText());
-         cl.setCallid(ch.getId());
-         //cl.setAddress(this.Txt_CallerAddress.getText());
-         cl.savetodb();
-
-         popupmenu.setVisible(false);
-         popupmenu = null;
-         return true;
-         } catch (Exception e) {
-         infoBox("Information is not saved", "Delhi Women Cell");
-         e.printStackTrace();
-         return false;
-         }
-
-         // Reset the variable after
-         // cs = new Cases();
-         // newcaller=false;
-         // newcase=false;
-         // newaccussed= false;
-         // CaseHid = new ArrayList<>();
-         // CaseID = new ArrayList<>();
-         // Dlg_distressWoman.
-         */    }
+    }
 }

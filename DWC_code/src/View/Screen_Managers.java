@@ -961,14 +961,20 @@ public class Screen_Managers extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 /* action to be performed on save buttn to save the history*/
-                pce.savedb();
-                System.out.println(pce.getElement().getId());
+                try {
+                    pce.savedb();
+                    System.out.println(pce.getElement().getId());
 
-                Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
-                cl.setCaseHID(pce.getElement().getId());
+                    Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
+                    cl.setCaseHID(pce.getElement().getId());
 
-                cl.setAgentId(Integer.parseInt(Global.AgentID));
-                cl.updatedb();
+                    cl.setAgentId(Integer.parseInt(Global.AgentID));
+                    cl.updatedb();
+                    dispose();
+                } catch (Exception exc) {
+                    exc.printStackTrace();
+                    infoBox("Please try again!", "Delhi WomenCell");
+                }
             }
         });
         pce.getTxt_Note().setEnabled(true);

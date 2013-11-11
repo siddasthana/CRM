@@ -50,8 +50,6 @@ public class Screen_CaseReports extends javax.swing.JFrame {
     /**
      * Creates new form Screen_CaseReports
      */
-    
-
     public Screen_CaseReports() {
         initComponents();
     }
@@ -583,6 +581,11 @@ public class Screen_CaseReports extends javax.swing.JFrame {
 
                 cl.setAgentId(Integer.parseInt(Global.AgentID));
                 cl.updatedb();
+                pce.setVisible(false);
+                //pce.dispose();
+                pce.getParent().setVisible(false);
+                //DISPOSE_ON_CLOSE;
+                dispose();
             }
         });
         pce.getTxt_Note().setEnabled(true);
@@ -610,27 +613,47 @@ public class Screen_CaseReports extends javax.swing.JFrame {
 
     private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
         // TODO add your handling code here:
-        Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
-        ArrayList<Telephone> tp = new ArrayList<>();
-        da.getTxtPhone().setText(TxtDialScreen.getText());
-        da.show();
-        Telephone ph = new Telephone();
-        ph.setNote(da.getTxtName().getText());
-        try {
-            ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
-            tp.add(ph);
-            ArrayList<CaseHistory> ch = new CaseHistory().loadclass(" CaseID =" + Caseid);
-            for (Telephone obj : tp) {
-                obj.setCaseHid(ch.get(0).getId());
-                obj.savetodb();
+        ArrayList<Telephone> atp;
+        if (TxtDialScreen.getText().isEmpty()) {
+            infoBox("Please enter a number", "Delhi Women Cell");
+        } else {
+            Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
+            if (Caseid == null) {
+                infoBox("Please select a Case", "Delhi Women Cell");
+                return;
+            } else {
+                atp = new Telephone().loadclass(" Number like '" + TxtDialScreen.getText() + "' and CaseHID IN (select idCase_History from case_history where CaseID like '" + Caseid + "')");
             }
-            infoBox("Number Successfully added", "Delhi Women Cell");
-        } catch (Exception e) {
-            e.printStackTrace();
-            infoBox("You have entered invalid number", "Delhi Women Cell");
+            if (!(atp.size() > 1)) {
+                ArrayList<Telephone> tp = new ArrayList<>();
+                da.getTxtPhone().setText(TxtDialScreen.getText());
+                da.show();
+                if (da.getTxtName().getText().isEmpty()) {
+                    infoBox("Please enter a valid Name", "Delhi Women Cell");
+                    return;
+                }
+                Telephone ph = new Telephone();
+                ph.setNote(da.getTxtName().getText());
+                try {
+                    ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
+                    tp.add(ph);
+                    ArrayList<CaseHistory> ch = new CaseHistory().loadclass(" CaseID =" + Caseid);
+                    for (Telephone obj : tp) {
+                        obj.setCaseHid(ch.get(0).getId());
+                        obj.savetodb();
+                    }
+                    infoBox("Number Successfully added", "Delhi Women Cell");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    infoBox("You have entered invalid number", "Delhi Women Cell");
+                }
+            } else {
+                infoBox("Number Already exist", "Delhi Women Cell");
+            }
+            connect(TxtDialScreen.getText());
         }
-        connect(TxtDialScreen.getText());
     }//GEN-LAST:event_Btn_DialActionPerformed
+
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
     }
@@ -811,7 +834,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                                 ce.LoadElement(ca.get(0));
                                 ce.EnableSave();
                             } else {
-                                infoBox("No caller information available.", "Delhi Women Cell");                                
+                                infoBox("No caller information available.", "Delhi Women Cell");
                                 ce.EnableSave(ch1.get(0).getId());
                             }
                         } catch (Exception ex) {
