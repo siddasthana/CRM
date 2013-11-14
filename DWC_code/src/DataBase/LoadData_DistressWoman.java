@@ -358,9 +358,10 @@ public class LoadData_DistressWoman {
             System.out.println("Got Case ID:" + dc.CaseID);
 
             dc.getSrchFld_Complaint().setText(dscs.ReadableName);
-            dc.getSrchFld_PoliceStne().setText(dscs.PoliceStn);
+            //dc.getSrchFld_PoliceStne().setText(dscs.PoliceStn);
             //setSelectedValue(dc.getCmbBx_PoliceDistrict(),dscs.ooo)
             //dc.getCmbBx_CaseType()= dscs.castype;
+            setSelectedValue(dc.getjCmbPoliceStation(), dscs.PoliceStn);
             setSelectedValue(dc.getCmbBx_Forward(), dscs.Forward);
             setSelectedValue(dc.getCmbBx_CaseStatus(), dscs.Status);
             //    dc.getTxt_CaseStatus().setText(dscs.Status);

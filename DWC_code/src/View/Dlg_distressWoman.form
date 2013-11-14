@@ -145,9 +145,9 @@
                                                       <Component id="CmbBx_CaseStatus" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <Group type="102" alignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
                                                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                                  <Component id="SrchFld_PoliceStne" min="-2" pref="183" max="-2" attributes="0"/>
+                                                  <Component id="jCmbPoliceStation" min="-2" pref="164" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -220,11 +220,11 @@
                                           <Component id="CmbBx_PoliceDistrict" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel68" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="SrchFld_PoliceStne" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel68" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jCmbPoliceStation" min="-2" pref="23" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel69" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="SrchFld_Complaint" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -559,34 +559,33 @@
                   <Font name="Times New Roman" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="27">
+                  <StringArray count="26">
                     <StringItem index="0" value="Others"/>
                     <StringItem index="1" value="Abduction"/>
                     <StringItem index="2" value="Acid_Attack"/>
-                    <StringItem index="3" value="Callback_from_100"/>
-                    <StringItem index="4" value="Child_Sexual_Abuse (POSCO)"/>
-                    <StringItem index="5" value="Dangerous_Attack"/>
-                    <StringItem index="6" value="Domestic_Violence"/>
-                    <StringItem index="7" value="Dowry_Death"/>
-                    <StringItem index="8" value="Dowry_Violence"/>
-                    <StringItem index="9" value="DTC_related"/>
-                    <StringItem index="10" value="Education_related"/>
-                    <StringItem index="11" value="Health_related"/>
-                    <StringItem index="12" value="Illegal_Confinement"/>
-                    <StringItem index="13" value="Incoming_obscene"/>
-                    <StringItem index="14" value="Kidnaping"/>
-                    <StringItem index="15" value="Life_Threatening_attack_by_Family"/>
+                    <StringItem index="3" value="Aggravated_Penetrative_Sexual_Assault"/>
+                    <StringItem index="4" value="Aggravated_Sexual_Assault"/>
+                    <StringItem index="5" value="Child_Sexual_Abuse (POSCO)"/>
+                    <StringItem index="6" value="Dangerous_Attack"/>
+                    <StringItem index="7" value="Domestic_Violence"/>
+                    <StringItem index="8" value="Dowry_Death"/>
+                    <StringItem index="9" value="Dowry_Violence"/>
+                    <StringItem index="10" value="DTC_Related"/>
+                    <StringItem index="11" value="Education_related"/>
+                    <StringItem index="12" value="Health_related"/>
+                    <StringItem index="13" value="Illegal_Confinement"/>
+                    <StringItem index="14" value="Incoming_obscene"/>
+                    <StringItem index="15" value="Kidnaping"/>
                     <StringItem index="16" value="Missing"/>
                     <StringItem index="17" value="Murder"/>
-                    <StringItem index="18" value="Obscene_Call"/>
-                    <StringItem index="19" value="Petty_Quarrel"/>
+                    <StringItem index="18" value="Petty_Quarrel"/>
+                    <StringItem index="19" value="Penetrative_Sexual_Assault"/>
                     <StringItem index="20" value="Property_cases"/>
-                    <StringItem index="21" value="Rape"/>
-                    <StringItem index="22" value="Sexual_Abuse"/>
-                    <StringItem index="23" value="Sexual_abuse_at_workplace"/>
-                    <StringItem index="24" value="Stalking"/>
+                    <StringItem index="21" value="Sexual_Abuse"/>
+                    <StringItem index="22" value="Sexual_Abuse_At_Workplace"/>
+                    <StringItem index="23" value="Sexual_Assault"/>
+                    <StringItem index="24" value="Sexual_Harassment"/>
                     <StringItem index="25" value="Threat_To_Life"/>
-                    <StringItem index="26" value="Violence_by_Khap_Biradari_Panchayat"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1156,17 +1155,6 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Component class="org.jdesktop.swingx.JXSearchField" name="SrchFld_PoliceStne">
-              <Properties>
-                <Property name="findPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="popupmenu"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SrchFld_PoliceStneActionPerformed"/>
-                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="SrchFld_PoliceStneFocusLost"/>
-              </Events>
-            </Component>
             <Component class="org.jdesktop.swingx.JXSearchField" name="SrchFld_Complaint">
               <Properties>
                 <Property name="findPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
@@ -1265,6 +1253,268 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jCmbPoliceStation">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="251">
+                    <StringItem index="0" value=" "/>
+                    <StringItem index="1" value="NA"/>
+                    <StringItem index="2" value="Adarsh Nagar"/>
+                    <StringItem index="3" value="Alipur"/>
+                    <StringItem index="4" value="ALL areas near by Shahdara"/>
+                    <StringItem index="5" value="Aman Vihar"/>
+                    <StringItem index="6" value="Amar Colony"/>
+                    <StringItem index="7" value="Ambedkar Nagar"/>
+                    <StringItem index="8" value="Anand Parbat"/>
+                    <StringItem index="9" value="Anand Vihar"/>
+                    <StringItem index="10" value="Anand Vihar Rly. Station"/>
+                    <StringItem index="11" value="Ashok Vihar"/>
+                    <StringItem index="12" value="Baba Haridas Nagar"/>
+                    <StringItem index="13" value="Babarpur"/>
+                    <StringItem index="14" value="Badarpur"/>
+                    <StringItem index="15" value="Badli"/>
+                    <StringItem index="16" value="Bara Hindu Rao"/>
+                    <StringItem index="17" value="Bara Hindurao"/>
+                    <StringItem index="18" value="Barakhamba Road"/>
+                    <StringItem index="19" value="Bawana"/>
+                    <StringItem index="20" value="Begampur"/>
+                    <StringItem index="21" value="Begum Pur"/>
+                    <StringItem index="22" value="Bhajan Pura"/>
+                    <StringItem index="23" value="Bhalaswa Dairy"/>
+                    <StringItem index="24" value="Bhalaswa Gaavn"/>
+                    <StringItem index="25" value="Bharat Nagar"/>
+                    <StringItem index="26" value="Bhola Nath Nagar"/>
+                    <StringItem index="27" value="Binda Pur"/>
+                    <StringItem index="28" value="Burari"/>
+                    <StringItem index="29" value="C.P Barakhamba Road"/>
+                    <StringItem index="30" value="CENTRAL"/>
+                    <StringItem index="31" value="Chandani Chowk"/>
+                    <StringItem index="32" value="Chandni Mahal"/>
+                    <StringItem index="33" value="Chankaya Puri"/>
+                    <StringItem index="34" value="Chhatarpur "/>
+                    <StringItem index="35" value="Chhawla"/>
+                    <StringItem index="36" value="Chirag Delhi"/>
+                    <StringItem index="37" value="Chitranjan Park"/>
+                    <StringItem index="38" value="Civil Lines"/>
+                    <StringItem index="39" value="Connaught Place"/>
+                    <StringItem index="40" value="D.B.G. Road"/>
+                    <StringItem index="41" value="D.B.G.Road"/>
+                    <StringItem index="42" value="Dabri"/>
+                    <StringItem index="43" value="Dakshinpuri"/>
+                    <StringItem index="44" value="Daria Ganj"/>
+                    <StringItem index="45" value="Defence Colony"/>
+                    <StringItem index="46" value="Delhi Cantt."/>
+                    <StringItem index="47" value="Delhi Main Railway Station"/>
+                    <StringItem index="48" value="Devili"/>
+                    <StringItem index="49" value="Dilsahd Garden"/>
+                    <StringItem index="50" value="Dilshad Colony"/>
+                    <StringItem index="51" value="Domestic Airport"/>
+                    <StringItem index="52" value="Durgapur "/>
+                    <StringItem index="53" value="Dwarka"/>
+                    <StringItem index="54" value="Dwarka North"/>
+                    <StringItem index="55" value="Dwarka Sec-9"/>
+                    <StringItem index="56" value="Dwarka South"/>
+                    <StringItem index="57" value="Farash Bazar"/>
+                    <StringItem index="58" value="Fatehpur Beri"/>
+                    <StringItem index="59" value="G.T.B. Enclave"/>
+                    <StringItem index="60" value="Gandhi Nagar"/>
+                    <StringItem index="61" value="Gautam nagar"/>
+                    <StringItem index="62" value="Geeta Colony"/>
+                    <StringItem index="63" value="Ghazipur"/>
+                    <StringItem index="64" value="Ghonda"/>
+                    <StringItem index="65" value="Gokul Puri"/>
+                    <StringItem index="66" value="Govind Puri"/>
+                    <StringItem index="67" value="Greater Kailash"/>
+                    <StringItem index="68" value="Gulabi Bagh"/>
+                    <StringItem index="69" value="Gulabi Bagh Pratap nagar"/>
+                    <StringItem index="70" value="H.N. Din"/>
+                    <StringItem index="71" value="Hari Nagar"/>
+                    <StringItem index="72" value="Harsh Vihar"/>
+                    <StringItem index="73" value="Hauz Khas"/>
+                    <StringItem index="74" value="Hauz Qazi"/>
+                    <StringItem index="75" value="Hazrat Nizamuddin"/>
+                    <StringItem index="76" value="I.P. Estate"/>
+                    <StringItem index="77" value="IGI Airport"/>
+                    <StringItem index="78" value="Inder Puri"/>
+                    <StringItem index="79" value="J J Colony, Dwarika"/>
+                    <StringItem index="80" value="Jaffarpur Kalan"/>
+                    <StringItem index="81" value="Jagat Puri"/>
+                    <StringItem index="82" value="Jahangir Puri"/>
+                    <StringItem index="83" value="Jaitpur"/>
+                    <StringItem index="84" value="Jaitpur pul"/>
+                    <StringItem index="85" value="Jama Masjid"/>
+                    <StringItem index="86" value="Jamia Nagar"/>
+                    <StringItem index="87" value="Janak Puri"/>
+                    <StringItem index="88" value="Janta Colony"/>
+                    <StringItem index="89" value="Jawahar park"/>
+                    <StringItem index="90" value="Jhangirpuri"/>
+                    <StringItem index="91" value="Jyoti Nagar"/>
+                    <StringItem index="92" value="K.N.Katju Marg"/>
+                    <StringItem index="93" value="Kalandar Colony"/>
+                    <StringItem index="94" value="Kalkaji"/>
+                    <StringItem index="95" value="kalyanpuri"/>
+                    <StringItem index="96" value="Kamla Market"/>
+                    <StringItem index="97" value="Kanjhawala"/>
+                    <StringItem index="98" value="Kapashera"/>
+                    <StringItem index="99" value="Karawal Nagar"/>
+                    <StringItem index="100" value="Karol Bagh"/>
+                    <StringItem index="101" value="Kashmiri Gate"/>
+                    <StringItem index="102" value="Keshav Puram"/>
+                    <StringItem index="103" value="Khajuri Khas"/>
+                    <StringItem index="104" value="Khanpur"/>
+                    <StringItem index="105" value="Khayala"/>
+                    <StringItem index="106" value="Kirti Nagar"/>
+                    <StringItem index="107" value="Kotla Mubarakpur"/>
+                    <StringItem index="108" value="Kotwali"/>
+                    <StringItem index="109" value="Krishna Nagar"/>
+                    <StringItem index="110" value="Lahori Gate"/>
+                    <StringItem index="111" value="Lajpat Nagar"/>
+                    <StringItem index="112" value="Lalkuan"/>
+                    <StringItem index="113" value="Lodhi Colony"/>
+                    <StringItem index="114" value="M.S.Park"/>
+                    <StringItem index="115" value="Madangir"/>
+                    <StringItem index="116" value="Madhu Vihar"/>
+                    <StringItem index="117" value="Mahendra Bagh"/>
+                    <StringItem index="118" value="Malviya Nagar"/>
+                    <StringItem index="119" value="Mandawali"/>
+                    <StringItem index="120" value="Mandir Marg"/>
+                    <StringItem index="121" value="Mangol Puri"/>
+                    <StringItem index="122" value="Mansarovar park"/>
+                    <StringItem index="123" value="Mansarover Park"/>
+                    <StringItem index="124" value="Maujpur"/>
+                    <StringItem index="125" value="Maurice Nagar"/>
+                    <StringItem index="126" value="Maurya Enclave"/>
+                    <StringItem index="127" value="Mayapuri"/>
+                    <StringItem index="128" value="Mayur Vihar"/>
+                    <StringItem index="129" value="Mehrauli"/>
+                    <StringItem index="130" value="Mianwali Nagar"/>
+                    <StringItem index="131" value="Model Town"/>
+                    <StringItem index="132" value="Model Town  Shalimar Bagh"/>
+                    <StringItem index="133" value="Moti Nagar"/>
+                    <StringItem index="134" value="Mukherjee Nagar"/>
+                    <StringItem index="135" value="Mukund pur"/>
+                    <StringItem index="136" value="Mundka"/>
+                    <StringItem index="137" value="Nabi Karim"/>
+                    <StringItem index="138" value="Najafgarh"/>
+                    <StringItem index="139" value="Nand Nagri"/>
+                    <StringItem index="140" value="Nangloi"/>
+                    <StringItem index="141" value="Naraina"/>
+                    <StringItem index="142" value="Narela"/>
+                    <StringItem index="143" value="NARTH -ESAT"/>
+                    <StringItem index="144" value="Neb Sarai"/>
+                    <StringItem index="145" value="Nehru Place"/>
+                    <StringItem index="146" value="Nehru Vihar"/>
+                    <StringItem index="147" value="New Ashok Nagar"/>
+                    <StringItem index="148" value="New Delhi Railway Station"/>
+                    <StringItem index="149" value="New Friends Colony"/>
+                    <StringItem index="150" value="New Jafarabad "/>
+                    <StringItem index="151" value="New Seemapuri"/>
+                    <StringItem index="152" value="New Usman Pur"/>
+                    <StringItem index="153" value="Nihal Vihar"/>
+                    <StringItem index="154" value="Nizamudin"/>
+                    <StringItem index="155" value="NORTH - WEST"/>
+                    <StringItem index="156" value="North Rohini"/>
+                    <StringItem index="157" value="Okhla Ind. Area"/>
+                    <StringItem index="158" value="Old Seemapuri"/>
+                    <StringItem index="159" value="Pahar Ganj"/>
+                    <StringItem index="160" value="Palam Village"/>
+                    <StringItem index="161" value="Pandav Nagar"/>
+                    <StringItem index="162" value="pandev Nagar"/>
+                    <StringItem index="163" value="Parliament Street"/>
+                    <StringItem index="164" value="Parshad Nagar"/>
+                    <StringItem index="165" value="Paschim Vihar"/>
+                    <StringItem index="166" value="Patel Nagar"/>
+                    <StringItem index="167" value="Pitam Pura Near Tv Tower"/>
+                    <StringItem index="168" value="Prahaldpur"/>
+                    <StringItem index="169" value="Prasad Nagar"/>
+                    <StringItem index="170" value="Prashant Vihar"/>
+                    <StringItem index="171" value="Preet Vihar"/>
+                    <StringItem index="172" value="Pul Prahlad Pur"/>
+                    <StringItem index="173" value="Punjabi Bagh"/>
+                    <StringItem index="174" value="Pushpvihar"/>
+                    <StringItem index="175" value="Qutab Minar"/>
+                    <StringItem index="176" value="R.K. Puram"/>
+                    <StringItem index="177" value="Raja Garden"/>
+                    <StringItem index="178" value="Rajendar nagar"/>
+                    <StringItem index="179" value="Rajinder Nagar"/>
+                    <StringItem index="180" value="Rajiv Nagar"/>
+                    <StringItem index="181" value="Rajouri Garden"/>
+                    <StringItem index="182" value="Raju park"/>
+                    <StringItem index="183" value="Ram Nagar"/>
+                    <StringItem index="184" value="Ramgarh"/>
+                    <StringItem index="185" value="Ranhola"/>
+                    <StringItem index="186" value="Rani Bagh"/>
+                    <StringItem index="187" value="Ranjit Nagar"/>
+                    <StringItem index="188" value="Rithala"/>
+                    <StringItem index="189" value="Rohini"/>
+                    <StringItem index="190" value="Rohini Sec-3 Near J.G. Hospital"/>
+                    <StringItem index="191" value="Rohtas Nagar"/>
+                    <StringItem index="192" value="Roop Nagar"/>
+                    <StringItem index="193" value="S.J.Enclave"/>
+                    <StringItem index="194" value="S.P.Badil"/>
+                    <StringItem index="195" value="Sabji Mandi"/>
+                    <StringItem index="196" value="Sabzi Mandi"/>
+                    <StringItem index="197" value="Sadar Bazaar"/>
+                    <StringItem index="198" value="Sadiq nagar"/>
+                    <StringItem index="199" value="Safdarjung Enclave"/>
+                    <StringItem index="200" value="Sagar Pur"/>
+                    <StringItem index="201" value="Sahabad dairy"/>
+                    <StringItem index="202" value="Sahadara"/>
+                    <StringItem index="203" value="Saket"/>
+                    <StringItem index="204" value="Samaipur Badli"/>
+                    <StringItem index="205" value="Sangam Vihar "/>
+                    <StringItem index="206" value="Sant Nagar Burari"/>
+                    <StringItem index="207" value="Sarai Rohilla"/>
+                    <StringItem index="208" value="Saraswati Vihar"/>
+                    <StringItem index="209" value="Sarita Vihar"/>
+                    <StringItem index="210" value="Sarojini Nagar"/>
+                    <StringItem index="211" value="Sarswati Vihar"/>
+                    <StringItem index="212" value="Sector 23 Dwarka"/>
+                    <StringItem index="213" value="Seelam Pur"/>
+                    <StringItem index="214" value="Seema Puri"/>
+                    <StringItem index="215" value="Shahadra"/>
+                    <StringItem index="216" value="Shahbad Dairy"/>
+                    <StringItem index="217" value="Shakarpur"/>
+                    <StringItem index="218" value="Shalimar Bagh"/>
+                    <StringItem index="219" value="Shastri Park"/>
+                    <StringItem index="220" value="Shiv Vihar"/>
+                    <StringItem index="221" value="Shraddha Nand"/>
+                    <StringItem index="222" value="Shubhas place "/>
+                    <StringItem index="223" value="Sonia Vihar"/>
+                    <StringItem index="224" value="South Campus"/>
+                    <StringItem index="225" value="South extension"/>
+                    <StringItem index="226" value="South Rohini"/>
+                    <StringItem index="227" value="Sriniwaspuri"/>
+                    <StringItem index="228" value="Subhash Place"/>
+                    <StringItem index="229" value="Subzi Mandi"/>
+                    <StringItem index="230" value="Sulatanpuri"/>
+                    <StringItem index="231" value="Sundarnagri"/>
+                    <StringItem index="232" value="Sunlight Colony"/>
+                    <StringItem index="233" value="Swaroop Nagar"/>
+                    <StringItem index="234" value="Tigri"/>
+                    <StringItem index="235" value="Tilak Marg"/>
+                    <StringItem index="236" value="Tilak Nagar"/>
+                    <StringItem index="237" value="Timarpur"/>
+                    <StringItem index="238" value="Tuglak Road"/>
+                    <StringItem index="239" value="Uttam Nagar"/>
+                    <StringItem index="240" value="Vasant Kunj North "/>
+                    <StringItem index="241" value="Vasant Kunj South"/>
+                    <StringItem index="242" value="Vasant Vihar"/>
+                    <StringItem index="243" value="Vijay Vihar"/>
+                    <StringItem index="244" value="Vikas Puri"/>
+                    <StringItem index="245" value="Vivek Vihar"/>
+                    <StringItem index="246" value="Welcome"/>
+                    <StringItem index="247" value="West Pahar Ganj"/>
+                    <StringItem index="248" value="Yamuna Depot "/>
+                    <StringItem index="249" value="Yamuna Vihar"/>
+                    <StringItem index="250" value="Zafrabad"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCmbPoliceStationActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

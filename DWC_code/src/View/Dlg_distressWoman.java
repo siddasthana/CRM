@@ -74,12 +74,12 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         this.SrchFld_Complaint = SrchFld_Complaint;
     }
 
-    public JXSearchField getSrchFld_PoliceStne() {
-        return SrchFld_PoliceStne;
+    public JComboBox getjCmbPoliceStation() {
+        return jCmbPoliceStation;
     }
 
-    public void setSrchFld_PoliceStne(JXSearchField SrchFld_PoliceStne) {
-        this.SrchFld_PoliceStne = SrchFld_PoliceStne;
+    public void setjCmbPoliceStation(JComboBox jCmbPoliceStation) {
+        this.jCmbPoliceStation = jCmbPoliceStation;
     }
 
     public JComboBox getCmbBx_Forward() {
@@ -271,7 +271,6 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
-        SrchFld_PoliceStne = new org.jdesktop.swingx.JXSearchField();
         SrchFld_Complaint = new org.jdesktop.swingx.JXSearchField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -279,6 +278,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         CmbBx_CaseStatus = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
+        jCmbPoliceStation = new javax.swing.JComboBox();
 
         PopMn_Complaint.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         PopMn_Complaint.setForeground(new java.awt.Color(255, 51, 51));
@@ -428,7 +428,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         jLabel66.setText("Case Type");
 
         CmbBx_CaseType.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        CmbBx_CaseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Others", "Abduction", "Acid_Attack", "Callback_from_100", "Child_Sexual_Abuse (POSCO)", "Dangerous_Attack", "Domestic_Violence", "Dowry_Death", "Dowry_Violence", "DTC_related", "Education_related", "Health_related", "Illegal_Confinement", "Incoming_obscene", "Kidnaping", "Life_Threatening_attack_by_Family", "Missing", "Murder", "Obscene_Call", "Petty_Quarrel", "Property_cases", "Rape", "Sexual_Abuse", "Sexual_abuse_at_workplace", "Stalking", "Threat_To_Life", "Violence_by_Khap_Biradari_Panchayat" }));
+        CmbBx_CaseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Others", "Abduction", "Acid_Attack", "Aggravated_Penetrative_Sexual_Assault", "Aggravated_Sexual_Assault", "Child_Sexual_Abuse (POSCO)", "Dangerous_Attack", "Domestic_Violence", "Dowry_Death", "Dowry_Violence", "DTC_Related", "Education_related", "Health_related", "Illegal_Confinement", "Incoming_obscene", "Kidnaping", "Missing", "Murder", "Petty_Quarrel", "Penetrative_Sexual_Assault", "Property_cases", "Sexual_Abuse", "Sexual_Abuse_At_Workplace", "Sexual_Assault", "Sexual_Harassment", "Threat_To_Life" }));
         CmbBx_CaseType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbBx_CaseTypeActionPerformed(evt);
@@ -755,18 +755,6 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 200, 140));
 
-        SrchFld_PoliceStne.setFindPopupMenu(popupmenu);
-        SrchFld_PoliceStne.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SrchFld_PoliceStneActionPerformed(evt);
-            }
-        });
-        SrchFld_PoliceStne.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                SrchFld_PoliceStneFocusLost(evt);
-            }
-        });
-
         SrchFld_Complaint.setFindPopupMenu(PopMn_Complaint);
         SrchFld_Complaint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -807,6 +795,13 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jCmbPoliceStation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "NA", "Adarsh Nagar", "Alipur", "ALL areas near by Shahdara", "Aman Vihar", "Amar Colony", "Ambedkar Nagar", "Anand Parbat", "Anand Vihar", "Anand Vihar Rly. Station", "Ashok Vihar", "Baba Haridas Nagar", "Babarpur", "Badarpur", "Badli", "Bara Hindu Rao", "Bara Hindurao", "Barakhamba Road", "Bawana", "Begampur", "Begum Pur", "Bhajan Pura", "Bhalaswa Dairy", "Bhalaswa Gaavn", "Bharat Nagar", "Bhola Nath Nagar", "Binda Pur", "Burari", "C.P Barakhamba Road", "CENTRAL", "Chandani Chowk", "Chandni Mahal", "Chankaya Puri", "Chhatarpur ", "Chhawla", "Chirag Delhi", "Chitranjan Park", "Civil Lines", "Connaught Place", "D.B.G. Road", "D.B.G.Road", "Dabri", "Dakshinpuri", "Daria Ganj", "Defence Colony", "Delhi Cantt.", "Delhi Main Railway Station", "Devili", "Dilsahd Garden", "Dilshad Colony", "Domestic Airport", "Durgapur ", "Dwarka", "Dwarka North", "Dwarka Sec-9", "Dwarka South", "Farash Bazar", "Fatehpur Beri", "G.T.B. Enclave", "Gandhi Nagar", "Gautam nagar", "Geeta Colony", "Ghazipur", "Ghonda", "Gokul Puri", "Govind Puri", "Greater Kailash", "Gulabi Bagh", "Gulabi Bagh Pratap nagar", "H.N. Din", "Hari Nagar", "Harsh Vihar", "Hauz Khas", "Hauz Qazi", "Hazrat Nizamuddin", "I.P. Estate", "IGI Airport", "Inder Puri", "J J Colony, Dwarika", "Jaffarpur Kalan", "Jagat Puri", "Jahangir Puri", "Jaitpur", "Jaitpur pul", "Jama Masjid", "Jamia Nagar", "Janak Puri", "Janta Colony", "Jawahar park", "Jhangirpuri", "Jyoti Nagar", "K.N.Katju Marg", "Kalandar Colony", "Kalkaji", "kalyanpuri", "Kamla Market", "Kanjhawala", "Kapashera", "Karawal Nagar", "Karol Bagh", "Kashmiri Gate", "Keshav Puram", "Khajuri Khas", "Khanpur", "Khayala", "Kirti Nagar", "Kotla Mubarakpur", "Kotwali", "Krishna Nagar", "Lahori Gate", "Lajpat Nagar", "Lalkuan", "Lodhi Colony", "M.S.Park", "Madangir", "Madhu Vihar", "Mahendra Bagh", "Malviya Nagar", "Mandawali", "Mandir Marg", "Mangol Puri", "Mansarovar park", "Mansarover Park", "Maujpur", "Maurice Nagar", "Maurya Enclave", "Mayapuri", "Mayur Vihar", "Mehrauli", "Mianwali Nagar", "Model Town", "Model Town  Shalimar Bagh", "Moti Nagar", "Mukherjee Nagar", "Mukund pur", "Mundka", "Nabi Karim", "Najafgarh", "Nand Nagri", "Nangloi", "Naraina", "Narela", "NARTH -ESAT", "Neb Sarai", "Nehru Place", "Nehru Vihar", "New Ashok Nagar", "New Delhi Railway Station", "New Friends Colony", "New Jafarabad ", "New Seemapuri", "New Usman Pur", "Nihal Vihar", "Nizamudin", "NORTH - WEST", "North Rohini", "Okhla Ind. Area", "Old Seemapuri", "Pahar Ganj", "Palam Village", "Pandav Nagar", "pandev Nagar", "Parliament Street", "Parshad Nagar", "Paschim Vihar", "Patel Nagar", "Pitam Pura Near Tv Tower", "Prahaldpur", "Prasad Nagar", "Prashant Vihar", "Preet Vihar", "Pul Prahlad Pur", "Punjabi Bagh", "Pushpvihar", "Qutab Minar", "R.K. Puram", "Raja Garden", "Rajendar nagar", "Rajinder Nagar", "Rajiv Nagar", "Rajouri Garden", "Raju park", "Ram Nagar", "Ramgarh", "Ranhola", "Rani Bagh", "Ranjit Nagar", "Rithala", "Rohini", "Rohini Sec-3 Near J.G. Hospital", "Rohtas Nagar", "Roop Nagar", "S.J.Enclave", "S.P.Badil", "Sabji Mandi", "Sabzi Mandi", "Sadar Bazaar", "Sadiq nagar", "Safdarjung Enclave", "Sagar Pur", "Sahabad dairy", "Sahadara", "Saket", "Samaipur Badli", "Sangam Vihar ", "Sant Nagar Burari", "Sarai Rohilla", "Saraswati Vihar", "Sarita Vihar", "Sarojini Nagar", "Sarswati Vihar", "Sector 23 Dwarka", "Seelam Pur", "Seema Puri", "Shahadra", "Shahbad Dairy", "Shakarpur", "Shalimar Bagh", "Shastri Park", "Shiv Vihar", "Shraddha Nand", "Shubhas place ", "Sonia Vihar", "South Campus", "South extension", "South Rohini", "Sriniwaspuri", "Subhash Place", "Subzi Mandi", "Sulatanpuri", "Sundarnagri", "Sunlight Colony", "Swaroop Nagar", "Tigri", "Tilak Marg", "Tilak Nagar", "Timarpur", "Tuglak Road", "Uttam Nagar", "Vasant Kunj North ", "Vasant Kunj South", "Vasant Vihar", "Vijay Vihar", "Vikas Puri", "Vivek Vihar", "Welcome", "West Pahar Ganj", "Yamuna Depot ", "Yamuna Vihar", "Zafrabad" }));
+        jCmbPoliceStation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCmbPoliceStationActionPerformed(evt);
             }
         });
 
@@ -870,7 +865,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                                                 .addComponent(CmbBx_CaseStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(jPanel11Layout.createSequentialGroup()
                                             .addGap(21, 21, 21)
-                                            .addComponent(SrchFld_PoliceStne, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(jCmbPoliceStation, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jLabel57)
                             .addComponent(jLabel55)
                             .addComponent(jLabel56)
@@ -924,10 +919,10 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                                     .addComponent(jLabel58)
                                     .addComponent(CmbBx_PoliceDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel68)
-                                    .addComponent(SrchFld_PoliceStne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
+                                    .addComponent(jCmbPoliceStation, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel69)
                                     .addComponent(SrchFld_Complaint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -989,51 +984,6 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SrchFld_PoliceStneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SrchFld_PoliceStneActionPerformed
-        // TODO add your handling code here:
-        if (popupmenu.getComponentCount() > 0) {
-            for (int i = 0; i < popupmenu.getComponentCount(); i++) {
-                JMenuItem ji = (JMenuItem) popupmenu.getComponentAtIndex(i);
-                if (ji.getText().equals(evt.getActionCommand().toString())) {
-                    return;
-                }
-            }
-        }
-
-        System.out.println(evt.getActionCommand());
-        popupmenu.setVisible(false);
-        boolean b = SrchFld_PoliceStne.isUseNativeSearchFieldIfPossible();
-        //Fetch Data
-        Sql sql = new Sql();
-        ResultSet rs;
-        rs = sql.ExecuteQuery("Select * From directory where area like '%" + evt.getActionCommand() + "%' Limit 4");
-        try {
-            popupmenu.removeAll();
-            while (rs.next()) {
-                System.out.println();
-                JMenuItem ji = new JMenuItem(rs.getString(3));
-                ji.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        click(evt);
-                    }
-
-                    private void click(ActionEvent evt) {
-                        SrchFld_PoliceStne.setText(evt.getActionCommand());
-                    }
-                });
-
-                popupmenu.add(ji);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Screen_TeleExecutive.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        sql.Destructor();
-        // SrchFld_PoliceStne.getpo;
-        //System.out.println(SrchFld_PoliceStne.getFindPopupMenu().getPopupLocation(null));
-        //popupmenu.setLocation(200,200);
-        popupmenu.setFocusable(false);
-        popupmenu.setVisible(true);
-    }//GEN-LAST:event_SrchFld_PoliceStneActionPerformed
     public static void setSelectedValue(JComboBox comboBox, String value) {
 
         String item;
@@ -1059,7 +1009,8 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                 newcase = false;
                 Cases cs = new Cases().loadclass(" idCase=" + dc.Caseid).get(0);
                 CaseID = cs.getId();
-                SrchFld_PoliceStne.setText(cs.getPoliceStn());
+                //SrchFld_PoliceStne.setText(cs.getPoliceStn());
+                setSelectedValue(jCmbPoliceStation, cs.getPoliceStn());
                 SrchFld_Complaint.setText(cs.getReadableName());
                 setSelectedValue(CmbBx_CaseStatus, cs.getStatus());
                 setSelectedValue(CmbBx_CaseType, cs.getCaseType());
@@ -1114,7 +1065,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         // TODO add your handling code here:
         boolean saved = SaveData();
         if (saved) {
-            System.err.println("newcase"+newcase+"newcaller"+newcaller+"newaccused"+newaccussed);
+            System.err.println("newcase" + newcase + "newcaller" + newcaller + "newaccused" + newaccussed);
             ForwardCase fc = new ForwardCase();
             fc.setCaseID(CaseID);
             fc.setLevel("S");
@@ -1228,21 +1179,23 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         //jCmb_PS.add();
     }//GEN-LAST:event_CmbBx_PoliceDistrictItemStateChanged
 
-    private void SrchFld_PoliceStneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SrchFld_PoliceStneFocusLost
-        // TODO add your handling code here: 
+    private void jCmbPoliceStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbPoliceStationActionPerformed
+        // TODO add your handling code here:
         Pnl_CaseDirctry.removeAll();
-        ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like '"+SrchFld_PoliceStne.getText()+"'");
-        for (DataBase.Tables.Directory obj : dir1){
-        Pnl_CallElement pce = new Pnl_CallElement();
-        pce.Lbl_CallElement_number.setText(obj.getNumber());
-        pce.Lbl_CallElement_Name.setText(obj.getService());
-        
-        Pnl_CaseDirctry.add(pce);
+        ArrayList<DataBase.Tables.Directory> dir1 = new DataBase.Tables.Directory().loadclass(" AREA like '" + jCmbPoliceStation.getSelectedItem().toString() + "'");
+        setSelectedValue(CmbBx_PoliceDistrict, dir1.get(0).getDistrict().toString().toUpperCase());
+        System.out.println(dir1.get(0).getDistrict().toString());
+        for (DataBase.Tables.Directory obj : dir1) {
+            Pnl_CallElement pce = new Pnl_CallElement();
+            pce.Lbl_CallElement_number.setText(obj.getNumber());
+            pce.Lbl_CallElement_Name.setText(obj.getService());
+
+            Pnl_CaseDirctry.add(pce);
             System.out.println("Added a Case directory element");
         }
         Pnl_CaseDirctry.revalidate();
         Pnl_CaseDirctry.repaint();
-    }//GEN-LAST:event_SrchFld_PoliceStneFocusLost
+    }//GEN-LAST:event_jCmbPoliceStationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1300,7 +1253,6 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
     public javax.swing.JPanel Pnl_RecrdDirctry;
     private javax.swing.JPopupMenu PopMn_Complaint;
     private org.jdesktop.swingx.JXSearchField SrchFld_Complaint;
-    private org.jdesktop.swingx.JXSearchField SrchFld_PoliceStne;
     private javax.swing.JTextField TxtDialScreen;
     private javax.swing.JTextField Txt_AccusedAddress;
     private javax.swing.JTextField Txt_AccusedDD;
@@ -1331,6 +1283,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jChk_Challan;
     private javax.swing.JCheckBox jChk_Judgement;
+    private javax.swing.JComboBox jCmbPoliceStation;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1373,12 +1326,12 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
 
     private boolean SaveData() {
         try {
-            cs.setPoliceStn(this.getSrchFld_PoliceStne().getText());
+            cs.setPoliceStn(this.jCmbPoliceStation.getSelectedItem().toString());
             cs.setReadableName(this.getSrchFld_Complaint().getText());
             cs.setStatus(this.CmbBx_CaseStatus.getSelectedItem().toString());
             cs.setForward(this.CmbBx_Forward.getSelectedItem().toString());
             cs.setCaseType(this.CmbBx_CaseType.getSelectedItem().toString());
-            System.err.println("newcase "+newcase);
+            System.err.println("newcase " + newcase);
             if (newcase) {
                 cs.savetodb();
                 CaseID = cs.getId();
@@ -1388,26 +1341,22 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
             }
             if (newcase) {
                 Accused acd = new Accused();
-                if (Txt_AccusedName.getText().length() > 1 || Txt_AccusedPhone.getText().length()> 1) {
+                if (Txt_AccusedName.getText().length() > 1 || Txt_AccusedPhone.getText().length() > 1) {
                     acd.setName(Txt_AccusedName.getText());
-                    try {
-                        acd.setPhone(Long.valueOf(Txt_AccusedPhone.getText()));
-                    } catch (NumberFormatException e) {
-                        acd.setPhone(0);
-                    }
+                    acd.setPhone(Txt_AccusedPhone.getText());
                     acd.setAddress(Txt_AccusedAddress.getText());
                     acd.setFir(Txt_AccusedDD.getText());
                     acd.setCaseID(cs.getId());
                     acd.savetodb();
                 }
+            } else {
             }
-            else{ }
             if (newcase) {
                 Legal le = new Legal();
                 le.setDD(Txt_AccusedDD.getText());
                 le.setFir(Txt_AccusedFIR.getText());
-                le.setChallan(jChk_Challan.isSelected()?1:0);
-                le.setJudgement(jChk_Judgement.isSelected()?1:0);
+                le.setChallan(jChk_Challan.isSelected() ? 1 : 0);
+                le.setJudgement(jChk_Judgement.isSelected() ? 1 : 0);
                 le.setCaseID(cs.getId());
                 le.savetodb();
             } else {
@@ -1417,7 +1366,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                 le.setChallan(jChk_Challan.isSelected() ? 1 : 0);
                 le.setJudgement(jChk_Judgement.isSelected() ? 1 : 0);
                 le.setCaseID(CaseID);
-                System.out.println("distress sheet accused update"+CaseID);
+                System.out.println("distress sheet accused update" + CaseID);
                 le.updatedb();
             }
 
@@ -1449,7 +1398,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
             cl.setCallid(ch.getId());
             cl.setAddress(this.Txt_CallerAddress.getText());
             cl.savetodb();
-            
+
             popupmenu.setVisible(false);
             popupmenu = null;
             return true;

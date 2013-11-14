@@ -295,8 +295,8 @@ public class Pnl_AccusedElement extends javax.swing.JPanel {
         ArrayList<Legal> lel = new Legal().loadclass(" CaseID = "+this.getCaseID().get(0));        
         ac.setName(Txt_AccusedName.getText());
         ac.setAddress(Txt_AccusedAddress.getText());
-        if(Txt_AccusedPhone.getText().isEmpty()){ac.setPhone(0);}
-        else{ac.setPhone(Long.parseLong(Txt_AccusedPhone.getText()));}
+        if(Txt_AccusedPhone.getText().isEmpty()){ac.setPhone("0");}
+        else{ac.setPhone(Txt_AccusedPhone.getText());}
         le.setDD(Txt_AccusedDD.getText());
         le.setFir(Txt_AccusedFIR.getText());
         le.setJudgement(jChk_Judgement.isSelected()?1:0);

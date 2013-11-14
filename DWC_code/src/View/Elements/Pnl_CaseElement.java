@@ -161,7 +161,7 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
             }
         });
 
-        CmbBx_CaseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Others", "Abduction", "Acid_Attack", "Callback_from_100", "Child_Sexual_Abuse (POSCO)", "Dangerous_Attack", "Domestic_Violence", "Dowry_Death", "Dowry_Violence", "Illegal_Confinement", "Incoming_obscene", "Kidnaping", "Life_Threatening_attack_by_Family", "Missing", "Murder", "Obscene_Call", "Petty_Quarrel", "Property_cases", "Rape", "Sexual_Abuse", "Stalking", "Threat_To_Life", "Violence_by_Khap_Biradari_Panchayat" }));
+        CmbBx_CaseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Others", "Abduction", "Acid_Attack", "Aggravated_Penetrative_Sexual_Assault", "Aggravated_Sexual_Assault", "Child_Sexual_Abuse (POSCO)", "Dangerous_Attack", "Domestic_Violence", "Dowry_Death", "Dowry_Violence", "Illegal_Confinement", "Incoming_obscene", "Kidnaping", "Life_Threatening_attack_by_Family", "Missing", "Murder", "Obscene_Call", "Penetrative_Sexual_Assault", "Petty_Quarrel", "Property_cases", "Rape", "Sexual_Abuse", "Sexual_Assault", "Sexual_Harassment", "Stalking", "Threat_To_Life" }));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Case Type");

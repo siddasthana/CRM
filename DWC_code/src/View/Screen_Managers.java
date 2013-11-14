@@ -199,7 +199,7 @@ public class Screen_Managers extends javax.swing.JFrame {
 
         jXLabel1.setText("Complaint No.");
 
-        CmbBx_CaseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Others", "Abduction", "Acid_Attack", "Callback_from_100", "Child_Sexual_Abuse (POSCO)", "Dangerous_Attack", "Domestic_Violence", "Dowry_Death", "Dowry_Violence", "Illegal_Confinement", "Incoming_obscene", "Kidnaping", "Life_Threatening_attack_by_Family", "Missing", "Murder", "Obscene_Call", "Petty_Quarrel", "Property_cases", "Rape", "Sexual_Abuse", "Stalking", "Threat_To_Life", "Violence_by_Khap_Biradari_Panchayat" }));
+        CmbBx_CaseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Others", "Abduction", "Acid_Attack", "Aggravated_Penetrative_Sexual_Assault", "Aggravated_Sexual_Assault", "Child_Sexual_Abuse (POSCO)", "Dangerous_Attack", "Domestic_Violence", "Dowry_Death", "Dowry_Violence", "Illegal_Confinement", "Incoming_obscene", "Kidnaping", "Life_Threatening_attack_by_Family", "Missing", "Murder", "Obscene_Call", "Penetrative_Sexual_Assault", "Petty_Quarrel", "Property_cases", "Rape", "Sexual_Abuse", "Sexual_Assault", "Sexual_Harassment", "Stalking", "Threat_To_Life" }));
 
         jLabel6.setText("Case Type");
 
@@ -478,11 +478,11 @@ public class Screen_Managers extends javax.swing.JFrame {
                 .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(SrchFld_CmpltNo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(DtPck_Case, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -550,26 +550,45 @@ public class Screen_Managers extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtDialScreenActionPerformed
     
     private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
-       Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
-       ArrayList<Telephone> tp = new ArrayList<>();
-        da.getTxtPhone().setText(TxtDialScreen.getText());
-        da.show();
-        Telephone ph = new Telephone();
-        ph.setNote(da.getTxtName().getText());
-        try {
-            ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
-            tp.add(ph);
-            ArrayList<CaseHistory> ch = new CaseHistory().loadclass(" CaseID ="+Caseid);
-            for (Telephone obj : tp) {
-                obj.setCaseHid(ch.get(0).getId());
-                obj.savetodb();
+       ArrayList<Telephone> atp;
+        if (TxtDialScreen.getText().isEmpty()) {
+            infoBox("Please enter a number", "Delhi Women Cell");
+        } else {
+            Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
+            if (Caseid == null) {
+                infoBox("Please select a Case", "Delhi Women Cell");
+                return;
+            } else {
+                atp = new Telephone().loadclass(" Number like '" + TxtDialScreen.getText() + "' and CaseHID IN (select idCase_History from case_history where CaseID like '" + Caseid + "')");
             }
-            infoBox("Number Successfully added", "Delhi Women Cell");
-        } catch (Exception e) {
-            e.printStackTrace();
-            infoBox("You have entered invalid number", "Delhi Women Cell");
+            if (atp.size() < 1) {
+                ArrayList<Telephone> tp = new ArrayList<>();
+                da.getTxtPhone().setText(TxtDialScreen.getText());
+                da.show();
+                
+                Telephone ph = new Telephone();
+                
+                try {
+                    if (da.getTxtName().getText().isEmpty())                     
+                        throw  new Exception();                   
+                    ph.setNote(da.getTxtName().getText());
+                    ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
+                    tp.add(ph);
+                    ArrayList<CaseHistory> ch = new CaseHistory().loadclass(" CaseID =" + Caseid);
+                    for (Telephone obj : tp) {
+                        obj.setCaseHid(ch.get(0).getId());
+                        obj.savetodb();
+                    }
+                    infoBox("Number Successfully added", "Delhi Women Cell");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    infoBox("You have entered invalid name or number", "Delhi Women Cell");
+                }
+            } else {
+                infoBox("Number Already exist", "Delhi Women Cell");
+            }
+            connect(TxtDialScreen.getText());
         }
-        connect(TxtDialScreen.getText());
         
         /*
         caseentry.show();    }//GEN-LAST:event_Btn_DialActionPerformed
@@ -950,6 +969,7 @@ public class Screen_Managers extends javax.swing.JFrame {
             }
         }
         final OutBound ob = new OutBound();
+        final JDialog caseentry = new JDialog(this);
         ob.connect(number);
         System.out.println("number to connect" + number);
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
@@ -970,7 +990,9 @@ public class Screen_Managers extends javax.swing.JFrame {
 
                     cl.setAgentId(Integer.parseInt(Global.AgentID));
                     cl.updatedb();
-                    dispose();
+                    //dispose();
+                    caseentry.dispose();
+                    pce.setVisible(false);
                 } catch (Exception exc) {
                     exc.printStackTrace();
                     infoBox("Please try again!", "Delhi WomenCell");
@@ -981,7 +1003,7 @@ public class Screen_Managers extends javax.swing.JFrame {
         pce.getTxt_Advice().setEnabled(true);
         pce.Agentid = Long.valueOf(Global.AgentPK);
         pce.Caseid = Caseid;
-        JDialog caseentry = new JDialog(this);
+        
         caseentry.add(pce);
         caseentry.getContentPane().setSize(caseentry.getContentPane().getPreferredSize());
         caseentry.setSize(caseentry.getPreferredSize());

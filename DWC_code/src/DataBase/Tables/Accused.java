@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  * @author admin
  */
 public class Accused {
-    long id, CaseID, Phone;
-    String Name, Address, Fir,DD;
+    long id, CaseID;
+    String Name, Address, Fir,DD,Phone;
     Boolean challan=false, judgement=false;
     Sql sql = new Sql();
 
@@ -38,11 +38,11 @@ public class Accused {
         this.CaseID = CaseID;
     }
 
-    public long getPhone() {
+    public String getPhone() {
         return Phone;
     }
 
-    public void setPhone(long Phone) {
+    public void setPhone(String Phone) {
         this.Phone = Phone;
     }
 
@@ -107,7 +107,7 @@ public class Accused {
     {
         stmt.setLong(1,getCaseID());
         stmt.setString(2,getName());
-        stmt.setLong(3,getPhone());
+        stmt.setString(3,getPhone());
         stmt.setString(4,getAddress());
         stmt.setString(5,getFir());
         stmt.executeUpdate();
@@ -140,7 +140,7 @@ public class Accused {
                 obj.setId(rs.getInt(1));
                 obj.setCaseID(rs.getInt(2));
                 obj.setName(rs.getString(3));
-                obj.setPhone((long) rs.getDouble(4));
+                obj.setPhone(rs.getString(4));
                 obj.setAddress(rs.getString(5));
                 ac.add(obj);
             }
@@ -156,7 +156,7 @@ public class Accused {
         System.out.println("Querry Accused Update " + Query);
         try {
             stmt1.setString(1, getName());
-            stmt1.setLong(2, getPhone());
+            stmt1.setString(2, getPhone());
             stmt1.setString(3, getAddress());            
             stmt1.setLong(4, getCaseID());            
             stmt1.executeUpdate();
