@@ -116,7 +116,7 @@ public class LoadData_DistressWoman {
     }
 
     private void Fill_caseDirectory() {
-        
+
         try {
             ArrayList<DataBase.Tables.Directory> Dr = new DataBase.Tables.Directory().loadclass(" Area IN (select PoliceStation from `case` where idCase = " + dc.CaseID + ")");
 
@@ -309,8 +309,8 @@ public class LoadData_DistressWoman {
                         if (dlg_scmpl.getTxt_Number().getText().length() > 1) {
                             PreviousCallFromSameNumber(dlg_scmpl.getTxt_Number().getText());
                         } else {
-                            ArrayList<Calls> call = new Calls().loadclass("Bound='IN' and CaseHID in (select idCase_History from case_history where CaseID = "+dlg_scmpl.getCaseid()+")");
-                            PreviousCallFromSameNumber(call.get(0).getNumber());        
+                            ArrayList<Calls> call = new Calls().loadclass("Bound='IN' and CaseHID in (select idCase_History from case_history where CaseID = " + dlg_scmpl.getCaseid() + ")");
+                            PreviousCallFromSameNumber(call.get(0).getNumber());
                         }
                         PopulateCaller();
 
@@ -361,9 +361,14 @@ public class LoadData_DistressWoman {
             //dc.getSrchFld_PoliceStne().setText(dscs.PoliceStn);
             //setSelectedValue(dc.getCmbBx_PoliceDistrict(),dscs.ooo)
             //dc.getCmbBx_CaseType()= dscs.castype;
-            setSelectedValue(dc.getjCmbPoliceStation(), dscs.PoliceStn);
+            try {
+                setSelectedValue(dc.getjCmbPoliceStation(), dscs.PoliceStn);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
             setSelectedValue(dc.getCmbBx_Forward(), dscs.Forward);
             setSelectedValue(dc.getCmbBx_CaseStatus(), dscs.Status);
+            setSelectedValue(dc.getCmbBx_CaseType(), dscs.CaseType);
             //    dc.getTxt_CaseStatus().setText(dscs.Status);
         }
 //        dc.newcaller = dsc.newcaller;
@@ -374,6 +379,7 @@ public class LoadData_DistressWoman {
     }
 
     private void PopulateDirectories() {
+        //ArrayList<DataBase.Tables.Directory> cdir = new DataBase.Tables.Directory().loadclass(" where AREA like '"+dscs.PoliceStn+"'");
     }
 
     private void FindCaseHistory() {
