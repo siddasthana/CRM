@@ -30,11 +30,11 @@
               <Component id="jXLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="SrchFld_CmpltNo" min="-2" pref="92" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="CmbBx_CaseType" min="-2" pref="108" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="CmbBx_CaseType" min="-2" pref="199" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jXLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="DtPck_Case" min="-2" max="-2" attributes="0"/>
@@ -282,31 +282,34 @@
     <Component class="javax.swing.JComboBox" name="CmbBx_CaseType">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="24">
+          <StringArray count="27">
             <StringItem index="0" value=" "/>
             <StringItem index="1" value="Others"/>
             <StringItem index="2" value="Abduction"/>
             <StringItem index="3" value="Acid_Attack"/>
-            <StringItem index="4" value="Callback_from_100"/>
-            <StringItem index="5" value="Child_Sexual_Abuse (POSCO)"/>
-            <StringItem index="6" value="Dangerous_Attack"/>
-            <StringItem index="7" value="Domestic_Violence"/>
-            <StringItem index="8" value="Dowry_Death"/>
-            <StringItem index="9" value="Dowry_Violence"/>
-            <StringItem index="10" value="Illegal_Confinement"/>
-            <StringItem index="11" value="Incoming_obscene"/>
-            <StringItem index="12" value="Kidnaping"/>
-            <StringItem index="13" value="Life_Threatening_attack_by_Family"/>
-            <StringItem index="14" value="Missing"/>
-            <StringItem index="15" value="Murder"/>
-            <StringItem index="16" value="Obscene_Call"/>
-            <StringItem index="17" value="Petty_Quarrel"/>
-            <StringItem index="18" value="Property_cases"/>
-            <StringItem index="19" value="Rape"/>
-            <StringItem index="20" value="Sexual_Abuse"/>
-            <StringItem index="21" value="Stalking"/>
-            <StringItem index="22" value="Threat_To_Life"/>
-            <StringItem index="23" value="Violence_by_Khap_Biradari_Panchayat"/>
+            <StringItem index="4" value="Aggravated_Penetrative_Sexual_Assault"/>
+            <StringItem index="5" value="Aggravated_Sexual_Assault"/>
+            <StringItem index="6" value="Child_Sexual_Abuse (POSCO)"/>
+            <StringItem index="7" value="Dangerous_Attack"/>
+            <StringItem index="8" value="Domestic_Violence"/>
+            <StringItem index="9" value="Dowry_Death"/>
+            <StringItem index="10" value="Dowry_Violence"/>
+            <StringItem index="11" value="Illegal_Confinement"/>
+            <StringItem index="12" value="Incoming_obscene"/>
+            <StringItem index="13" value="Kidnaping"/>
+            <StringItem index="14" value="Life_Threatening_attack_by_Family"/>
+            <StringItem index="15" value="Missing"/>
+            <StringItem index="16" value="Murder"/>
+            <StringItem index="17" value="Obscene_Call"/>
+            <StringItem index="18" value="Penetrative_Sexual_Assault"/>
+            <StringItem index="19" value="Petty_Quarrel"/>
+            <StringItem index="20" value="Property_cases"/>
+            <StringItem index="21" value="Rape"/>
+            <StringItem index="22" value="Sexual_Abuse"/>
+            <StringItem index="23" value="Sexual_Assault"/>
+            <StringItem index="24" value="Sexual_Harassment"/>
+            <StringItem index="25" value="Stalking"/>
+            <StringItem index="26" value="Threat_To_Life"/>
           </StringArray>
         </Property>
       </Properties>

@@ -387,6 +387,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         else if (jRadioButton5.isSelected()) {
             Dlg_Agency d = new Dlg_Agency(pf, closable);
             d.getTxt_CallerPhone().setText(pf.Serving);
+            d.getSrchFld_Complaint().disable();
             ((Dlg_Agency) d).jPanel11.setSize(((Dlg_Agency) d).jPanel11.getPreferredSize());
             d.loadelement();
             d.setSize(d.getPreferredSize());
@@ -522,7 +523,7 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         if (newaccussed) {
             Accused acd = new Accused();
             acd.setName(title);
-            acd.setPhone(WIDTH);
+            acd.setPhone(String.valueOf(WIDTH));
             acd.setAddress(title);
             acd.setFir(title);
             acd.setCaseID(cs.getId());

@@ -204,7 +204,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
 
         jXLabel1.setText("Complaint No.");
 
-        CmbBx_CaseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Others", "Abduction", "Acid_Attack", "Callback_from_100", "Child_Sexual_Abuse (POSCO)", "Dangerous_Attack", "Domestic_Violence", "Dowry_Death", "Dowry_Violence", "Illegal_Confinement", "Incoming_obscene", "Kidnaping", "Life_Threatening_attack_by_Family", "Missing", "Murder", "Obscene_Call", "Petty_Quarrel", "Property_cases", "Rape", "Sexual_Abuse", "Stalking", "Threat_To_Life", "Violence_by_Khap_Biradari_Panchayat" }));
+        CmbBx_CaseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Others", "Abduction", "Acid_Attack", "Aggravated_Penetrative_Sexual_Assault", "Aggravated_Sexual_Assault", "Child_Sexual_Abuse (POSCO)", "Dangerous_Attack", "Domestic_Violence", "Dowry_Death", "Dowry_Violence", "Illegal_Confinement", "Incoming_obscene", "Kidnaping", "Life_Threatening_attack_by_Family", "Missing", "Murder", "Obscene_Call", "Penetrative_Sexual_Assault", "Petty_Quarrel", "Property_cases", "Rape", "Sexual_Abuse", "Sexual_Assault", "Sexual_Harassment", "Stalking", "Threat_To_Life" }));
 
         jLabel6.setText("Case Type");
 
@@ -480,11 +480,11 @@ public class Screen_CaseReports extends javax.swing.JFrame {
                 .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(SrchFld_CmpltNo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addComponent(CmbBx_CaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(DtPck_Case, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -567,6 +567,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
             }
         }
         final OutBound ob = new OutBound();
+        final JDialog caseentry = new JDialog();
         ob.connect(s);
         System.out.println("number" + s);
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
@@ -583,14 +584,12 @@ public class Screen_CaseReports extends javax.swing.JFrame {
 
                 Calls cl = new Calls().loadclass("Bound='OUT' and CallUUID=" + ob.confname).get(0);
                 cl.setCaseHID(pce.getElement().getId());
-
                 cl.setAgentId(Integer.parseInt(Global.AgentID));
                 cl.updatedb();
                 pce.setVisible(false);
+                caseentry.dispose();
+                
                 //pce.dispose();
-                pce.getParent().setVisible(false);
-                //DISPOSE_ON_CLOSE;
-                dispose();
             }
         });
         pce.getTxt_Note().setEnabled(true);
@@ -601,7 +600,7 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         pce.revalidate();
         pce.repaint();
         System.err.println("confName" + ob.confname);
-        JDialog caseentry = new JDialog(this);
+        
         caseentry.add(pce);
         caseentry.getContentPane().setSize(caseentry.getContentPane().getPreferredSize());
         caseentry.setSize(caseentry.getPreferredSize());
@@ -633,17 +632,18 @@ public class Screen_CaseReports extends javax.swing.JFrame {
             } else {
                 atp = new Telephone().loadclass(" Number like '" + TxtDialScreen.getText() + "' and CaseHID IN (select idCase_History from case_history where CaseID like '" + Caseid + "')");
             }
-            if (!(atp.size() > 1)) {
+            if (atp.size() < 1) {
                 ArrayList<Telephone> tp = new ArrayList<>();
                 da.getTxtPhone().setText(TxtDialScreen.getText());
                 da.show();
-                if (da.getTxtName().getText().isEmpty()) {
-                    infoBox("Please enter a valid Name", "Delhi Women Cell");
-                    return;
-                }
+
                 Telephone ph = new Telephone();
                 ph.setNote(da.getTxtName().getText());
                 try {
+                    if (da.getTxtName().getText().isEmpty()) {
+                        infoBox("Please enter a valid Name", "Delhi Women Cell");
+                        throw new Exception();
+                    }
                     ph.setNumber(Long.parseLong(da.getTxtPhone().getText()));
                     tp.add(ph);
                     ArrayList<CaseHistory> ch = new CaseHistory().loadclass(" CaseID =" + Caseid);
