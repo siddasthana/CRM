@@ -12,51 +12,77 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 /**
- *
+ * This class load saves and updates data from the panel to the table Database.Tables.Caller
  * @author admin
  */
 public class Pnl_CallerElement extends javax.swing.JPanel {
 
-    /**
-     *
-     */
     public ArrayList<Long> CaseHID = new ArrayList<>();
     public long id;
     boolean newentry = false;
 
+    /**
+     * @return A JButton Btn_Select
+     */
     public JButton getBtn_Select() {
         return Btn_Select;
     }
-
+    
+    /**
+     * Sets the Btn_Select value
+     * @param Btn_Select A JButton value
+     */
     public void setBtn_Select(JButton Btn_Select) {
         this.Btn_Select = Btn_Select;
     }
 
+    /**
+     * @return A JTextField Txt_CallerAddress value
+     */
     public JTextField getTxt_CallerAddress() {
         return Txt_CallerAddress;
     }
 
+    /**
+     * Sets the Txt_CallerAddress value
+     * @param Txt_CallerAddress A JTextField value
+     */
     public void setTxt_CallerAddress(JTextField Txt_CallerAddress) {
         this.Txt_CallerAddress = Txt_CallerAddress;
     }
 
+    /**
+     * @return A JTextField Txt_CallerAge value
+     */
     public JTextField getTxt_CallerAge() {
         return Txt_CallerAge;
     }
 
+    /**
+     * Sets the Txt_CallerAge value
+     * @param Txt_CallerAge A JTextField value
+     */
     public void setTxt_CallerAge(JTextField Txt_CallerAge) {
         this.Txt_CallerAge = Txt_CallerAge;
     }
 
+    /**
+     * @return A JTextField Txt_CallerName value
+     */
     public JTextField getTxt_CallerName() {
         return Txt_CallerName;
     }
 
+    /**
+     * Sets the Txt_callerName value
+     * @param Txt_CallerName A JTextfield value
+     */
     public void setTxt_CallerName(JTextField Txt_CallerName) {
         this.Txt_CallerName = Txt_CallerName;
     }
 
     /**
+     * Default constructor
      * Creates new form Pnl_CallerElement
      */
     public Pnl_CallerElement() {
@@ -169,6 +195,11 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
     private void Txt_CallerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_CallerNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Txt_CallerNameActionPerformed
+    
+    /**
+     * Loads Data of the parameter into the panel
+     * @param e A Caller object
+     */
     public void LoadElement(Caller e) {
         Pnl_CallerElement obj = this;
         obj.getTxt_CallerName().setText(e.getName());
@@ -178,7 +209,11 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
         obj.id = e.getId();
 
     }
-
+    
+    /**
+     * Enables Btn_save for Supervisor Agents
+     * Sets newentry = false
+     */
     public void EnableSave() {
         if (Global.AgentLevel.equals("supervisor")) {
             this.Btn_Save.setEnabled(true);
@@ -186,6 +221,10 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
         newentry = false;
     }
 
+    /**
+     * Enables Btn_save for Supervisor Agents
+     * @param s Long CaseHID value
+     */
     public void EnableSave(Long s) {
         if (Global.AgentLevel.equals("supervisor")) {
             this.Btn_Save.setEnabled(true);
@@ -195,6 +234,10 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
         System.out.println("casehid " + s);
     }
 
+    /**
+     * Invokes Dlg_SelectCaller
+     * @param evt 
+     */
     private void Btn_SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SelectActionPerformed
         // TODO add your handling code here:
         Dlg_SelectCaller dc = (Dlg_SelectCaller) this.getRootPane().getParent();
@@ -208,6 +251,10 @@ public class Pnl_CallerElement extends javax.swing.JPanel {
         dc.setVisible(false);
     }//GEN-LAST:event_Btn_SelectActionPerformed
 
+    /**
+     * Saves Panel data to the Table Database.Tables.Caller
+     * @param evt 
+     */
     private void Btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SaveActionPerformed
         // TODO add your handling code here:
         Caller cl = new Caller();

@@ -63,12 +63,13 @@ public class Agency {
     
 
     public void updatedb() {
-        String Query = "Update `" + Sql.dbName + "`.`agency` Set ";
-        Query += "Name='" + getName()+ "'";
-        Query += ", Address='" + getAddress()+ "'";
-        Query += ", Landline='" + getLandline()+ "'";
-        Query += ", Mobile='" + getMobile()+ "'";        
-        Query += " where id=" + (int) getId();
+        String Query =  
+                " Update `" + Sql.dbName + "`.`agency` Set" +
+                " Name='" + getName()+ "'," +
+                " Address='" + getAddress()+ "'," +
+                " Landline='" + getLandline()+ "'," +
+                " Mobile='" + getMobile()+ "'" +
+                " where id=" + (int) getId();
         //Sql sql = new Sql();
         System.out.println(Query);
         sql.ExecuteUpdate(Query);
@@ -76,7 +77,10 @@ public class Agency {
     }
 
     public void savetodb() {
-        String Query = "INSERT INTO `" + Sql.dbName + "`.`agency` (`id`, `Name`, `Address`, `Landline`, `Mobile`)" + " values(null,?,?,?,?) ";
+        String Query =  
+                "INSERT INTO `" + Sql.dbName +
+                "`.`agency` (`id`, `Name`, `Address`, `Landline`, `Mobile`)" +
+                " values(null,?,?,?,?) ";
         //  Query += " VALUES ('" + getPoliceStn() + "', '" + getStatus() + "', '" + getForward() + "', '" + getReadableName() + "', '" + getCaseType() + "')";
         //Sql s = new Sql();
         System.out.println(Query);
@@ -93,7 +97,7 @@ public class Agency {
             
             //   sql.ExecuteUpdate(Query);
                    
-            ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
+        ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
         try {
             if (rs.next()) {
                 long insertid = Long.valueOf(rs.getLong(1));
@@ -111,9 +115,11 @@ public class Agency {
         Sql sql = new Sql();
         System.out.println(Query);
         ResultSet rs = sql.ExecuteQuery(Query);
+        
         try {
             while (rs.next()) {
                 Agency obj = new Agency();
+                
                 obj.setId((long) rs.getDouble(1));
                 obj.setName(rs.getString(2));
                 obj.setAddress(rs.getString(3));

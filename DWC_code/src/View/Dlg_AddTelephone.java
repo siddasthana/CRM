@@ -7,28 +7,43 @@ package View;
 import javax.swing.JTextField;
 
 /**
- *
+ * This class creates and object for Telephone number number to the 
  * @author admin
  */
 public class Dlg_AddTelephone extends javax.swing.JDialog {
 
+    /**
+     * @return A JTextField TxtName value
+     */
     public JTextField getTxtName() {
         return TxtName;
     }
 
+    /**
+     * Sets the TxtName value
+     * @param TxtName a JTextField value
+     */
     public void setTxtName(JTextField TxtName) {
         this.TxtName = TxtName;
     }
 
+    /**
+     * @return A JTextField TxtPhone
+     */
     public JTextField getTxtPhone() {
         return TxtPhone;
     }
 
+    /**
+     * Sets the TxtPhone value
+     * @param TxtPhone A JTextField value
+     */
     public void setTxtPhone(JTextField TxtPhone) {
         this.TxtPhone = TxtPhone;
     }
 
     /**
+     * parameterized constructor
      * Creates new form Dlg_AddTelephone
      */
     public Dlg_AddTelephone(java.awt.Frame parent, boolean modal) {

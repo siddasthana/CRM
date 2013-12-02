@@ -14,11 +14,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * The class provides Connect() for Outbound connections
  * @author admin
  */
 public class OutBound {
     public long confname;
+    
+    /**
+     * Connects the call to the Number provided as parameter
+     * @param s A String Phone number value
+     */
     public void connect(String Number){
              String Query = "Select state, contact from agents where name='"+Global.AgentID+"'";
         Sql sql = new Sql();

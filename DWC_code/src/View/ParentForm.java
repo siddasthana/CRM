@@ -14,41 +14,64 @@ import javax.swing.JFrame;
 import org.eclipse.persistence.config.PersistenceUnitProperties;
 
 /**
- *
- * @author admin
+ * The ParentForm class is The base form class for this application
+ * @author Shikhar Singhal
  */
 public class ParentForm extends javax.swing.JFrame {
 String AgentId;
 String Extension;
 String Serving;
 
+    /** 
+    * @return   A String ParentForm AgentId value 
+    */
     public String getAgentId() {
         return AgentId;
     }
 
+    /**
+     * Sets the ParentFor AgentId
+     * Also Sets the Global Agent Id i.e. Agent ID of the logged in agent
+     * @param AgentId 
+     */
     public void setAgentId(String AgentId) {
         this.AgentId = AgentId;
    Global.AgentID = AgentId;
            
     }
 
+    /**
+     * @return A String ParentForm Extension value
+     */
     public String getExtension() {
         return Extension;
     }
 
+    /**
+     * Sets the ParentForm Extension value
+     * @param Extension A String value
+     */
     public void setExtension(String Extension) {
         this.Extension = Extension;
     }
 
+    /**
+     * @return A String ParentForm Serving value 
+     */
     public String getServing() {
         return Serving;
     }
 
+    /**
+     * Sets the ParentForm Serving value
+     * @param Serving 
+     */
     public void setServing(String Serving) {
         this.Serving = Serving;
     }
     /**
-     * Creates new form ParentForm
+     * Constructor
+     * Creates the new form ParentForm
      */
     public ParentForm() {
         initComponents();
@@ -94,7 +117,10 @@ String Serving;
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * This Method is invoked when the Application is started.
+     * It invokes the login screen for Agent Authentication
      * @param args the command line arguments
+     * @throws PropertyVetoException
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -109,13 +135,10 @@ String Serving;
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ParentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ParentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ParentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException 
+                    | InstantiationException 
+                    | IllegalAccessException 
+                    | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ParentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -123,12 +146,14 @@ System.setProperty(PersistenceUnitProperties.ECLIPSELINK_PERSISTENCE_XML, "main/
         /* Create and display the form */
         
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-           ParentForm p =  new ParentForm();
-                   p.setVisible(true);
-             p.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                   LoginScreen ls = new LoginScreen();
-                   p.desktopPane.add(ls);
+                ParentForm p =  new ParentForm();
+                LoginScreen ls = new LoginScreen();
+                
+                p.setVisible(true);
+                p.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                p.desktopPane.add(ls);
                 try {
                     ls.setMaximum(true);
                 } catch (PropertyVetoException ex) {

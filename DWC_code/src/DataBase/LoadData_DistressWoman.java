@@ -35,7 +35,8 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 
 /**
- *
+ * The class contains methods load data into different Screen Panels,
+ * corresponding to the Screen_TeleExecutive screen, into the Dlg_distressWoman screen
  * @author admin
  */
 public class LoadData_DistressWoman {
@@ -54,6 +55,10 @@ public class LoadData_DistressWoman {
     ArrayList<Directory> directory;
     ArrayList<Accused> accused;
 
+    /**
+     * LoadsData into the Dlg_distressWoman screen corresponding to the Screen_TeleExecutive screen
+     * @param str 
+     */
     public LoadData_DistressWoman(Screen_TeleExecutive str) {
         this.st = str;
         System.out.println("str " + str);
@@ -83,7 +88,7 @@ public class LoadData_DistressWoman {
 
         //Populating the GUI fields
 
-//        dc.getTxt_CallerName().setText(clr.getName());
+        //dc.getTxt_CallerName().setText(clr.getName());
         //       dc.getTxt_CallerAddress().setText(clr.getAddress());
         //      dc.getTxt_CallerAge().setText(clr.getAge());
         //     dc.getTxt_CallerPhone().setText(st.pf.getServing());
@@ -98,6 +103,10 @@ public class LoadData_DistressWoman {
         Fill_accusedPanel();
     }
 
+    /**
+     * Loads data into the Pnl_CallElement panel corresponding to the CaseHID
+     * value in table Database.tables.Telephone
+     */
     private void Fill_recordDirectory() {
         for (Calls cl : calls) {
             try {
@@ -114,7 +123,11 @@ public class LoadData_DistressWoman {
             }
         }
     }
-
+    
+    /**
+     * Loads data into the Pnl_CallElement panel corresponding to the Area
+     * value in table Database.tables.Telephone
+     */
     private void Fill_caseDirectory() {
         
         try {
@@ -137,6 +150,10 @@ public class LoadData_DistressWoman {
     private void Fill_accusedPanel() {
     }
 
+    /**
+     * loads Data corresponding to the Number given from calls table in the database
+     * @param Number 
+     */
     private void PreviousCallFromSameNumber(String Number) {
         calls = new Calls().loadclass("CaseHID IS NOT NULL and Number =" + Number);
 
@@ -375,6 +392,9 @@ public class LoadData_DistressWoman {
     private void PopulateDirectories() {
     }
 
+    /**
+     * Populates case History Corresponding to the CaseHid of the Dlg_DistressWoman
+     */
     private void FindCaseHistory() {
         String casehlist = dc.CaseHid.toString();
         casehlist = casehlist.replace("[", "(");
@@ -386,6 +406,9 @@ public class LoadData_DistressWoman {
         }
     }
 
+    /**
+     * Populates Accused + Legal Data Corresponding to the CaseHid of the Dlg_DistressWoman
+     */
     private void PopulateAccuse() {
         ArrayList<Accused> ac = new Accused().loadclass(" Caseid like '" + dc.CaseID + "'");
         ArrayList<Legal> le = new Legal().loadclass(" CaseID like '" + dc.CaseID + "'");
@@ -402,6 +425,11 @@ public class LoadData_DistressWoman {
         }
     }
 
+    /**
+     * Sets the selected value for the JComboBox 
+     * @param comboBox A JCoboBox value
+     * @param value The selected String value 
+     */
     public static void setSelectedValue(JComboBox comboBox, String value) {
 
         String item;
@@ -414,6 +442,10 @@ public class LoadData_DistressWoman {
         }
     }
 
+    /**
+     * Load case History Corresponding to the CaseHid of the Dlg_DistressWoman into the Pnl_CaseHistoryElement panel
+     *
+     */
     private void PopulateCaseHistory() {
         System.out.println("Adding case elements");
         caseHistory = new CaseHistory().loadclass(" CaseID =" + dc.CaseID + " order by DateStamp DESC");

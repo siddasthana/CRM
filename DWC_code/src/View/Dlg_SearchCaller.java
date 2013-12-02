@@ -8,12 +8,13 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 /**
- *
+ *This class Searches a Caller Corresponding to Phone Number
  * @author admin
  */
 public class Dlg_SearchCaller extends javax.swing.JDialog {
 
     /**
+     * Parameterized constructor
      * Creates new form Dlg_SearchCaller
      */
     public Dlg_SearchCaller(java.awt.Frame parent, boolean modal) {
@@ -29,10 +30,17 @@ public class Dlg_SearchCaller extends javax.swing.JDialog {
         this.jButton1 = jButton1;
     }
 
+    /**
+     * @return A JTextField Txt_OldNumber value
+     */
     public JTextField getTxt_OldNumber() {
         return Txt_OldNumber;
     }
 
+    /**
+     * Sets the Txt_OldNumber value
+     * @param Txt_OldNumber A JTextField value
+     */
     public void setTxt_OldNumber(JTextField Txt_OldNumber) {
         this.Txt_OldNumber = Txt_OldNumber;
     }

@@ -812,15 +812,15 @@ public class Dlg_Agency extends javax.swing.JDialog {
             dc.setVisible(true);
             if (dc.Caseid >= 1) {
                 //newcase = false;
-                Cases cs = new Cases().loadclass(" idCase=" + dc.Caseid).get(0);
-                CaseID = cs.getId();
+                Cases c = new Cases().loadclass(" idCase=" + dc.Caseid).get(0);
+                CaseID = c.getId();
                 //SrchFld_PoliceStne.setText(cs.getPoliceStn());
-                SrchFld_Complaint.setText(cs.getReadableName());
-                setSelectedValue(CmbBx_CaseStatus, cs.getStatus());
-                setSelectedValue(CmbBx_CaseType, cs.getCaseType());
+                SrchFld_Complaint.setText(c.getReadableName());
+                setSelectedValue(CmbBx_CaseStatus, c.getStatus());
+                setSelectedValue(CmbBx_CaseType, c.getCaseType());
                 //setSelectedValue(CmbBx_Forward, cs.getForward());
                 loadelement();
-                infoBox("Your Current case is updated to : " + cs.getReadableName(), "Delhi Women Cell");
+                infoBox("Your Current case is updated to : " + c.getReadableName(), "Delhi Women Cell");
             } else {
                 infoBox("You have not selected any Case", "Delhi Women Cell");
             }

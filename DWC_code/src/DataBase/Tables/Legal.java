@@ -75,10 +75,14 @@ public class Legal {
 
     public void savetodb() {
 
-        String Query = "INSERT INTO `" + Sql.dbName + "`.`legal` (`id`, `Caseid`, `DD`, `Fir`, `Challan`, `Judgement`)" + " values(null,?,?,?,?,?) ";
+        String Query = 
+                "INSERT INTO `" + Sql.dbName +
+                "`.`legal` (`id`, `Caseid`, `DD`, `Fir`, `Challan`, `Judgement`)" +
+                " values(null,?,?,?,?,?) ";
         //Query += " VALUES ('"+getCaseID()+"', '"+getName()+"', '"+getPhone()+"', '"+getAddress()+"', '"+getFir()+"')";
         // Sql sql = new Sql();
         PreparedStatement stmt = sql.GetPrepareStmt(Query);
+        
         try {
             stmt.setLong(1, getCaseID());
             stmt.setString(2, getDD());
@@ -92,6 +96,7 @@ public class Legal {
         //sql.ExecuteUpdate(Query);
         // sql.ExecuteUpdate(Query);
         ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
+        
         try {
             if (rs.next()) {
                 long insertid = Long.valueOf(rs.getLong(1));
@@ -108,9 +113,11 @@ public class Legal {
         String Query = "Select * From legal where " + Querypart;
         // Sql sql = new Sql();
         ResultSet rs = sql.ExecuteQuery(Query);
+        
         try {
             while (rs.next()) {
                 Legal obj = new Legal();
+                
                 obj.setId(rs.getInt(1));
                 obj.setCaseID(rs.getInt(6));
                 obj.setDD(rs.getString(2));
@@ -130,6 +137,7 @@ public class Legal {
         String Query = "UPDATE `legal`  SET DD = ? , Fir = ?, Challan= ? , Judgement = ? WHERE CaseId = ? ";
         PreparedStatement stmt1 = sql.GetPrepareStmt(Query);
         System.out.println("Querry Legal Update" + Query);
+        
         try {
             stmt1.setString(1, getDD());
             stmt1.setString(2, getFir());
@@ -137,7 +145,9 @@ public class Legal {
             stmt1.setInt(4, getJudgement());
             stmt1.setLong(5, getCaseID());            
             stmt1.executeUpdate();
-            System.out.println("caseid"+getCaseID());System.out.println("judgement"+getJudgement());System.out.println("challan"+getChallan());
+            System.out.println("caseid" + getCaseID());
+            System.out.println("judgement" + getJudgement());
+            System.out.println("challan" + getChallan());
             
             
         } catch (SQLException e) {

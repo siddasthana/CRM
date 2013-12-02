@@ -18,48 +18,77 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author admin
+ * This class Calls a Telephone numbers in Database.Tables.Directory
+ * @author Shikhar Singhal
  */
 public class Pnl_CallElement extends javax.swing.JPanel {
 
-    /**
-     * Creates new form xyz
-     */
     public String id;
 
+    /**
+     * Default Constructor
+     * Creates a new Pnl_CallElement
+     */
     public Pnl_CallElement() {
         initComponents();
     }
 
+    /**
+     * @return A String id value
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Sets the id value
+     * @param id A String value
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * @return A JButton Btn_CallEleent_Dial value
+     */
     public JButton getBtn_CallElement_Dial() {
         return Btn_CallElement_Dial;
     }
 
+    /**
+     * Sets the Btn_CallElement_Dial value
+     * @param Btn_CallElement_Dial 
+     */
     public void setBtn_CallElement_Dial(JButton Btn_CallElement_Dial) {
         this.Btn_CallElement_Dial = Btn_CallElement_Dial;
     }
 
+    /**
+     * @return A JLabel Lbl_CallElement_Name value
+     */
     public JLabel getLbl_CallElement_Name() {
         return Lbl_CallElement_Name;
     }
 
+    /**
+     * Sets the Lbl_CallElement_Name value
+     * @param Lbl_CallElement_Name A JLabel value
+     */
     public void setLbl_CallElement_Name(JLabel Lbl_CallElement_Name) {
         this.Lbl_CallElement_Name = Lbl_CallElement_Name;
     }
 
+    /**
+     * @return A JLabel Lbl_CallElement_Name value
+     */
     public JLabel getLbl_CallElement_number() {
         return Lbl_CallElement_number;
     }
 
+    /**
+     * Sets the Lbl_CallElement_Nuber value
+     * @param Lbl_CallElement_number A JLabel value
+     */
     public void setLbl_CallElement_number(JLabel Lbl_CallElement_number) {
         this.Lbl_CallElement_number = Lbl_CallElement_number;
     }
@@ -113,6 +142,10 @@ public class Pnl_CallElement extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Dials The Current Telephone number.
+     * @param evt 
+     */
     private void Btn_CallElement_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CallElement_DialActionPerformed
         // TODO add your handling code here:
 //"In a queue call"" thenn uuid for call
@@ -158,6 +191,11 @@ public class Pnl_CallElement extends javax.swing.JPanel {
         infoBox("Your Call Request is submitted. Please wait for 1 minute for server to connect you.", "Delhi WomenCell");
 
     }//GEN-LAST:event_Btn_CallElement_DialActionPerformed
+    
+    /**
+     * Loads the Parameter into the panel
+     * @param ob A DataBase.Tables.Directory value
+     */
     public void LoadElement(DataBase.Tables.Directory ob) {
         String name=" ";
         if(ob.getInfo()!=null){ name = ob.getInfo();}

@@ -48,6 +48,7 @@ import javax.xml.bind.annotation.XmlElementDecl;
 public class Screen_CaseReports extends javax.swing.JFrame {
 
     /**
+     * Default constructor
      * Creates new form Screen_CaseReports
      */
     public Screen_CaseReports() {
@@ -546,6 +547,10 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Connects the call to the Number provided as parameter
+     * @param s A String Phone number value
+     */
     public void connect(String s) {
         if (Caseid == null) {
             infoBox("Please select a Case before you proceed", "Delhi Women Cell");
@@ -610,7 +615,11 @@ public class Screen_CaseReports extends javax.swing.JFrame {
     private void TxtDialScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDialScreenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtDialScreenActionPerformed
-
+    
+    /**
+     * Invokes Connect after Loading or asking for a valid Phone number
+     * @param evt 
+     */
     private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
         // TODO add your handling code here:
         ArrayList<Telephone> atp;
@@ -717,6 +726,12 @@ public class Screen_CaseReports extends javax.swing.JFrame {
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton18DialKeyPad
 
+    /**
+     * Loads data from Directory and telephone tables Corresponding to the search parameters entered
+     * Invokes  Pnl_CaseHistory, Pnl_Accused, Pnl_CaseList, Pnl_Caller, Pnl_CaseDirctry ,Pnl_RecrdDirctry,
+     * Pnl_CallElement, Pnl_CallerElement
+     * @param evt 
+     */
     private void Btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SearchActionPerformed
         // TODO add your handling code here:
         Pnl_CaseHistory.removeAll();
@@ -988,6 +1003,11 @@ public class Screen_CaseReports extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_SearchActionPerformed
     }
 
+    /**
+     * Sets the selected value for the JComboBox 
+     * @param comboBox A JCoboBox value
+     * @param value The selected String value 
+     */
     public static void setSelectedValue(JComboBox comboBox, String value) {
 
         String item;

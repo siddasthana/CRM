@@ -19,7 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 /**
- *
+ * This Class Loads and saves Data from the panel to CaseHistory table in the Database.Tables.CaseHistory
  * @author admin
  */
 public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
@@ -30,84 +30,151 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
     public long confname;
     public long Number;
 
+    /**
+     * @return A long Confname value
+     */
     public long getConfname() {
         return confname;
     }
 
+    /**
+     * Sets the confname value
+     * @param confname a long value
+     */
     public void setConfname(long confname) {
         this.confname = confname;
     }
 
+    /**
+     * @return A long Number value
+     */
     public long getNumber() {
         return Number;
     }
 
+    /**
+     * Sets the Nuber value
+     * @param Number a long value
+     */
     public void setNumber(long Number) {
         this.Number = Number;
     }
     
-
+    /**
+     * @return A JComboBox Reffered value
+     */
     public JComboBox getCmbBx_Reffered() {
         return CmbBx_Reffered;
     }
 
+    /**
+     * Sets the Reffered value
+     * @param CmbBx_Reffered A JComboBox value
+     */
     public void setCmbBx_Reffered(JComboBox CmbBx_Reffered) {
         this.CmbBx_Reffered = CmbBx_Reffered;
     }
 
-    public void setCaseHisoryID(Long CaseHisoryID) {
-        this.CaseHisoryID = CaseHisoryID;
+    /**
+     * sets the CaseHistoryID value
+     * @param CaseHistoryID a Long value
+     */
+    public void setCaseHisoryID(Long CaseHistoryID) {
+        this.CaseHisoryID = CaseHistoryID;
     }
 
+    /**
+     * @return A JLabel Agent value
+     */
     public JLabel getLbl_Agent() {
         return Lbl_Agent;
     }
 
+    /**
+     * @return A JLabel CallerID value
+     */
     public JLabel getLbl_CallerID() {
         return Lbl_CallerID;
     }
 
+    /**
+     * sets the CallerID value
+     * @param Lbl_CallerID A JLabel value
+     */
     public void setLbl_CallerID(JLabel Lbl_CallerID) {
         this.Lbl_CallerID = Lbl_CallerID;
     }
 
+    /**
+     * sets the Agent value
+     * @param Lbl_Agent A JLabel value
+     */
     public void setLbl_Agent(JLabel Lbl_Agent) {
         this.Lbl_Agent = Lbl_Agent;
     }
 
+    /**
+     * @return A JLabel Datetime value
+     */
     public JLabel getLbl_DateTime() {
         return Lbl_DateTime;
     }
 
+    /**
+     * Sets the DateTie value
+     * @param Lbl_DateTime A Jlabel value
+     */
     public void setLbl_DateTime(JLabel Lbl_DateTime) {
         this.Lbl_DateTime = Lbl_DateTime;
     }
 
+    /**
+     * @return A JLabel Advice value
+     */
     public JTextArea getTxt_Advice() {
         return Txt_Advice;
     }
 
+    /**
+     * Sets the Advice value
+     * @param Txt_Advice A JTextArea value
+     */
     public void setTxt_Advice(JTextArea Txt_Advice) {
         this.Txt_Advice = Txt_Advice;
     }
 
+    /**
+     * @return A JTextArea Note value
+     */
     public JTextArea getTxt_Note() {
         return Txt_Note;
     }
 
+    /**
+     * Sets the Note value
+     * @param Txt_Note A JTextArea value
+     */
     public void setTxt_Note(JTextArea Txt_Note) {
         this.Txt_Note = Txt_Note;
     }
 
+    /**
+     * @return a JTextField Reffered value
+     */
     public JTextField getTxt_Reffered() {
         return Txt_Reffered;
     }
 
+    /**
+     * sets the Reffered value
+     * @param Txt_Reffered a JTextField value
+     */
     public void setTxt_Reffered(JTextField Txt_Reffered) {
         this.Txt_Reffered = Txt_Reffered;
     }
 
     /**
+     * Constructor
      * Creates new form Pnl_CaseHistoryElement
      */
     public Pnl_CaseHistoryElement() {
@@ -304,6 +371,10 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * invokes Database.Tables.CaseHistory.savetodb()
+     * to save data from panel to the database
+     */
     public void savedb() {
         CaseHistory ch = new CaseHistory();
         ch.setAdvice(Txt_Advice.getText());
@@ -315,6 +386,10 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
         element = ch;
     }
 
+    /**
+     * Loads data to the pnl_CaseHistoryElement specific to the parameter passed
+     * @param ch a CaseHistory value
+     */
     public void LoadElement(CaseHistory ch) {
         Pnl_CaseHistoryElement obj = this;
         obj.setCaseHisoryID(ch.getId());
@@ -337,10 +412,20 @@ public class Pnl_CaseHistoryElement extends javax.swing.JPanel {
     element = ch;
     }
     CaseHistory element;
-public CaseHistory getElement(){
+    
+    /**
+     * @return A CaseHistory value
+     */
+    public CaseHistory getElement(){
 
     return element;
 }
+    
+    /**
+     * Sets the selected value in the comboBox
+     * @param comboBox a comboBox value
+     * @param value a String value
+     */
     public static void setSelectedValue(JComboBox comboBox, String value) {
         String item;
         for (int i = 0; i < comboBox.getItemCount(); i++) {
@@ -351,6 +436,11 @@ public CaseHistory getElement(){
             }
         }
     }
+    
+    /**
+     * invokes the Pnl_AudioElement to play the Audio file corresponding to the CaseHistory
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         ArrayList<Calls> cl = new Calls().loadclass(" CaseHID =" + CaseHisoryID);
@@ -381,15 +471,26 @@ public CaseHistory getElement(){
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseEntered
 
+    /**
+     * @return A JButton value
+     */
     public JButton getBtn_Save() {
         return Btn_Save;
     }
 
+    /**
+     * sets the Btn_Save value
+     * @param Btn_Save A JButton value
+     */
     public void setBtn_Save(JButton Btn_Save) {
         this.Btn_Save = Btn_Save;
     }
     
 
+    /**
+     * invokes savedb() to save data
+     * @param evt 
+     */
     private void Btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SaveActionPerformed
         // TODO add your handling code here:
         savedb();

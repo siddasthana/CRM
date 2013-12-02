@@ -37,98 +37,174 @@ import javax.swing.JTextField;
 import org.jdesktop.swingx.JXSearchField;
 
 /**
- *
+ * This Class provides methods to enter and save data corresponding to any DistressWoman call
+ * it invokes directly invokes Dlg_SearchComplain, ForwardCase, 
+ * dlg_AddTelephone, Outbound, Pnl_CallElement and Pnl_CaseDirectory
  * @author admin
  */
 public class Dlg_distressWoman extends javax.swing.JDialog {
 
+    /**
+     * @return a JComboBox CaseStatus value
+     */
     public JComboBox getCmbBx_CaseStatus() {
         return CmbBx_CaseStatus;
     }
 
+    /**
+     * Sets the CaseStatus
+     * @param CmbBx_CaseStatus a JComboBox value
+     */
     public void setCmbBx_CaseStatus(JComboBox CmbBx_CaseStatus) {
         this.CmbBx_CaseStatus = CmbBx_CaseStatus;
     }
 
+    /**
+     * @return a JComboBox CaseType value
+     */
     public JComboBox getCmbBx_CaseType() {
         return CmbBx_CaseType;
     }
 
+    /**
+     * Sets the CaseType value
+     * @param CmbBx_CaseType A JCoboBox value
+     */
     public void setCmbBx_CaseType(JComboBox CmbBx_CaseType) {
         this.CmbBx_CaseType = CmbBx_CaseType;
     }
 
+    /**
+     * @return a JComboBox PoliceDistrict value
+     */
     public JComboBox getCmbBx_PoliceDistrict() {
         return CmbBx_PoliceDistrict;
     }
 
+    /**
+     * sets the PoliceDistrict value
+     * @param CmbBx_PoliceDistrict a JComboBox value
+     */
     public void setCmbBx_PoliceDistrict(JComboBox CmbBx_PoliceDistrict) {
         this.CmbBx_PoliceDistrict = CmbBx_PoliceDistrict;
     }
 
+    /**
+     * @return a JXSearchField Complaint value
+     */
     public JXSearchField getSrchFld_Complaint() {
         return SrchFld_Complaint;
     }
 
+    /**
+     * sets the Complaint value
+     * @param SrchFld_Complaint a JXSearchField value
+     */
     public void setSrchFld_Complaint(JXSearchField SrchFld_Complaint) {
         this.SrchFld_Complaint = SrchFld_Complaint;
     }
 
+    /**
+     * @return a JXSearchField PoliceStation value
+     */
     public JXSearchField getSrchFld_PoliceStne() {
         return SrchFld_PoliceStne;
     }
 
+    /**
+     * sets the PoliceStation value
+     * @param SrchFld_PoliceStne a JXSearchField value
+     */
     public void setSrchFld_PoliceStne(JXSearchField SrchFld_PoliceStne) {
         this.SrchFld_PoliceStne = SrchFld_PoliceStne;
     }
 
+    /**
+     * @return a JComboBox Forward value
+     */
     public JComboBox getCmbBx_Forward() {
         return CmbBx_Forward;
     }
 
+    /**
+     * sets the Forward value
+     * @param CmbBx_Forward a JComboBox value
+     */
     public void setCmbBx_Forward(JComboBox CmbBx_Forward) {
         this.CmbBx_Forward = CmbBx_Forward;
     }
-    /**
-     * Creates new form Dlg_distresswoman
-     */
+    
+    
     Dlg_SearchComplain dc = new Dlg_SearchComplain((Frame) this.getParent(), rootPaneCheckingEnabled);
     Dlg_Reminder dr = new Dlg_Reminder((Frame) this.getParent(), rootPaneCheckingEnabled);
 
+    /**
+     * Parameterized Constructor
+     * @param parent Parent name
+     * @param modal 
+     */
     public Dlg_distressWoman(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
     }
 
+    /**
+     * @return A JTextField CallerAddress value
+     */
     public JTextField getTxt_CallerAddress() {
         return Txt_CallerAddress;
     }
 
+    /**
+     * Sets the CallerAddress value
+     * @param Txt_CallerAddress3 a JTextField value
+     */
     public void setTxt_CallerAddress(JTextField Txt_CallerAddress3) {
         this.Txt_CallerAddress = Txt_CallerAddress3;
     }
 
+    /**
+     * @return a JTextField CallerAge value
+     */
     public JTextField getTxt_CallerAge() {
         return Txt_CallerAge;
     }
 
+    /**
+     * Sets the CallerAge value
+     * @param Txt_CallerAge3 A JTextField value
+     */
     public void setTxt_CallerAge(JTextField Txt_CallerAge3) {
         this.Txt_CallerAge = Txt_CallerAge3;
     }
 
+    /**
+     * @return a JTextField CallerName value
+     */
     public JTextField getTxt_CallerName() {
         return Txt_CallerName;
     }
 
+    /**
+     * sets the AccusedName value
+     * @param Txt_CallerAge3 A JTextField value
+     */
     public void setTxt_AccusedName(JTextField Txt_CallerAge3) {
         this.Txt_AccusedName = Txt_CallerAge3;
     }
 
+    /**
+     * @return a JTextField AccuseName value
+     */
     public JTextField getTxt_AccusedName() {
         return Txt_AccusedName;
     }
 
+    /**
+     * ?????????????????
+     * @param Txt_CallerAge3 
+     */
     public void setTxt_AccusedAddress(JTextField Txt_CallerAge3) {
         this.Txt_AccusedAddress = Txt_CallerAge3;
     }
@@ -511,7 +587,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         );
 
         jScrollPane11.setViewportView(Pnl_CaseDirctry);
-        Pnl_CaseDirctry.setLayout(new WrapLayout());
+        Pnl_CaseDirctry.setLayout(new Layout.WrapLayout());
 
         jPanel1.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 501, 100));
 
@@ -531,7 +607,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         );
 
         jScrollPane12.setViewportView(Pnl_RecrdDirctry);
-        Pnl_RecrdDirctry.setLayout(new WrapLayout());
+        Pnl_RecrdDirctry.setLayout(new Layout.WrapLayout());
 
         jPanel1.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 501, 100));
 
@@ -715,7 +791,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -797,7 +873,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         );
 
         jScrollPane1.setViewportView(Pnl_CaseHistory);
-        Pnl_CaseHistory.setLayout(new WrapLayout());
+        Pnl_CaseHistory.setLayout(new Layout.WrapLayout());
 
         CmbBx_CaseStatus.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         CmbBx_CaseStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Primary intervention done", "Case in progress", "Case closed" }));
@@ -815,7 +891,7 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -978,17 +1054,25 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Populates Search Field values in a pop menu, then sets one when clicked
+     * @param evt 
+     */
     private void SrchFld_PoliceStneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SrchFld_PoliceStneActionPerformed
         // TODO add your handling code here:
         if (popupmenu.getComponentCount() > 0) {
@@ -1034,6 +1118,12 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         popupmenu.setFocusable(false);
         popupmenu.setVisible(true);
     }//GEN-LAST:event_SrchFld_PoliceStneActionPerformed
+    
+    /**
+     * Sets the selected value for the JComboBox 
+     * @param comboBox A JCoboBox value
+     * @param value The selected String value 
+     */
     public static void setSelectedValue(JComboBox comboBox, String value) {
 
         String item;
@@ -1045,6 +1135,14 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
             }
         }
     }
+    
+    /**
+     * invokes Dlg_SearchComplain
+     * Searches Existing Complaints
+     * If and existing one is found, Sets Police Station, Complaint, Case Status
+     * , Case Type and Forward values According to the corresponding complaint in cases table
+     * @param evt 
+     */
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
         // TODO add your handling code here:
         if (jComboBox4.getSelectedItem().toString().equals("Search Complain")) {
@@ -1071,6 +1169,10 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jComboBox4ActionPerformed
 
+    /**
+     * Sets a reminder when the "Create a reminder" button is clicked
+     * @param evt 
+     */
     private void Btn_ReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ReminderActionPerformed
         // TODO add your handling code here:
 
@@ -1085,6 +1187,11 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         dr.setVisible(true);
     }//GEN-LAST:event_Btn_ReminderActionPerformed
 
+    /**
+     * Ends the telephone call
+     * invokes SaveData()
+     * @param evt 
+     */
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         boolean saved = SaveData();
@@ -1110,6 +1217,10 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_Txt_CallerNameActionPerformed
 
+    /**
+     * Forwards the case, Ends the telephone call
+     * invokes SaveData()
+     */
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         boolean saved = SaveData();
@@ -1134,6 +1245,11 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    /**
+     * Searches ans sets the Complaint value from case table
+     * @param evt 
+     * @throws SQLException
+     */
     private void SrchFld_ComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SrchFld_ComplaintActionPerformed
         // TODO add your handling code here:
         Sql sql = new Sql();
@@ -1174,10 +1290,15 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         //PopMn_Complaint.setVisible(true);
 
     }//GEN-LAST:event_SrchFld_ComplaintActionPerformed
+    
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Adds the Phone Number to the telephone table
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
@@ -1203,6 +1324,10 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_DialKeyPad
 
+    /**
+     * invokes OutBound.connect to call the Phone Number in the Text field
+     * @param evt 
+     */
     private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
         // TODO add your handling code here:
         OutBound ob = new OutBound();
@@ -1228,6 +1353,10 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
         //jCmb_PS.add();
     }//GEN-LAST:event_CmbBx_PoliceDistrictItemStateChanged
 
+    /**
+     * Reloads the searchfield pop up options
+     * @param evt 
+     */
     private void SrchFld_PoliceStneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SrchFld_PoliceStneFocusLost
         // TODO add your handling code here: 
         Pnl_CaseDirctry.removeAll();
@@ -1371,6 +1500,10 @@ public class Dlg_distressWoman extends javax.swing.JDialog {
     public long CaseID;//= new ArrayList<>();
     public Cases cs = new Cases();
 
+    /**
+     * when invoked, saves all data to respective tables in the database
+     * @return 
+     */
     private boolean SaveData() {
         try {
             cs.setPoliceStn(this.getSrchFld_PoliceStne().getText());

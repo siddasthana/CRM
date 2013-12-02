@@ -21,12 +21,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- *
- * @author admin
+ * This class deals with searching existing Complaints
+ * @author Shikhar Singhal
  */
 public class Dlg_SearchComplain extends javax.swing.JDialog {
 
     /**
+     * Parameterized Constructor
      * Creates new form Dlg_SearchComplain
      */
     public Dlg_SearchComplain(java.awt.Frame parent, boolean modal) {
@@ -261,6 +262,10 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Sets Number CheckBox value to true if Number is specified
+     * @param evt 
+     */
     private void Txt_NumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_NumberActionPerformed
         // TODO add your handling code here:
         if (Txt_Number.getText().length() > 0) {
@@ -270,30 +275,56 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_Txt_NumberActionPerformed
 
+    /**
+     * @return A JTextField Txt_Number Value
+     */
     public JTextField getTxt_Number() {
         return Txt_Number;
     }
 
+    /**
+     * Sets the Txt_Number value
+     * @param Txt_Number A JTextField value
+     */
     public void setTxt_Number(JTextField Txt_Number) {
         this.Txt_Number = Txt_Number;
     }
 
+    /**
+     * @return A Long Caseid value
+     */
     public Long getCaseid() {
         return Caseid;
     }
 
+    /**
+     * Sets the Caseid value
+     * @param Caseid A Long value
+     */
     public void setCaseid(Long Caseid) {
         this.Caseid = Caseid;
     }
 
+    /**
+     * @return A JButton Btn_Select value
+     */
     public JButton getBtn_Select() {
         return Btn_Select;
     }
 
+    /**
+     * Sets the Btn_Select value
+     * @param Btn_Select A JButton value
+     */
     public void setBtn_Select(JButton Btn_Select) {
         this.Btn_Select = Btn_Select;
     }
 
+    /**
+     * Searches Complaints According to the specified parameters
+     * then invokes the Pnl_CaseElement and Pnl_CaseHistoryElement for the search results
+     * @param evt 
+     */
     private void Btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SearchActionPerformed
         // TODO add your handling code here:
         String Query = " Select Distinct(CaseID) from Consolidate where 1=1";
@@ -390,6 +421,10 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
 
     }//GEN-LAST:event_DtPck_EndDtActionPerformed
 
+    /**
+     * Sets CaseType checkbox to true if CaseType specified
+     * @param evt 
+     */
     private void CmbBx_CaseTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbBx_CaseTypeActionPerformed
         // TODO add your handling code here:
         if (!CmbBx_CaseType.getSelectedItem().toString().equals("Select a Category")) {
@@ -403,6 +438,10 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_Btn_SelectActionPerformed
 
+    /**
+     * Sets ComplaintID checkbox to true if ComplaintID is specified
+     * @param evt 
+     */
     private void Txt_complaintIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_complaintIDActionPerformed
         // TODO add your handling code here:
         if (Txt_complaintID.getText().length() > 0) {
@@ -412,6 +451,10 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_Txt_complaintIDActionPerformed
 
+    /**
+     * Sets ComplaintID checkbox to true if ComplaintID is specified
+     * @param evt 
+     */
     private void Txt_complaintIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Txt_complaintIDKeyTyped
         // TODO add your handling code here:
         if (Txt_complaintID.getText().length() > 0) {
@@ -422,6 +465,10 @@ public class Dlg_SearchComplain extends javax.swing.JDialog {
 
     }//GEN-LAST:event_Txt_complaintIDKeyTyped
 
+    /**
+     * Sets Number checkbox to true if Number is specified
+     * @param evt 
+     */
     private void Txt_NumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Txt_NumberKeyTyped
         // TODO add your handling code here:
         if (Txt_Number.getText().length() > 0) {

@@ -6,7 +6,6 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -180,7 +179,7 @@
       <SubComponents>
         <Container class="javax.swing.JDesktopPane" name="DskPn_CaseHistory">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="DskPn_CaseHistory.setLayout(new WrapLayout());"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="DskPn_CaseHistory.setLayout(new Layout.WrapLayout());"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
@@ -287,7 +286,7 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="Pnl_CaseList">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Pnl_CaseList.setLayout(new WrapLayout());"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Pnl_CaseList.setLayout(new Layout.WrapLayout());"/>
           </AuxValues>
 
           <Layout>

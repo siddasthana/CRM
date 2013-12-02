@@ -10,8 +10,9 @@ import java.util.Date;
 import javax.swing.JComboBox;
 
 /**
- *
- * @author admin
+ * This class Sets Global Variable
+ * Also contains JavaDateToMysql() to convert Java format date to sql format
+ * @author Shikhar Singhal
  */
 public class Global {
 
@@ -21,6 +22,11 @@ public class Global {
     public static String Server_IP = "10.128.83.112";
     public static String AgentLevel = "";
 
+    /**
+     * Converts Java Date format to SQL Date format
+     * @param dt A Date value
+     * @return A String CurrentTime in sql compatible date format
+     */
     public static String JavaDateToMysql(Date dt) {
         //java.util.Date dt = new java.util.Date();
 

@@ -48,6 +48,9 @@ public class Screen_Managers extends javax.swing.JFrame {
      * Creates new form Screen_Supervisor
      */
         
+    /**
+     * Default Constructor
+     */
     public Screen_Managers() {
         initComponents();
     }
@@ -549,6 +552,10 @@ public class Screen_Managers extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtDialScreenActionPerformed
     
+    /**
+     * Invokes Connect after Loading or asking for a valid Phone number
+     * @param evt 
+     */
     private void Btn_DialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DialActionPerformed
        Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent(), true);
        ArrayList<Telephone> tp = new ArrayList<>();
@@ -638,6 +645,12 @@ public class Screen_Managers extends javax.swing.JFrame {
         // TODO add your handling code here:
         TxtDialScreen.setText(TxtDialScreen.getText() + evt.getActionCommand());
     }//GEN-LAST:event_jButton18DialKeyPad
+    
+    /**
+     * Sets the selected value for the JComboBox 
+     * @param comboBox A JCoboBox value
+     * @param value The selected String value 
+     */
     public static void setSelectedValue(JComboBox comboBox, String value) {
 
         String item;
@@ -650,6 +663,12 @@ public class Screen_Managers extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Loads data from Directory and telephone tables Corresponding to the Forwarded cases.
+     * Invokes  Pnl_CaseHistory, Pnl_Accused, Pnl_CaseList, Pnl_Caller, Pnl_CaseDirctry ,Pnl_RecrdDirctry,
+     * Pnl_CallElement, Pnl_CallerElement
+     * @param evt 
+     */
     private void Btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SearchActionPerformed
         // TODO add your handling code here:
         int Casecondition = 0;
@@ -930,8 +949,9 @@ public class Screen_Managers extends javax.swing.JFrame {
     }
     Long Caseid;
 
-    /**
-     * @param args the command line arguments
+   /**
+     * Connects the call to the Number provided as parameter
+     * @param s A String Phone number value
      */
     public void connect(String number) {
 

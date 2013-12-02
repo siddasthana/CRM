@@ -25,61 +25,103 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- *
- * @author admin
+ *This class loads and updates the table Database.Tables.Cases according to values in the Panel
+ * @author Shikhar Singhal
  */
 public class Pnl_CaseElement extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Pnl_CaseElement
-     */
+    
     public ArrayList<Telephone> tp = new ArrayList<>();
     public String id;
 
+    /**
+     * Parameterized Constructor
+     */
     public Pnl_CaseElement() {
         initComponents();
     }
 
+    /**
+     * @return A JTextField Txt_Forward value
+     */
     public JTextField getTxt_Forward() {
         return Txt_Forward;
     }
 
+    /**
+     * Sets the Txt_Forward value
+     * @param Txt_Forward A JTextField value
+     */
     public void setTxt_Forward(JTextField Txt_Forward) {
         this.Txt_Forward = Txt_Forward;
     }
 
+    /**
+     * @return A JCOmboBox CmbBx_Status value
+     */
     public JComboBox getCmbBx_Status() {
         return CmbBx_Status;
     }
 
+    /**
+     * Sets the CmbBx_Status value
+     * @param CmbBx_Status a JComboBox value
+     */
     public void setCmbBx_Status(JComboBox CmbBx_Status) {
         this.CmbBx_Status = CmbBx_Status;
     }
 
+    /**
+     * @return A JTextField Txt_PoliceStn value
+     */
     public JTextField getTxt_PoliceStn() {
         return Txt_PoliceStn;
     }
 
-    public void setTxt_PoliceStn(JTextField Txt_PoliceStn) {
+    /**
+     * Sets the Txt_PoliceStn value
+     * @param Txt_PoliceStn A JTextField value
+     */
+     void setTxt_PoliceStn(JTextField Txt_PoliceStn) {
         this.Txt_PoliceStn = Txt_PoliceStn;
     }
 
+     /**
+      * @return A JTextField Txt_FamiliarName value
+      */
     public JTextField getTxt_FamiliarName() {
         return Txt_FamiliarName;
     }
 
+    /**
+     * Sets the Txt_FamiliarName value
+     * @param jTextField1 A JTextField value
+     */
     public void setTxt_FamiliarName(JTextField jTextField1) {
         this.Txt_FamiliarName = jTextField1;
     }
 
+    /**
+     * @return A JComboBox CmbBx_CaseType value 
+     */
     public JComboBox getCmbBx_CaseType() {
         return CmbBx_CaseType;
     }
 
+    
+    /**
+     * Sets the CmbBx_CaseType value
+     * @param CmbBx_CaseType A JComboBox value
+     */
     public void setCmbBx_CaseType(JComboBox CmbBx_CaseType) {
         this.CmbBx_CaseType = CmbBx_CaseType;
     }
 
+    /**
+     * Sets the corresponding selected value of the JComboBox
+     * @param comboBox a JcomboBox Object 
+     * @param value String Value to be set
+     */
     public static void setSelectedValue(JComboBox comboBox, String value) {
 
         String item;
@@ -251,6 +293,10 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Colors the foreground red When A Familiar Name is being typed
+     * @param evt 
+     */
     private void Txt_FamiliarNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_FamiliarNameActionPerformed
         // TODO add your handling code here:
         Sql sql = new Sql();
@@ -277,14 +323,25 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         //PopMn_Complaint.setVisible(true);
     }//GEN-LAST:event_Txt_FamiliarNameActionPerformed
 
+    /**
+     * @return A JButton Btn_Select value
+     */
     public JButton getBtn_Select() {
         return Btn_Select;
     }
 
+    /**
+     * Sets the Btn_Select value
+     * @param Btn_Select A JButton value
+     */
     public void setBtn_Select(JButton Btn_Select) {
         this.Btn_Select = Btn_Select;
     }
 
+    /**
+     * Loads data from table Database.Tables.Cases into the panel
+     * @param ob A Cases Object
+     */
     public void LoadElement(Cases ob) {
         this.getTxt_PoliceStn().setText(ob.getPoliceStn());
         this.getTxt_Forward().setText(ob.getForward());
@@ -301,6 +358,11 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         }
         this.repaint();
     }
+    
+    /**
+     * Invokes Dlg_SelectCase
+     * @param evt 
+     */
     private void Btn_SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SelectActionPerformed
         // TODO add your handling code here:
         Dlg_SelectCase dc = (Dlg_SelectCase) this.getRootPane().getParent();
@@ -316,6 +378,10 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         //  System.out.println("Copied:"+dc.Address+","+dc.Age+","+dc.CaseHID.toString());
     }//GEN-LAST:event_Btn_SelectActionPerformed
 
+    /**
+     * Updates the table Database.Tables.Cases by taking values from the panel
+     * @param evt 
+     */
     private void Btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SaveActionPerformed
         // TODO add your handling code here:
         Cases cs = new Cases();
@@ -329,6 +395,10 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         infoBox("Case Information Updated!!", "Delhi Women Cell");
     }//GEN-LAST:event_Btn_SaveActionPerformed
 
+    /**
+     * Invokes Dlg_AddTelephone to add a Telephone number to the Database
+     * ?????????????????
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Dlg_AddTelephone da = new Dlg_AddTelephone((Frame) this.getParent().getParent().getParent().getParent().getParent().getParent().getParent(), true);
@@ -353,6 +423,10 @@ public class Pnl_CaseElement extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Colors the foreground red When A Familiar Name is typed
+     * @param evt 
+     */
     private void Txt_FamiliarNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Txt_FamiliarNameKeyReleased
         // TODO add your handling code here:
         Sql sql = new Sql();

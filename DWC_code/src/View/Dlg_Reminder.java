@@ -11,20 +11,28 @@ import java.util.Date;
 import org.jdesktop.swingx.JXSearchField;
 
 /**
- *
+ * This class Sets reminders for Complaints
  * @author admin
  */
 public class Dlg_Reminder extends javax.swing.JDialog {
 
+    /**
+     * @return A JXSearchField SrchFld_Complaint value
+     */
     public JXSearchField getSrchFld_Complaint() {
         return SrchFld_Complaint;
     }
 
+    /**
+     * sets the SrchFld_Complaint value
+     * @param SrchFld_Complaint A JXSearchField value
+     */
     public void setSrchFld_Complaint(JXSearchField SrchFld_Complaint) {
         this.SrchFld_Complaint = SrchFld_Complaint;
     }
 
     /**
+     * parameterized constructor
      * Creates new form Dlg_Reminder
      */
     public Dlg_Reminder(java.awt.Frame parent, boolean modal) {
@@ -33,10 +41,17 @@ public class Dlg_Reminder extends javax.swing.JDialog {
     }
     String ComplaintNo = "";
 
+    /**
+     * @return A String ComplaintNo
+     */
     public String getComplaintNo() {
         return ComplaintNo;
     }
 
+    /**
+     * Sets the ComplaintNo
+     * @param ComplaintNo A String value
+     */
     public void setComplaintNo(String ComplaintNo) {
         this.ComplaintNo = ComplaintNo;
     }
@@ -160,6 +175,10 @@ public class Dlg_Reminder extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Saves the New reminder
+     * @param evt 
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Date dt = jXDatePicker3.getDate();

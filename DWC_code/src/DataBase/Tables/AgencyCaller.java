@@ -62,12 +62,14 @@ public class AgencyCaller {
     
 
     public void updatedb() {
-        String Query = "Update `" + Sql.dbName + "`.`agencycaller` Set ";
-        Query += "CaseHID='" + getCaseHID()+ "'";
-        Query += ", AgencyID='" + getAgencyID()+ "'";
-        Query += ", Name='" + getName()+ "'";
-        Query += ", Number='" + getNumber()+ "'";        
-        Query += " where id=" + (int) getId();
+        String Query = 
+                "Update `" + Sql.dbName +
+                "`.`agencycaller` Set " +
+                "CaseHID='" + getCaseHID()+ "'" +
+                ", AgencyID='" + getAgencyID()+ "'" +
+                ", Name='" + getName()+ "'" +
+                ", Number='" + getNumber()+ "'" +        
+                " where id=" + (int) getId();
         //Sql sql = new Sql();
         System.out.println(Query);
         sql.ExecuteUpdate(Query);
@@ -75,11 +77,14 @@ public class AgencyCaller {
     }
 
     public void savetodb() {
-        String Query = "INSERT INTO `" + Sql.dbName + "`.`agencycaller` (`id`, `AgencyID`, `CaseHID`, `Name`, `Number`)" + " values(null,?,?,?,?) ";
+        String Query =  "INSERT INTO `" + Sql.dbName +
+                        "`.`agencycaller` (`id`, `AgencyID`, `CaseHID`, `Name`, `Number`)" +
+                        " values(null,?,?,?,?) ";
         //  Query += " VALUES ('" + getPoliceStn() + "', '" + getStatus() + "', '" + getForward() + "', '" + getReadableName() + "', '" + getCaseType() + "')";
         //Sql s = new Sql();
         System.out.println(Query);
         PreparedStatement stmt = sql.GetPrepareStmt(Query);
+        
         try {            
             stmt.setLong(1, getAgencyID());
             stmt.setLong(2, getCaseHID());
@@ -92,7 +97,7 @@ public class AgencyCaller {
             
             //   sql.ExecuteUpdate(Query);
                    
-            ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
+        ResultSet rs = sql.ExecuteQuery("Select last_insert_id();");
         try {
             if (rs.next()) {
                 long insertid = Long.valueOf(rs.getLong(1));
@@ -110,6 +115,7 @@ public class AgencyCaller {
         Sql sql = new Sql();
         System.out.println(Query);
         ResultSet rs = sql.ExecuteQuery(Query);
+        
         try {
             while (rs.next()) {
                 AgencyCaller obj = new AgencyCaller();
@@ -119,7 +125,6 @@ public class AgencyCaller {
                 obj.setName(rs.getString(4));                
                 obj.setNumber(rs.getString(5));
                 ac.add(obj);
-
             }
             sql.Destructor();
         } catch (SQLException ex) {

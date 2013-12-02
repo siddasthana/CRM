@@ -29,7 +29,7 @@
           <SubComponents>
             <Container class="javax.swing.JPanel" name="AudioPanel">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="AudioPanel.setLayout(new WrapLayout());"/>
+                <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="AudioPanel.setLayout(new Layout.WrapLayout());"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
 

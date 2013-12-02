@@ -263,6 +263,7 @@ public class NewMasterDetailForm extends JPanel {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int[] selected = masterTable.getSelectedRows();
         List<View.Admin.Accused> toRemove = new ArrayList<View.Admin.Accused>(selected.length);
+        
         for (int idx = 0; idx < selected.length; idx++) {
             View.Admin.Accused a = list.get(masterTable.convertRowIndexToModel(selected[idx]));
             toRemove.add(a);
@@ -276,6 +277,7 @@ public class NewMasterDetailForm extends JPanel {
         entityManager.persist(a);
         list.add(a);
         int row = list.size() - 1;
+        
         masterTable.setRowSelectionInterval(row, row);
         masterTable.scrollRectToVisible(masterTable.getCellRect(row, 0, true));
     }//GEN-LAST:event_newButtonActionPerformed

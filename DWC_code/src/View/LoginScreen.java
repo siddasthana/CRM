@@ -13,14 +13,16 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The LoginScreen class handles User login
  * @author admin
  */
 public class LoginScreen extends javax.swing.JInternalFrame {
 
     ParentForm pf;
+    String Position="";
 
     /**
+     * Constructor
      * Creates new form LoginScreen
      */
     public LoginScreen() {
@@ -56,6 +58,12 @@ public class LoginScreen extends javax.swing.JInternalFrame {
         TxtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtUserActionPerformed(evt);
+            }
+        });
+
+        TxtPwd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtPwdActionPerformed(evt);
             }
         });
 
@@ -100,7 +108,7 @@ public class LoginScreen extends javax.swing.JInternalFrame {
                     .addComponent(TxtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addComponent(jButton1)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,7 +122,7 @@ public class LoginScreen extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (check_login()) {
             move_to_nextScreen();
-//update Call_scheduling
+        //update Call_scheduling
             Register_Agent();
 
         } else {
@@ -122,10 +130,23 @@ public class LoginScreen extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void TxtPwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPwdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtPwdActionPerformed
+
     public static void infoBox(String infoMessage, String location) {
         JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.ERROR_MESSAGE);
     }
-String Position="";
+
+    /**
+     * Checks the Agent Login ID and password.
+     * @return <pre>
+     *          A Boolean value
+     *          True    If Username password exists
+     *          False   If Username password do not exist
+     *          </pre>
+     * @throws SQLException
+     */ 
     private boolean check_login() {
         DataBase.Sql sql = new Sql();
         pf = (ParentForm) this.getParent().getParent().getParent().getParent().getParent();
@@ -141,7 +162,7 @@ String Position="";
         } catch (SQLException ex) {
             Logger.getLogger(LoginScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if ((pf.AgentId == null) | (pf.AgentId == "")) {
+        if ((pf.AgentId == null) | ("".equals(pf.AgentId))) {
             System.out.println("Agentid :" + pf.AgentId);
             return false;
         } else {
@@ -156,6 +177,10 @@ String Position="";
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Registers the logged in Agent into the call_scheduling table with status = "free".
+     * @throws SQLException
+     */
     private void Register_Agent() {
         DataBase.Sql sql = new Sql();
         String Query = "Select * from call_scheduling where AgentID='" + pf.AgentId + "'";
@@ -177,16 +202,19 @@ String Position="";
         sql.Destructor();
     }
 
+    /**
+     * Called after user is logged in
+     * Invokes the Screen_teleExecutive Form
+     */
     private void move_to_nextScreen() {
-        this.setVisible(false);
-        
-        if(Position.toLowerCase().equals("supervisor")){
-        Global.AgentLevel="supervisor";
-         }
         Screen_TeleExecutive screen = new Screen_TeleExecutive();
-        if(Global.AgentLevel.equals("supervisor")){
-           screen.getBtn_FrwdedCase().setEnabled(true);
+        
+        this.setVisible(false);
+        if(Position.toLowerCase().equals("supervisor")){
+            Global.AgentLevel="supervisor";
+            screen.getBtn_FrwdedCase().setEnabled(true);
         }
+        
         this.getParent().add(screen);
         screen.setVisible(true);
         screen.setSize(screen.getPreferredSize());

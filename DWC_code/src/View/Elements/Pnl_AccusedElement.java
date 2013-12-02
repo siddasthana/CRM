@@ -14,101 +14,170 @@ import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 
 /**
- *
+ * This class Loads and saves data from the Accused as well as Legal Tables in the database
  * @author admin
  */
 public class Pnl_AccusedElement extends javax.swing.JPanel {
 
-    /**
-     *
-     */
     public ArrayList<Long> CaseID = new ArrayList<>();
     public long id;
     
 
     /**
+     * Default Constructor
      * Creates new form Pnl_CallerElement
      */
     public Pnl_AccusedElement() {
         initComponents();
     }
 
+    /**
+     * @return an ArrayList(Long) CaseID's
+     */
     public ArrayList<Long> getCaseID() {
         return CaseID;
     }
 
+    /**
+     * Sets The CaseID values
+     * @param CaseID An ArrayList(Long) CaseID's
+     */
     public void setCaseID(ArrayList<Long> CaseID) {
         this.CaseID = CaseID;
     }
 
+    /**
+     * @return A long id value
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Sets the id value
+     * @param id A long value
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    /**
+     * @return A JButton Btn_Save value
+     */
     public JButton getBtn_Save() {
         return Btn_Save;
     }
 
+    /**
+     * Sets the Btn_Save value
+     * @param Btn_Save A JButton value
+     */
     public void setBtn_Save(JButton Btn_Save) {
         this.Btn_Save = Btn_Save;
     }
 
+    /**
+     * @return A JTextField Txt_AccusedAddress value
+     */
     public JTextField getTxt_AccusedAddress() {
         return Txt_AccusedAddress;
     }
 
+    /**
+     * Sets the Txt_AccusedAddress value
+     * @param Txt_AccusedAddress A JTextField value
+     */
     public void setTxt_AccusedAddress(JTextField Txt_AccusedAddress) {
         this.Txt_AccusedAddress = Txt_AccusedAddress;
     }
 
+    /**
+     * @return a JTextField Txt_AccusedDD value
+     */
     public JTextField getTxt_AccusedDD() {
         return Txt_AccusedDD;
     }
 
+    /**
+     * Sets the Txt_AccusedDD value
+     * @param Txt_AccusedDD A JTextField value
+     */
     public void setTxt_AccusedDD(JTextField Txt_AccusedDD) {
         this.Txt_AccusedDD = Txt_AccusedDD;
     }
 
+    /**
+     * @return A JTextField Txt_AccusedFIR value
+     */
     public JTextField getTxt_AccusedFIR() {
         return Txt_AccusedFIR;
     }
 
+    /**
+     * Sets the Txt_AccusedFIR value
+     * @param Txt_AccusedFIR A JTextField value
+     */
     public void setTxt_AccusedFIR(JTextField Txt_AccusedFIR) {
         this.Txt_AccusedFIR = Txt_AccusedFIR;
     }
 
+    
+    /**
+     * @return A JTextField Txt_AccusedName value
+     */
     public JTextField getTxt_AccusedName() {
         return Txt_AccusedName;
     }
 
+    /**
+     * Sets the Txt_AccusedName value
+     * @param Txt_AccusedName A JTextField value
+     */
     public void setTxt_AccusedName(JTextField Txt_AccusedName) {
         this.Txt_AccusedName = Txt_AccusedName;
     }
 
+    /**
+     * @return A Txt_AccusedPhone value
+     */
     public JTextField getTxt_AccusedPhone() {
         return Txt_AccusedPhone;
     }
 
+    /**
+     * Sets the Txt_AccusedPhone value
+     * @param Txt_AccusedPhone A JTextField valu
+     */
     public void setTxt_AccusedPhone(JTextField Txt_AccusedPhone) {
         this.Txt_AccusedPhone = Txt_AccusedPhone;
     }
 
+    /**
+     * @return A JCheckbox jChk_Challan value 
+     */
     public JCheckBox getjChk_Challan() {
         return jChk_Challan;
     }
 
+    /**
+     * Sets the jChk_Challan value
+     * @param jChk_Challan A JChackBox value
+     */
     public void setjChk_Challan(JCheckBox jChk_Challan) {
         this.jChk_Challan = jChk_Challan;
     }
 
+    /**
+     * @return A JCheckBox jChk_Judgeent value
+     */
     public JCheckBox getjChk_Judgement() {
         return jChk_Judgement;
     }
 
+    /**
+     * Sets the jChk_Judgement value
+     * @param jChk_Judgement A JCheckBox value
+     */
     public void setjChk_Judgement(JCheckBox jChk_Judgement) {
         this.jChk_Judgement = jChk_Judgement;
     }
@@ -261,6 +330,10 @@ public class Pnl_AccusedElement extends javax.swing.JPanel {
                     .addContainerGap(84, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+    /**
+     * Loads the Accused parameter object into the panel
+     * @param e An Accused object
+     */
     public void LoadElement_Accused(Accused e) {
         Pnl_AccusedElement obj = this;
         obj.getTxt_AccusedName().setText(e.getName());
@@ -269,6 +342,11 @@ public class Pnl_AccusedElement extends javax.swing.JPanel {
         obj.CaseID.add(e.getCaseID());
         obj.id = e.getId();        
     }
+    
+    /**
+     * Loads the Legal parameter object into the panel
+     * @param le A Legal Object
+     */
     public void LoadElement_Legal(Legal le) {
         Pnl_AccusedElement obj = this;
         obj.getTxt_AccusedDD().setText(le.getDD());
@@ -278,6 +356,12 @@ public class Pnl_AccusedElement extends javax.swing.JPanel {
         obj.CaseID.add(le.getCaseID());
         obj.id = le.getId();        
     }
+    
+    /**
+     * if logged in Agent level is Supervisor 
+     * then Enable Btn_Save
+     * @param id 
+     */
     public void EnableSave(long id){
         if (Global.AgentLevel.equals("supervisor")) 
         {
@@ -286,6 +370,11 @@ public class Pnl_AccusedElement extends javax.swing.JPanel {
             
         }
     }
+    
+    /**
+     * Updates the values of a particular record displayed in the panel to the database
+     * @param evt 
+     */
     private void Btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SaveActionPerformed
         // TODO add your handling code here:
         Accused ac = new Accused();

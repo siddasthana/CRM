@@ -39,7 +39,8 @@ import org.jdesktop.swingx.JXSearchField;
 import temp.Design;
 
 /**
- *
+ * The Screen_TeleExecutive class contains methods to handle incoming calls
+ * It also provides methods to view Case Reports and Forwarded Cases(For supervisors only)
  * @author admin
  */
 public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
@@ -50,7 +51,9 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
     Player mp3player = null;
 
     /**
-     * Creates new form Report
+     * Constructor
+     * invoked after Agent login
+     * Checks for incoming calls and reminders periodically
      */
     public Screen_TeleExecutive() {
         initComponents();
@@ -79,6 +82,11 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         }
     }
 
+    /**
+     * Checks Reminder table in the Database to check for reminders
+     * Invokes A new thread to Manage The playfile
+     * @throws SQLException
+     */
     private void check_alarm() {
         System.out.println("Checking For Alarms ");
         Sql sql = new Sql();
@@ -102,6 +110,11 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         }
     }
 
+    /**
+     * Checks new calls in the call_scheduling table in the database
+     * invokes CheckagentStatus()
+     * @throws SQLException
+     */
     private void check_newCall() {
         //               throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         System.out.println("Checking new calls");
@@ -326,6 +339,11 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Invokes Dlg_distressWoman if Woman in distress is selected
+     * @param evt 
+     * @throws SQLException
+     */
     private void Btn_ProcessCallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ProcessCallActionPerformed
         // TODO add your handling code here:
 
@@ -377,6 +395,12 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_Btn_ProcessCallActionPerformed
 
+    /**
+     * Updates Agent Status
+     * Starts timer if Status = "Available"
+     * else stops timer
+     * @param evt 
+     */
     private void CmbBx_AgentStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbBx_AgentStatusActionPerformed
         // TODO add your handling code here:
         Sql sql = new Sql();
@@ -396,6 +420,10 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_CmbBx_AgentStatusActionPerformed
 
+    /**
+     * Invokes Screen_CaseReports
+     * @param evt 
+     */
     private void Btn_CaseReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CaseReportsActionPerformed
         // TODO add your handling code here:
         Screen_CaseReports sc = new Screen_CaseReports();
@@ -403,20 +431,35 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         sc.show();
     }//GEN-LAST:event_Btn_CaseReportsActionPerformed
 
+    /**
+     * @return Returns Btn_FrwdedCase
+     */
     public JButton getBtn_FrwdedCase() {
         return Btn_FrwdedCase;
     }
 
+    /**
+     * Sets Btn_FrwdedCase value
+     * @param Btn_FrwdedCase A JButton value
+     */
     public void setBtn_FrwdedCase(JButton Btn_FrwdedCase) {
         this.Btn_FrwdedCase = Btn_FrwdedCase;
     }
 
+    /**
+     * Invokes Screen_managers
+     * @param evt 
+     */
     private void Btn_FrwdedCaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_FrwdedCaseActionPerformed
         // TODO add your handling code here:
         Screen_Managers sm = new Screen_Managers();
         sm.show();
     }//GEN-LAST:event_Btn_FrwdedCaseActionPerformed
 
+    /**
+     * Updates Agent Status to 'Ans' when call is answered
+     * @param evt 
+     */
     private void Btn_AnsConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AnsConfirmActionPerformed
         // TODO add your handling code here:
         String Query = "update call_scheduling set Status='Ans' where AgentID='" + Global.AgentID + "'";
@@ -450,6 +493,11 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
     public ArrayList<Long> CaseID = new ArrayList<>();
     public Cases cs = new Cases();
 
+    /**
+     * Saves Data for Caller, Case, CaseHistory and Accused
+     * to the database tables caller, cases, case_history, accused respectively
+     * The respective variables are then reset
+     */
     private void SaveData() {
         Caller cl = new Caller();
         cl.setName(title);
@@ -490,6 +538,10 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         //  Dlg_distressWoman.
     }
 
+    /**
+     * Checks Agent status 
+     * @throws SQLException
+     */
     private void CheckagentStatus() {
         Sql sql = new Sql();        
         ResultSet rs = sql.ExecuteQuery("Select Status From agents where name= '" + pf.AgentId + "'");
@@ -506,6 +558,11 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         sql.Destructor();
     }
 
+    /**
+     * Sets Agent Status value
+     * @param comboBox 
+     * @param value Agent status
+     */
     public static void setSelectedValue(JComboBox comboBox, String value) {
 
         String item;
@@ -520,6 +577,12 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         }
     }
 
+    /**
+     * Saves Data for different categories
+     * Saves Data to Caller, Case, CaseHistory and Accused
+     * to the database tables caller, cases, case_history, accused respectively
+     * @param Category values = 'Advice', 'Men', 'Blank and Irrelevant'
+     */
     public void SaveData(String Category) {
         Long CaseID = null;
 
@@ -551,9 +614,11 @@ public class Screen_TeleExecutive extends javax.swing.JInternalFrame {
         cl.setAddress("NR:" + Category);
         cl.savetodb();
         infoBox("Your call is saved in the category: " + Category, "Delhi Women Cell");
-
     }
 
+    /**
+     * Plays the Audio file
+     */
     class playfile implements Runnable {
 
         public playfile() {

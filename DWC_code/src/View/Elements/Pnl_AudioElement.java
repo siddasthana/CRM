@@ -17,22 +17,30 @@ import javazoom.jl.player.Player;
 import temp.Design;
 
 /**
- *
+ * This class Loads and plays audio files given URL
  * @author admin
  */
 public class Pnl_AudioElement extends javax.swing.JPanel {
 Player mp3player = null;
 String AudioFile="";
 
+    /**
+     * @return A String Audio File path value
+     */
     public String getAudioFile() {
         return AudioFile;
     }
 
+    /**
+     * Sets the Audio FIle path value
+     * @param AudioFile A String value
+     */
     public void setAudioFile(String AudioFile) {
         this.AudioFile = AudioFile;
     }
 
     /**
+     * Default Constructor
      * Creates new form Pnl_Audio
      */
     public Pnl_AudioElement() {
@@ -90,6 +98,11 @@ String AudioFile="";
         );
     }// </editor-fold>//GEN-END:initComponents
 
+
+    /**
+     * Invokes the playfile class to play the audio file
+     * @param evt 
+     */
     private void Btn_PlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_PlayActionPerformed
         // TODO add your handling code here:
         playfile pf = new playfile();
@@ -98,36 +111,67 @@ String AudioFile="";
 
     }//GEN-LAST:event_Btn_PlayActionPerformed
 
+    /**
+     * @return A JLabel Lbl_Call_Description value
+     */
     public JLabel getLbl_CallDescription() {
         return Lbl_CallDescription;
     }
 
+    /**
+     * Sets the Lbl_CallDescription value
+     * @param Lbl_CallDescription A JLabel value
+     */
     public void setLbl_CallDescription(JLabel Lbl_CallDescription) {
         this.Lbl_CallDescription = Lbl_CallDescription;
     }
 
+    /**
+     * Stops the mp3player
+     * @param evt 
+     */
     private void Btn_StopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_StopActionPerformed
         // TODO add your handling code here:
         mp3player.close();
     }//GEN-LAST:event_Btn_StopActionPerformed
+
+    
+    
+    
+/**
+ * This class provides support to play mmp3 files
+ */    
 class playfile implements Runnable{
   
     public playfile() {
         
     }
-            @Override
-            public void run() {
-      try {
-          play();
-      } catch (JavaLayerException ex) {
-          Logger.getLogger(Design.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (IOException ex) {
-          Logger.getLogger(Design.class.getName()).log(Level.SEVERE, null, ex);
-      }
-            }
-public void play() throws JavaLayerException, IOException {
-//        String song = "http://sound17.mp3pk.com/indian/bhaagmilkhabhaag/[Songs.PK]%20Bhaag%20Milkha%20Bhaag%20-%2001%20-%20Gurbani.mp3";
-       // String fileurl=ServerUrl+Credential+jLabel1.getText();
+    /**
+     * Invokes play()
+     * @throws JavaLayerException
+     * @throws IOException
+     */
+    @Override
+    public void run() {
+        try {
+            play();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(Design.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Design.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+    
+    /**
+     * Plays the Audio file
+     * @throws JavaLayerException
+     * @throws IOException
+     * @throws MalforedURLException
+     * @throw NullPointerException
+     */
+    public void play() throws JavaLayerException, IOException {
+        //String song = "http://sound17.mp3pk.com/indian/bhaagmilkhabhaag/[Songs.PK]%20Bhaag%20Milkha%20Bhaag%20-%2001%20-%20Gurbani.mp3";
+        //String fileurl=ServerUrl+Credential+jLabel1.getText();
         //String fileurl="http://192.168.16.176/download.php?file=1.mp3";
         String fileurl = "http://"+Sql.Server_IP+"/download.php?file="+AudioFile;
         BufferedInputStream in = null;
